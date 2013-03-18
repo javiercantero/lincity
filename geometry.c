@@ -360,7 +360,10 @@ resize_geometry (int new_width, int new_height)
 
     /* Complete refresh of the screen required here */
 #if !defined (SVGALIB)
-    screen_full_refresh ();
+    /* Prevent refresh if no init done yet (happens if the WM
+     * disregards hints and resizes the splash screen).  */
+    if (monthgraph_nojobs)
+	screen_full_refresh ();
 #endif
 }
 
