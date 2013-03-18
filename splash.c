@@ -164,7 +164,8 @@ void
 si_scroll_text (void)
 {
   char s[LC_PATH_MAX], line1[100], line2[100], line3[100], c;
-  int i, t, l1c = 0, l2c = 0, l3c = 0;
+  int i, l1c = 0, l2c = 0, l3c = 0;
+  long t;
   FILE *inf1, *inf2, *inf3;
 #ifdef LC_X11
   XEvent xev;
@@ -272,7 +273,7 @@ si_scroll_text (void)
 #endif
       while (real_time < t)
 	{
-	  lc_usleep (1);
+	  lc_usleep(1000*(t-real_time));
 	  get_real_time ();
 	}
     }

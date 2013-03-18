@@ -575,7 +575,7 @@ process_keystrokes (int key)
 int 
 execute_timestep (void)
 {
-    static int next_time_step = 0;
+    static long next_time_step = 0;
     int real_quit_flag = 0;
 
     if (market_cb_flag == 0 && help_flag == 0 
