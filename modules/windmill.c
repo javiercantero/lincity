@@ -97,6 +97,10 @@ mps_windmill (int x, int y)
 
 	mps_store_sfp(i++,_("Tech"),
 		  MP_INFO(x,y).int_2 * 100.0 / MAX_TECH_LEVEL);  
+
+	if (MP_INFO(x,y).int_6 == 0)
+	  return;
+
 	i++;
 	
 	mps_store_title(i++,_("Grid Status"));
