@@ -105,7 +105,7 @@ fi
 dnl -------------------------------------------------------
 dnl Internationalization
 dnl ALL_LINGUAS="ca"
-AM_GNU_GETTEXT
+AM_GNU_GETTEXT([external])
 dnl -------------------------------------------------------
 dnl GCS: I stole the following from freeciv
 dnl Why doesn't AM_GNU_GETTEXT set LIBS appropriately
@@ -136,7 +136,7 @@ dnl -------------------------------------------------------
 dnl GCS Jan 19, 2003
 dnl Remove internationalization.  Pushed off to the next version.
 dnl -------------------------------------------------------
-AC_CONFIG_FILES([Makefile intl/Makefile po/Makefile.in m4/Makefile modules/Makefile])
+AC_CONFIG_FILES([Makefile po/Makefile.in m4/Makefile modules/Makefile])
 
 dnl AC_CONFIG_FILES([Makefile])
 

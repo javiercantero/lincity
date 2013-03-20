@@ -7,7 +7,7 @@ DEFS = @DEFS@
 X_DEFS = -DLC_X11=1 -Wall
 SVGA_DEFS = -DSVGALIB=1
 
-SUBDIRS = m4 intl po modules
+SUBDIRS = m4 po modules
 
 ## (deleted)
 ##	acconfig.h   \
