@@ -16,6 +16,14 @@
 #include <market.h>
 
 
+/* old lin-city.h definitions */
+#define MAX_STEEL_IN_MARKET (MAX_STEEL_ON_RAIL*2)
+#define MARKET_STEEL_SEARCH_TRIGGER (MAX_STEEL_IN_MARKET/5)
+#define MARKET_RANGE      10
+#define MARKET_ANIM_SPEED 750
+#define EMPLOYER_RANGE 10
+#define ORG_FARM_RANGE 10
+
 
 int
 get_jobs (int x, int y, int jobs)

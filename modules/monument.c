@@ -14,6 +14,14 @@
 #include <mps.h>
 #include <monument.h>
 
+/* old lin-city.h definitions */
+#define BUILD_MONUMENT_JOBS     350000
+#define MONUMENT_GET_JOBS       100
+#define MONUMENT_DAYS_PER_TECH  3
+#define MONUMENT_TECH_EXPIRE    400
+#define MONUMENT_ANIM_SPEED     300
+
+
 void
 do_monument (int x, int y)
 {

@@ -14,6 +14,14 @@
 #include <organic_farm.h>
 
 
+/* old lin-city.h definitions */
+#define FARM_JOBS_USED 13
+#define ORG_FARM_POWER_REC 50
+/* gets waste only when powered */
+#define ORG_FARM_WASTE_GET 6
+#define MIN_FOOD_SOLD_FOR_ANIM 200
+#define ORGANIC_FARM_ANIM_SPEED 3000
+
 void
 do_organic_farm (int x, int y)
 {

@@ -16,6 +16,22 @@
 #include <mill.h>
 
 
+/* old lin-city.h definitions */
+#define MILL_JOBS          35
+#define MAX_GOODS_AT_MILL  200
+#define MAX_FOOD_AT_MILL   500
+#define MAX_COAL_AT_MILL   50
+#define GOODS_MADE_BY_MILL 75
+#define MILL_GET_FOOD      51
+#define MILL_GET_COAL      4
+#define MILL_POWER_PER_COAL 60
+#define FOOD_USED_BY_MILL  (GOODS_MADE_BY_MILL/2)
+#define COAL_USED_BY_MILL  1
+#define MILL_ANIM_THRESHOLD 10
+#define MILL_ANIM_SPEED    300
+
+
+
 void
 do_mill (int x, int y)
 {

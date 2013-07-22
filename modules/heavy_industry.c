@@ -16,6 +16,27 @@
 #include <heavy_industry.h>
 
 
+/* old lin-city.h definitions */
+#define MAX_ORE_AT_INDUSTRY_H 10000
+#define MAX_COAL_AT_INDUSTRY_H 1000
+#define MAX_MADE_AT_INDUSTRY_H MAX_ORE_AT_INDUSTRY_H/16
+#define POWER_MAKE_STEEL 200
+#define INDUSTRY_H_ANIM_SPEED  290
+#define INDUSTRY_H_POLLUTION    10
+/*
+  JOBS_MAKE_STEEL is the steel made per job at the steel works
+  what's it doing here?
+ */
+#define JOBS_MAKE_STEEL 70
+/*
+  ORE_MAKE_STEEL is the ore used per unit of STEEL at a steel works
+  what's it doing here?
+ */
+#define ORE_MAKE_STEEL 17
+
+#define MAX_STEEL_AT_INDUSTRY_H (MAX_STEEL_ON_RAIL*10)
+
+
 void
 do_industry_h (int x, int y)
 {

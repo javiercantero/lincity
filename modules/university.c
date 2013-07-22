@@ -15,6 +15,16 @@
 #include <mps.h>
 #include <university.h>
 
+
+/* old lin-city.h definitions */
+#define UNIVERSITY_JOBS   250
+#define UNIVERSITY_JOBS_STORE 5000
+#define UNIVERSITY_GOODS  750
+#define UNIVERSITY_GOODS_STORE 7000
+#define UNIVERSITY_RUNNING_COST 23
+#define UNIVERSITY_TECH_MADE    4
+
+
 void
 do_university (int x, int y)
 {

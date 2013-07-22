@@ -16,6 +16,23 @@
 #include <pottery.h>
 
 
+/* old lin-city.h definitions */
+#define MAX_GOODS_AT_POTTERY     200
+#define POTTERY_ORE_MAKE_GOODS    11
+#define POTTERY_COAL_MAKE_GOODS    2
+#define POTTERY_JOBS              35
+#define MAX_ORE_AT_POTTERY        (POTTERY_ORE_MAKE_GOODS*60)
+#define POTTERY_GET_ORE           (POTTERY_ORE_MAKE_GOODS*20)
+#define MAX_COAL_AT_POTTERY       (POTTERY_COAL_MAKE_GOODS*60)
+#define POTTERY_GET_COAL          (POTTERY_COAL_MAKE_GOODS*21)
+#define MAX_JOBS_AT_POTTERY       (POTTERY_JOBS*20)
+#define POTTERY_GET_JOBS          (POTTERY_JOBS*2)
+#define POTTERY_MADE_GOODS        35
+#define POTTERY_ANIM_SPEED        280
+#define POTTERY_CLOSE_TIME        20
+
+
+
 void
 do_pottery (int x, int y)
 {

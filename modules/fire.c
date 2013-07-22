@@ -15,6 +15,13 @@
 #include <mps.h>
 #include <fire.h>
 
+
+/* old lin-city.h definitions */
+#define FIRE_ANIMATION_SPEED 350
+#define FIRE_DAYS_PER_SPREAD (NUMOF_DAYS_IN_YEAR/8)
+#define AFTER_FIRE_LENGTH (NUMOF_DAYS_IN_YEAR*10)
+
+
 void
 do_fire (int x, int y)
 {

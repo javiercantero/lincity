@@ -16,6 +16,17 @@
 #include <health_centre.h>
 
 
+/* old lin-city.h definitions */
+#define HEALTH_CENTRE_JOBS   6
+#define HEALTH_CENTRE_GET_JOBS 7
+#define MAX_JOBS_AT_HEALTH_CENTRE (HEALTH_CENTRE_JOBS*NUMOF_DAYS_IN_YEAR)
+#define HEALTH_CENTRE_GOODS  40
+#define HEALTH_CENTRE_GET_GOODS 41
+#define MAX_GOODS_AT_HEALTH_CENTRE (HEALTH_CENTRE_GOODS*NUMOF_DAYS_IN_YEAR)
+#define HEALTH_RUNNING_COST  2
+#define HEALTH_CENTRE_RANGE  15
+
+
 void
 do_health_centre (int x, int y)
 {

@@ -19,6 +19,18 @@
 #include <rocket_pad.h>
 
 
+/* old lin-city.h definitions */
+#define ROCKET_PAD_JOBS         1000
+#define ROCKET_PAD_JOBS_STORE   10000
+#define ROCKET_PAD_GOODS        10000
+#define ROCKET_PAD_GOODS_STORE  500000
+#define ROCKET_PAD_STEEL	500
+#define ROCKET_PAD_STEEL_STORE  12000
+#define ROCKET_PAD_RUNNING_COST 200
+#define ROCKET_PAD_LAUNCH       100
+#define ROCKET_ANIMATION_SPEED  450
+
+
 void
 do_rocket_pad (int x, int y)
 {

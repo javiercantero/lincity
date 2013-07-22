@@ -13,6 +13,12 @@
 #include "power.h"
 #include "stats.h" /* for transport_cost */
 
+
+/* old lin-city.h definitions */
+#define WASTE_BURN_ON_TRANSPORT 20
+#define TRANSPORT_BURN_WASTE_COUNT 75000
+
+
 /* ---------------------------------------------------------------------
    For track, road and rail:
   

@@ -16,6 +16,17 @@
 #include <school.h>
 
 
+/* old lin-city.h definitions */
+#define SCHOOL_JOBS        50
+#define SCHOOL_GOODS	   75
+#define JOBS_MAKE_TECH_SCHOOL  200
+#define GOODS_MAKE_TECH_SCHOOL  75
+#define TECH_MADE_BY_SCHOOL    2
+#define MAX_JOBS_AT_SCHOOL     400
+#define MAX_GOODS_AT_SCHOOL    200
+#define SCHOOL_RUNNING_COST    2
+
+
 void
 do_school (int x, int y)
 {

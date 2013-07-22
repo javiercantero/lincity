@@ -16,6 +16,18 @@
 #include <firestation.h>
 
 
+/* old lin-city.h definitions */
+#define FIRESTATION_JOBS   6
+#define FIRESTATION_GET_JOBS 7
+#define MAX_JOBS_AT_FIRESTATION (FIRESTATION_JOBS*NUMOF_DAYS_IN_YEAR)
+#define FIRESTATION_GOODS  2
+#define FIRESTATION_GET_GOODS 3
+#define MAX_GOODS_AT_FIRESTATION (FIRESTATION_GOODS*NUMOF_DAYS_IN_YEAR)
+#define FIRESTATION_RANGE  18
+#define FIRESTATION_RUNNING_COST 1
+#define FIRESTATION_ANIMATION_SPEED 250
+
+
 void
 do_firestation (int x, int y)
 {

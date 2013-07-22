@@ -15,6 +15,13 @@
 #include <transport.h>
 #include <rail.h>
 
+
+/* old lin-city.h definitions */
+#define RAIL_POLLUTION          1
+#define DAYS_PER_RAIL_POLLUTION 30
+#define RAIL_STEEL_USED_MASK 0x7f
+
+
 /* ---------------------------------------------------------------------
    For track, road and rail:
   

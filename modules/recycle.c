@@ -15,6 +15,16 @@
 #include <mps.h>
 #include <recycle.h>
 
+
+/* old lin-city.h definitions */
+#define MAX_WASTE_AT_RECYCLE 20000
+#define BURN_WASTE_AT_RECYCLE (MAX_WASTE_AT_RECYCLE/200)
+#define MAX_ORE_AT_RECYCLE   (MAX_ORE_ON_RAIL*2)
+#define GOODS_RECYCLED       500
+#define RECYCLE_GOODS_JOBS   (GOODS_RECYCLED/50)
+#define RECYCLE_RUNNING_COST 3
+
+
 void
 do_recycle (int x, int y)
 {

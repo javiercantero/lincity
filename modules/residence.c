@@ -14,6 +14,37 @@
 #include <mps.h>
 #include <residence.h>
 
+
+/* old lin-city.h definitions */
+/* RESIDENCE?_BRM is the birth rate modifier */
+/* RESIDENCE?_DRM is the death rate modifier */
+#define RESIDENCE_BASE_BR     100
+#define RESIDENCE_BASE_DR     (68*12)
+#define RESIDENCE_BRM_HEALTH  5
+#define RESIDENCE1_BRM (RESIDENCE_BASE_BR*12)
+#define RESIDENCE1_DRM ((RESIDENCE_BASE_DR*3)/4)
+#define RESIDENCE2_BRM 0
+#define RESIDENCE2_DRM 0
+#define RESIDENCE3_BRM (RESIDENCE_BASE_BR+RESIDENCE_BASE_BR/4)
+#define RESIDENCE3_DRM ((RESIDENCE_BASE_DR)/2)
+#define RESIDENCE4_BRM (RESIDENCE_BASE_BR*18)
+#define RESIDENCE4_DRM ((RESIDENCE_BASE_DR*3)/4)
+#define RESIDENCE5_BRM (RESIDENCE_BASE_BR/2)
+#define RESIDENCE5_DRM ((RESIDENCE_BASE_DR)/4)
+#define RESIDENCE6_BRM 0
+#define RESIDENCE6_DRM ((RESIDENCE_BASE_DR)/4)
+/* RESIDENCE_PPM is the people_pool mobitily. Higher number=less mobile. */
+#define RESIDENCE_PPM   20
+#define DAYS_PER_STARVE 20
+#define POWER_USE_PER_PERSON 3
+#define POWER_RES_OVERHEAD 30
+#define WORKING_POP_PERCENT 45
+#define JOB_SWING 15
+#define CRICKET_JOB_SWING 4
+#define HC_JOB_SWING 10
+#define MIN_RES_POPULATION 10
+
+
 void
 do_residence (int x, int y)
 {

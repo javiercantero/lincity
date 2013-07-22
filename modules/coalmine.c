@@ -16,6 +16,14 @@
 #include <coalmine.h>
 
 
+/* old lin-city.h definitions */
+#define MAX_COAL_AT_MINE 100000
+#define DIG_MORE_COAL_TRIGGER (MAX_COAL_AT_MINE)
+/* COAL_RESERVE_SEARCH_LEN acts in both directions, so 5 is 10*10 */
+#define COAL_RESERVE_SEARCH_LEN 8
+#define JOBS_DIG_COAL 900
+#define COALMINE_POLLUTION      3
+
 
 void
 do_coalmine (int x, int y)

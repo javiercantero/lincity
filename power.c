@@ -19,6 +19,11 @@
 #include "power.h"
 #include "transport.h" /* for XY_IS_TRANSPORT */
 
+
+/* old lin-city.h definitions */
+#define SUBSTATION_RANGE 10
+
+
 /* reset per map_power_grid run; how many different grids */
 int grid_num = 0;
 

@@ -17,6 +17,9 @@
 #include <tip.h>
 
 
+/* old lin-city.h definitions */
+#define MAX_WASTE_AT_TIP  10000000
+
 
 void
 do_tip (int x, int y)

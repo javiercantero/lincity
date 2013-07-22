@@ -28,6 +28,10 @@
   --------------------------------------------------------------------- */
 
 
+/* old lin-city.h definitions */
+#define ROAD_POLLUTION          1
+#define DAYS_PER_ROAD_POLLUTION 20
+
 
 void
 do_road (int x, int y)

@@ -17,6 +17,10 @@
 #include <commune.h>
 
 
+/* old lin-city.h definitions */
+#define COMMUNE_ANIM_SPEED 750
+
+
 void
 do_commune (int x, int y)
 {

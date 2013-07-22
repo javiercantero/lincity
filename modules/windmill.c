@@ -18,6 +18,14 @@
 #include <windmill.h>
 
 
+/* old lin-city.h definitions */
+#define WINDMILL_JOBS       10
+/* WINDMILL_RCOST is days per quid */
+#define WINDMILL_RCOST      3
+#define ANTIQUE_WINDMILL_ANIM_SPEED 160
+#define MODERN_WINDMILL_ANIM_SPEED 120
+
+
 /*** Windmills ***/
 /*
   // int_1 is the rated capacity 

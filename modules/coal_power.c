@@ -19,6 +19,12 @@
 #include <transport.h>  /* XXX: This seems to be an anomaly; no other modules
 			  use XY_IS_TRANSPORT */
 
+
+/* old lin-city.h definitions */
+#define MAX_COAL_AT_POWER_STATION 100000
+#define POWERS_COAL_POLLUTION   20
+
+
 /*** Coal Power ***/
 /*
   // int_1 is the maximum possible power

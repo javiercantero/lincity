@@ -16,6 +16,18 @@
 #include <cricket.h>
 
 
+/* old lin-city.h definitions */
+#define CRICKET_JOBS   8
+#define CRICKET_GET_JOBS 9
+#define MAX_JOBS_AT_CRICKET (CRICKET_JOBS*NUMOF_DAYS_IN_YEAR)
+#define CRICKET_GOODS  2
+#define CRICKET_GET_GOODS 3
+#define MAX_GOODS_AT_CRICKET (CRICKET_GOODS*NUMOF_DAYS_IN_YEAR)
+#define CRICKET_RANGE  10
+#define CRICKET_RUNNING_COST 1
+#define CRICKET_ANIMATION_SPEED 750
+
+
 void
 do_cricket (int x, int y)
 {
