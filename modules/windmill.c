@@ -16,6 +16,7 @@
 #include <lclib.h>
 #include <power.h>
 #include <windmill.h>
+#include "market.h"
 
 
 /* old lin-city.h definitions */

@@ -14,6 +14,7 @@
 #include <stats.h>
 #include <mps.h>
 #include <school.h>
+#include "market.h"
 
 
 /* old lin-city.h definitions */

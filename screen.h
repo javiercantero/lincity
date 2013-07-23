@@ -62,5 +62,21 @@ void reset_status_message (void);
 
 #define CB_SPACE 20 // space between checkbuttons for market/port
 
+void draw_big_mini_screen (void);
+void draw_market_cb (void);
+void clicked_market_cb (int x, int y);
+void close_market_cb (void);
+void draw_port_cb (void);
+void clicked_port_cb (int x, int y);
+void close_port_cb (void);
+
+void draw_main_window_box (int colour);
+void print_stats (void);
+void print_total_money (void);
+int ask_launch_rocket_now (int x, int y);
+int yn_dial_box (char * s1, char * s2, char * s3, char *s4);
+void ok_dial_box (char *fn, int good_bad, char *xs);
+void prog_box (char *title, int percent);
+
 #endif	/* __screen_h__ */
 

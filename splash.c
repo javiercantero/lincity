@@ -26,6 +26,7 @@
 #include "engglobs.h"
 #include "screen.h"
 #include "fileutil.h"
+#include "timer.h"
 
 #define SI_BLACK 252
 #define SI_RED 253
@@ -35,7 +36,9 @@
 /* ---------------------------------------------------------------------- *
  * Private Fn Prototypes
  * ---------------------------------------------------------------------- */
-
+void start_image_text (void);
+void si_scroll_text (void);
+char si_next_char (FILE * inf);
 
 /* ---------------------------------------------------------------------- *
  * Private Global Variables
@@ -146,8 +149,7 @@ load_start_image (void)
   start_image_text ();
 }
 
-void
-start_image_text (void)
+void start_image_text (void)
 {
 #if defined (SVGALIB)
   gl_setwritemode (FONT_COMPRESSED);
@@ -160,8 +162,7 @@ start_image_text (void)
   si_scroll_text ();
 }
 
-void
-si_scroll_text (void)
+void si_scroll_text (void)
 {
   char s[LC_PATH_MAX], line1[100], line2[100], line3[100], c;
   int i, l1c = 0, l2c = 0, l3c = 0;
@@ -284,8 +285,7 @@ si_scroll_text (void)
   Fgl_disableclipping ();
 }
 
-char
-si_next_char (FILE * inf)
+char si_next_char (FILE * inf)
 {
   char c;
   if (feof (inf) != 0)

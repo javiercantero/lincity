@@ -33,13 +33,20 @@ extern char lc_textdomain_directory[LC_PATH_MAX];
 extern char lincityrc_file[LC_PATH_MAX];
 extern char given_scene[LC_PATH_MAX];
 
-void gunzip_file (char *f1, char *f2);
+FILE* fopen_read_gzipped (char* fn);
+void fclose_read_gzipped (FILE* fp);
 int file_exists (char *filename);
 int directory_exists (char *dir);
+void init_path_strings (void);
+void verify_package (void);
+void make_savedir (void);
+void check_savedir (void);
 char* load_graphic(char *s);
 void undosify_string(char *s);
 void load_lincityrc (void);
 void save_lincityrc (void);
+
+void malloc_failure (void);
 
 void debug_printf (char* fmt, ...);
 

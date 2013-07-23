@@ -4,15 +4,29 @@
  * Lincity is copyright (c) I J Peters 1995-1997, (c) Greg Sharp 1997-2001.
  * ---------------------------------------------------------------------- */
 #include "lcconfig.h"
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
+
+#include "lin-city.h"
+#include "common.h"
+#ifdef LC_X11
+#include <X11/cursorfont.h>
+#endif
 #include "lcstring.h"
-#include "ldsvgui.h"
+#include "lctypes.h"
 #include "lcintl.h"
+#include "cliglobs.h"
+#include "engglobs.h"
+#include "mouse.h"
 #include "screen.h"
 #include "pbar.h"
 #include "module_buttons.h"
 #include "fileutil.h"
+#include "ldsvguts.h"
+#include "ldsvgui.h"
+#include "stats.h"
+#include "timer.h"
 
 /* this is for OS/2 - RVI */
 #ifdef __EMX__
@@ -66,19 +80,6 @@
 #endif
 #endif
 
-#include <ctype.h>
-#include "common.h"
-#ifdef LC_X11
-#include <X11/cursorfont.h>
-#endif
-#include "lctypes.h"
-#include "lin-city.h"
-#include "cliglobs.h"
-#include "engglobs.h"
-#include "ldsvguts.h"
-#include "fileutil.h"
-#include "mouse.h"
-#include "stats.h"
 
 /* ---------------------------------------------------------------------- *
  * Private Fn Prototypes
@@ -86,6 +87,8 @@
 int verify_city (char *cname);
 void input_network_host (char *s);
 void input_network_port (char *s);
+void draw_save_dir (int bg_colour);
+void input_save_filename (char *s);
 
 /* ---------------------------------------------------------------------- *
  * Private Global Variables
@@ -276,8 +279,7 @@ do_network_screen (void)
 }
 #endif
 
-void
-do_save_city ()
+void do_save_city (void)
 {
     Rect* mw = &scr.main_win;
     char s[200], c;
@@ -339,8 +341,7 @@ do_save_city ()
     redraw_mouse ();
 }
 
-void 
-load_opening_city (char *s)
+void load_opening_city (char *s)
 {
   char *cname = (char *) malloc (strlen (opening_path) + strlen (s) + 2);
   sprintf (cname, "%s%c%s", opening_path, PATH_SLASH, s);
@@ -362,8 +363,7 @@ load_opening_city (char *s)
   redraw_mouse ();
 }
 
-void
-do_load_city (void)
+void do_load_city (void)
 {
     Rect* mw = &scr.main_win;
     char c;
@@ -443,8 +443,7 @@ do_load_city (void)
     redraw_mouse ();
 }
 
-void
-draw_save_dir (int bg_colour)
+void draw_save_dir (int bg_colour)
 {
     Rect* mw = &scr.main_win;
     char *s, s2[200];
@@ -615,8 +614,7 @@ edit_string (char* s, unsigned int maxlen, int xpos, int ypos)
 	    s[i] = '_';
 }
 
-void
-input_save_filename (char *s)
+void input_save_filename (char *s)
 {
     Rect* mw = &scr.main_win;
     edit_string (s, 40, mw->x + 24, mw->y + 340);

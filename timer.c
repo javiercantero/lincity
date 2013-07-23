@@ -63,8 +63,7 @@ void fast_handler(int x, int y, int button);
 /* ---------------------------------------------------------------------- *
  * Function Definitions
  * ---------------------------------------------------------------------- */
-void
-lc_usleep (unsigned long t)
+void lc_usleep (unsigned long t)
 {
 #if defined (WIN32)
   /* This function will usually sleep too long.  For example, if t == 0 
@@ -91,8 +90,7 @@ reset_start_time (void)
 }
 
 
-void
-get_real_time (void)
+void get_real_time (void)
 {
 #if defined (WIN32)
   const int CLOCKS_PER_MILLISECOND = CLOCKS_PER_SEC / 1000;

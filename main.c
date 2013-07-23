@@ -55,6 +55,7 @@
 #include "engine.h"
 #include "module_buttons.h"
 #include "fileutil.h"
+#include "lintypes.h"
 
 #if defined (WIN32) && !defined (NDEBUG)
 #define START_FAST_SPEED 1
@@ -77,6 +78,11 @@ char* current_month (int current_time);
 int current_year (int current_time);
 void process_keystrokes (int key);
 int execute_timestep (void);
+
+void client_main_loop (void);
+int cheat (void);
+int compile_results (void);
+void print_results (void);
 
 /* ---------------------------------------------------------------------- *
  * Private Global Variables
@@ -109,8 +115,7 @@ int prof_countdown = PROFILE_COUNTDOWN;
  * Public Functions
  * ---------------------------------------------------------------------- */
 #if !defined (WIN32)
-int
-main (int argc, char *argv[])
+int main (int argc, char *argv[])
 {
     return lincity_main (argc, argv);
 }
@@ -150,8 +155,7 @@ lincity_set_locale (void)
     return;
 }
 
-int
-lincity_main (int argc, char *argv[])
+int lincity_main (int argc, char *argv[])
 {
 #if defined (LC_X11)
     char *geometry = NULL;
@@ -303,8 +307,7 @@ lincity_main (int argc, char *argv[])
 #endif
 }
 
-void
-client_main_loop (void)
+void client_main_loop (void)
 {
     int quit = 0;
 
@@ -704,8 +707,7 @@ do_error (char *s)
 #endif
 }
 
-int
-cheat (void)
+int cheat (void)
 {
     if (cheat_flag != 0)
 	return (1);
@@ -721,8 +723,7 @@ cheat (void)
     return (0);
 }
 
-int
-compile_results (void)
+int compile_results (void)
 {
     char *s;
     FILE *outf;
@@ -812,8 +813,7 @@ compile_results (void)
 }
 
 
-void
-print_results (void)
+void print_results (void)
 {
 #if !defined (WIN32)		/* GCS FIX: How should I do this? */
     char *s;

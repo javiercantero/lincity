@@ -11,4 +11,8 @@ void do_prefs_screen (void);
 void do_network_screen (void);
 void close_prefs_screen (void);
 
+void load_opening_city (char *s);
+void do_save_city (void);
+void do_load_city (void);
+
 #endif	/* __ldsvgui_h__ */

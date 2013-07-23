@@ -8,7 +8,11 @@
 
 void clear_mappoint (short fill, int x, int y);
 void new_city (int* originx, int* originy, int random_village);
+int count_groups (int g);
 void count_all_groups (int* group_count);
 void do_time_step (void);
+
+void initialize_tax_rates (void);
+
 
 #endif	/* __simulate_h__ */

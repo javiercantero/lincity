@@ -70,8 +70,8 @@ remove_a_substation (int x, int y)
   numof_substations--;
 }
 
-void
-shuffle_substations (void)
+#if 0 /* no se invoca */
+void shuffle_substations (void)
 {
   int q, x, r, m;
   m = (numof_substations / 2) + 1;
@@ -88,6 +88,7 @@ shuffle_substations (void)
       substationy[r] = q;
     }
 }
+#endif
 
 void
 mps_substation (int x, int y)

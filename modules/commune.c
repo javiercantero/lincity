@@ -15,7 +15,7 @@
 #include <engine.h>
 #include <mps.h>
 #include <commune.h>
-
+#include "market.h"
 
 /* old lin-city.h definitions */
 #define COMMUNE_ANIM_SPEED 750

@@ -14,6 +14,8 @@
 #include <stats.h>
 #include <mps.h>
 #include <heavy_industry.h>
+#include <power.h>
+#include "market.h"
 
 
 /* old lin-city.h definitions */

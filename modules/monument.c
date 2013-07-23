@@ -13,6 +13,8 @@
 #include <stats.h>
 #include <mps.h>
 #include <monument.h>
+#include "market.h"
+
 
 /* old lin-city.h definitions */
 #define BUILD_MONUMENT_JOBS     350000

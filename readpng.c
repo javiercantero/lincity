@@ -589,7 +589,11 @@ load_png_graphic (short type, short group, char* id,
 	    char* p;
 	    nr = nc = main_groups[group].size;
 	    p = grphc = malloc(nr*16*nc*16);
-	    if (!grphc) malloc_failure();
+	    if (!grphc)
+	    {
+	        fprintf (stderr,"Out of memory: malloc failure\n");
+            exit (-1);
+	    }
 	    for (r=ri*16;r<(ri+nr)*16;r++) {
 		for (c=ci*16;c<(ci+nc)*16;c++) {
 		    *p++ = row_pointers[r][c];

@@ -16,6 +16,7 @@
 #include <screen.h>
 #include <mps.h>
 #include <oremine.h>
+#include "market.h"
 
 
 

@@ -9,6 +9,8 @@
 #include "lctypes.h"
 #include "lclib.h"
 #include "lchelp.h"
+#include "fileutil.h"
+#include "screen.h"
 
 #define DEBUG_MODULES 0
 

@@ -15,6 +15,7 @@
 #include "lctypes.h"
 #include "pixmap.h"
 #include "screen.h"
+#include "timer.h"
 
 #define USE_WINDOWS_FONT 1
 #undef USE_WINDOWS_FONT

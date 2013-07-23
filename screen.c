@@ -32,6 +32,7 @@
 #include "stats.h"
 #include "engine.h"
 #include "fileutil.h"
+#include "power.h"
 
 
 /* old lin-city.h definitions */
@@ -100,7 +101,22 @@ void update_main_screen_cricket_cover (void);
 void update_main_screen_health_cover (void);
 void update_main_screen_coal (void);
 
-
+void update_mini_screen (void);
+void draw_mini_screen (void);
+void draw_mini_screen_pollution (void);
+void draw_mini_screen_fire_cover (void);
+void draw_mini_screen_cricket_cover (void);
+void draw_mini_screen_health_cover (void);
+void draw_mini_screen_ub40 (void);
+void draw_mini_screen_starve (void);
+void draw_mini_screen_coal (void);
+void draw_mini_screen_power (void);
+void draw_mini_screen_ocost (void);
+void draw_mini_screen_port (void);
+void draw_mini_screen_cursor (void);
+void clip_main_window (void);
+void unclip_main_window (void);
+void print_date (void);
 
 /* ---------------------------------------------------------------------- *
  * Public Functions
@@ -139,16 +155,14 @@ refresh_main_screen (void)
     dialog_refresh();
 }
 
-void 
-clip_main_window ()
+void clip_main_window (void)
 {
     Rect* b = &scr.main_win;
     Fgl_enableclipping ();
     Fgl_setclippingwindow (b->x, b->y, b->x + b->w - 1, b->y + b->h - 1);
 }
 
-void 
-unclip_main_window ()
+void unclip_main_window (void)
 {
     Fgl_disableclipping ();
 }
@@ -749,8 +763,7 @@ draw_ms_buttons (void)
 }
 #endif
 
-void
-draw_main_window_box (int colour)
+void draw_main_window_box (int colour)
 {
     Rect* b = &scr.main_win;
     int x;
@@ -1048,8 +1061,7 @@ mini_full_refresh (void)
     draw_mini_screen ();
 }
 
-void
-draw_mini_screen (void)
+void draw_mini_screen (void)
 {
     int x, y, xx, yy;
     Rect* mm = &scr.mini_map;
@@ -1083,8 +1095,7 @@ draw_mini_screen (void)
 #endif
 }
 
-void
-draw_big_mini_screen (void)
+void draw_big_mini_screen (void)
 {
     Rect* b = &scr.main_win;
     int x, y, xx, yy;
@@ -1104,8 +1115,7 @@ draw_big_mini_screen (void)
 }
 
 
-void
-draw_mini_screen_pollution (void)
+void draw_mini_screen_pollution (void)
 {
     int x, y, col;
     Rect* mm = &scr.mini_map;
@@ -1134,8 +1144,7 @@ draw_mini_screen_pollution (void)
 #endif
 }
 
-void
-draw_mini_screen_fire_cover (void)
+void draw_mini_screen_fire_cover (void)
 {
     int x, y, xx, yy, col;
     Rect* mm = &scr.mini_map;
@@ -1172,8 +1181,7 @@ draw_mini_screen_fire_cover (void)
 #endif
 }
 
-void
-draw_mini_screen_cricket_cover (void)
+void draw_mini_screen_cricket_cover (void)
 {
     int x, y, xx, yy, col;
     Rect* mm = &scr.mini_map;
@@ -1208,8 +1216,7 @@ draw_mini_screen_cricket_cover (void)
 #endif
 }
 
-void
-draw_mini_screen_health_cover (void)
+void draw_mini_screen_health_cover (void)
 {
     int x, y, xx, yy, col;
     Rect* mm = &scr.mini_map;
@@ -1244,8 +1251,7 @@ draw_mini_screen_health_cover (void)
 #endif
 }
 
-void
-draw_mini_screen_ub40 (void)
+void draw_mini_screen_ub40 (void)
 {
     int x, y, col;
     Rect* mm = &scr.mini_map;
@@ -1273,8 +1279,7 @@ draw_mini_screen_ub40 (void)
 #endif
 }
 
-void
-draw_mini_screen_starve (void)
+void draw_mini_screen_starve (void)
 {
     int x, y, col;
     Rect* mm = &scr.mini_map;
@@ -1338,8 +1343,7 @@ draw_mini_screen_coal (void)
 #endif
 }
 
-void
-draw_mini_screen_power (void)
+void draw_mini_screen_power (void)
 {
     int x, y, xx, yy, col;
     int have_power = 0;
@@ -1382,8 +1386,7 @@ draw_mini_screen_power (void)
 }
 
 /* GCS -- This is obsolete, right?? */
-void
-draw_mini_screen_ocost (void)
+void draw_mini_screen_ocost (void)
 {
     char s[100];
     Rect* b = &scr.mini_map;
@@ -1653,8 +1656,7 @@ monthgraph_full_refresh (void)
     do_monthgraph (1);
 }
 
-void
-print_stats (void)
+void print_stats (void)
 {
     static int flag = 0;
     int monthgraph_full_update = 0;
@@ -1806,8 +1808,7 @@ print_stats (void)
 #endif
 }
 
-void
-print_total_money (void)
+void print_total_money (void)
 {
     Rect* b = &scr.money;
     char str[MONEY_W / CHAR_WIDTH + 1];
@@ -1830,8 +1831,7 @@ print_total_money (void)
 	Fgl_setfontcolors (TEXT_BG_COLOUR, TEXT_FG_COLOUR);
 }
 
-void
-print_date (void)
+void print_date (void)
 {
     char s[50];
     Rect* b = &scr.date;
@@ -2095,15 +2095,6 @@ do_history_linegraph (int draw)
 }
 
 void
-clicked_market_cb (int x, int y)
-{
-    market_cb_flag = 1;
-    mcbx = x;
-    mcby = y;
-}
-
-
-void
 draw_cb_box (int row, int col, int checked)
 {
     int x, y;
@@ -2182,15 +2173,20 @@ draw_cb_template (int is_market_cb)
     draw_cb_box (5, 1, MP_INFO(mcbx,mcby).flags & FLAG_MS_STEEL);
 }
 
-void
-draw_market_cb (void)
+void draw_market_cb (void)
 {
     market_cb_drawn_flag = 1;
     draw_cb_template (1);
 }
 
-void
-close_market_cb (void)
+void clicked_market_cb (int x, int y)
+{
+    market_cb_flag = 1;
+    mcbx = x;
+    mcby = y;
+}
+
+void close_market_cb (void)
 {
     Rect* mcb = &scr.market_cb;
 
@@ -2205,24 +2201,20 @@ close_market_cb (void)
     cs_mouse_button = LC_MOUSE_LEFTBUTTON;
 }
 
-void
-clicked_port_cb (int x, int y)
+void draw_port_cb (void)
+{
+    port_cb_drawn_flag = 1;
+    draw_cb_template (0);
+}
+
+void clicked_port_cb (int x, int y)
 {
     port_cb_flag = 1;
     mcbx = x;
     mcby = y;
 }
 
-void
-draw_port_cb (void)
-{
-    port_cb_drawn_flag = 1;
-    draw_cb_template (0);
-}
-
-
-void
-close_port_cb (void)
+void close_port_cb (void)
 {
     Rect* mcb = &scr.market_cb;
 
@@ -2234,8 +2226,7 @@ close_port_cb (void)
     cs_mouse_button = LC_MOUSE_LEFTBUTTON;
 }
 
-int
-yn_dial_box (char * s1, char * s2, char * s3, char *s4)
+int yn_dial_box (char * s1, char * s2, char * s3, char *s4)
 {
     int result;
     result = dialog_box(red(10),7,
@@ -2250,8 +2241,7 @@ yn_dial_box (char * s1, char * s2, char * s3, char *s4)
     return (result == 'y') ? 1 : 0;
 }
 
-void
-ok_dial_box (char *fn, int good_bad, char *xs)
+void ok_dial_box (char *fn, int good_bad, char *xs)
 {
     FILE *inf;
     struct stat statbuf;
@@ -2384,8 +2374,7 @@ display_info_message (int colour, char* ss, char* xs)
     }
 }
 
-void
-prog_box (char *title, int percent)
+void prog_box (char *title, int percent)
 {
     static int flag = 0, oldpercent = 0;
     char s[100];
@@ -2598,6 +2587,7 @@ dump_screen (void)
 #endif
 }
 
+#if 0 /* unused */
 void
 debug_writeval (int v)
 {
@@ -2605,6 +2595,7 @@ debug_writeval (int v)
     sprintf (s, "%d  ", v);
     Fgl_write (280, 471, s);
 }
+#endif
 
 int
 ask_launch_rocket_click (int x, int y)

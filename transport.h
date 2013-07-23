@@ -15,5 +15,8 @@
  (MP_GROUP(x,y) == GROUP_RAIL) || \
  (MP_GROUP(x,y) == GROUP_POWER_LINE))
 
+void general_transport (Map_Point_Info *minfo, int *pol,
+                        int max_waste, int *waste_count);
+
 
 #endif

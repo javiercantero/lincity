@@ -14,6 +14,7 @@
 #include <stats.h>
 #include <mps.h>
 #include <health_centre.h>
+#include "market.h"
 
 
 /* old lin-city.h definitions */

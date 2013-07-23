@@ -12,6 +12,8 @@
 #include <engglobs.h>
 #include <mps.h>
 #include <organic_farm.h>
+#include <power.h>
+#include "market.h"
 
 
 /* old lin-city.h definitions */

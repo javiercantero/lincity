@@ -13,10 +13,14 @@
 #include <stats.h>
 #include <mouse.h> /* XXX: fire_area! */
 #include <mps.h>
-#include <shanty.h>
+#include "shanty.h"
+#include "engine.h"
+#include "market.h"
 
-void
-add_a_shanty (void)
+void add_a_shanty(void);
+void remove_a_shanty(void);
+
+void add_a_shanty (void)
 {
   int r, x, y;
   x = rand () % WORLD_SIDE_LEN;
@@ -65,8 +69,7 @@ add_a_shanty (void)
   numof_shanties++;
 }
 
-void
-remove_a_shanty (void)
+void remove_a_shanty (void)
 {
   int x, y, r;
   if (numof_shanties <= 0)
@@ -89,8 +92,7 @@ remove_a_shanty (void)
   MP_INFO(x + 1,y + 1).int_2 = FIRE_LENGTH + 1;
 }
 
-void
-update_shanty (void)
+void update_shanty (void)
 {
   int i, pp;
   pp = people_pool - (COMMUNE_POP * numof_communes);
@@ -105,8 +107,7 @@ update_shanty (void)
 
 }
 
-void
-do_shanty (int x, int y)
+void do_shanty (int x, int y)
 {				/* just steal some stuff and make pollution. */
 
   get_food (x, y, SHANTY_GET_FOOD);

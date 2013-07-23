@@ -18,6 +18,7 @@
 #include <mps.h>
 #include <transport.h>  /* XXX: This seems to be an anomaly; no other modules
 			  use XY_IS_TRANSPORT */
+#include "market.h"
 
 
 /* old lin-city.h definitions */

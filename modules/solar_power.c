@@ -16,6 +16,8 @@
 #include <power.h>
 #include <mps.h>
 #include <solar_power.h>
+#include "market.h"
+
 
 /*** Solar Power ***/
 

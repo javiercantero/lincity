@@ -10,7 +10,7 @@
 #include <engglobs.h>
 #include <cliglobs.h>
 #include <stats.h>
-#include <transport.h>
+#include "transport.h"
 #include <lcintl.h>
 #include <mps.h>
 #include <road.h>

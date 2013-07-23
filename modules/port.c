@@ -15,7 +15,7 @@
 #include <stats.h>
 #include <mps.h>
 #include <port.h>
-
+#include <engine.h>
 
 void
 do_port (int x, int y)

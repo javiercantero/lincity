@@ -20,11 +20,11 @@ extern Grid * grid[MAX_GRIDS];
 
 void map_power_grid(void);
 int get_power (int x, int y, int power, int block_industry);
-void do_windmill(int x, int y);
-void do_power_substation(int x, int y);
-void do_power_source(int x, int y);
-void do_power_source_coal(int x, int y);
-void do_power_line(int x, int y);
+/*void do_windmill(int x, int y);*/
+/*void do_power_substation(int x, int y);*/
+/*void do_power_source(int x, int y);*/
+/*void do_power_source_coal(int x, int y);*/
+/*void do_power_line(int x, int y);*/
 void power_time_step ();
 
 /* intended private */

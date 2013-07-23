@@ -13,10 +13,12 @@
 #include <engglobs.h>
 #include <cliglobs.h>
 #include <stats.h>
-#include <screen.h>
+#include "screen.h"
 #include <mouse.h> /* XXX: for fire_area! */
 #include <mps.h>
 #include <rocket_pad.h>
+#include <engine.h>
+#include "market.h"
 
 
 /* old lin-city.h definitions */

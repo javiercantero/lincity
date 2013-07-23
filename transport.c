@@ -31,9 +31,8 @@
    int_7 contains the amount of waste
   --------------------------------------------------------------------- */
 
-void
-general_transport (Map_Point_Info *minfo, int *pol,
-		   int max_waste, int *waste_count)
+void general_transport (Map_Point_Info *minfo, int *pol,
+                        int max_waste, int *waste_count)
 {
     int tot, av, *base, xm1, xp1, ym1, yp1;
 

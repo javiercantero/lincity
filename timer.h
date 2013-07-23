@@ -15,5 +15,7 @@ void select_slow (void);
 void select_medium (void);
 void select_fast (void);
 
+void get_real_time (void);
+void lc_usleep (unsigned long t);
 
 #endif	/* __timer_h__ */

@@ -13,7 +13,8 @@
 #include <lcintl.h>
 #include <lcconfig.h>
 
-#include <market.h>
+#include "market.h"
+#include "engglobs.h"
 
 
 /* old lin-city.h definitions */
@@ -25,8 +26,23 @@
 #define ORG_FARM_RANGE 10
 
 
-int
-get_jobs (int x, int y, int jobs)
+/*
+ * internal functions
+ */
+void shuffle_markets (void);
+int deal_with_transport (int x, int y, int tx, int ty);
+
+int get_stuff (int x, int y, int stuff, int stuff_type);
+int get_stuff2 (Map_Point_Info *map, int stuff, int stuff_type);
+int get_stuff3 (Map_Point_Info *map, int stuff, int stuff_type);
+int get_stuff4 (Map_Point_Info *map, int stuff, int stuff_type);
+int put_stuff (int x, int y, int stuff, int stuff_type);
+int put_stuff2 (Map_Point_Info *minfo, short *type, int stuff, int stuff_type);
+int put_stuff3 (Map_Point_Info *minfo, short *type, int stuff, int stuff_type);
+int put_stuff4 (Map_Point_Info *minfo, short *type, int stuff, int stuff_type);
+
+
+int get_jobs (int x, int y, int jobs)
 {
   int q;
   if (numof_markets > 0)
@@ -51,8 +67,7 @@ get_jobs (int x, int y, int jobs)
   return (0);
 }
 
-int
-put_jobs (int x, int y, int jobs)
+int put_jobs (int x, int y, int jobs)
 {
   int q;
   if (numof_markets > 0) {
@@ -74,8 +89,7 @@ put_jobs (int x, int y, int jobs)
   return (0);
 }
 
-int
-get_food (int x, int y, int food)
+int get_food (int x, int y, int food)
 {
   int q;
   if (numof_markets > 0)
@@ -97,8 +111,7 @@ get_food (int x, int y, int food)
   return (0);
 }
 
-int
-put_food (int x, int y, int food)
+int put_food (int x, int y, int food)
 {
   int q;
   if (numof_markets > 0)
@@ -122,8 +135,7 @@ put_food (int x, int y, int food)
 }
 
 
-int
-get_goods (int x, int y, int goods)
+int get_goods (int x, int y, int goods)
 {
   int q;
   if (numof_markets > 0)
@@ -154,8 +166,7 @@ get_goods (int x, int y, int goods)
   return (0);
 }
 
-int
-put_goods (int x, int y, int goods)
+int put_goods (int x, int y, int goods)
 {
   int q;
   if (numof_markets > 0)
@@ -178,8 +189,7 @@ put_goods (int x, int y, int goods)
   return (0);
 }
 
-int
-put_waste (int x, int y, int waste)
+int put_waste (int x, int y, int waste)
 {
   int q;
   if (numof_markets > 0)
@@ -202,8 +212,7 @@ put_waste (int x, int y, int waste)
   return (0);
 }
 
-int
-get_waste (int x, int y, int waste)
+int get_waste (int x, int y, int waste)
 {
   int q;
   if (numof_markets > 0)
@@ -226,8 +235,7 @@ get_waste (int x, int y, int waste)
 }
 
 
-int
-get_steel (int x, int y, int steel)
+int get_steel (int x, int y, int steel)
 {
   int q;
   if (numof_markets > 0)
@@ -249,8 +257,7 @@ get_steel (int x, int y, int steel)
   return (0);
 }
 
-int
-put_steel (int x, int y, int steel)
+int put_steel (int x, int y, int steel)
 {
   int q;
   if (numof_markets > 0)
@@ -274,8 +281,7 @@ put_steel (int x, int y, int steel)
 }
 
 
-int
-get_ore (int x, int y, int ore)
+int get_ore (int x, int y, int ore)
 {
   int q;
   if (numof_markets > 0)
@@ -297,8 +303,7 @@ get_ore (int x, int y, int ore)
   return (0);
 }
 
-int
-put_ore (int x, int y, int ore)
+int put_ore (int x, int y, int ore)
 {
   int q;
   if (numof_markets > 0)
@@ -322,8 +327,7 @@ put_ore (int x, int y, int ore)
 }
 
 
-int
-get_coal (int x, int y, int coal)
+int get_coal (int x, int y, int coal)
 {
   int q;
   if (numof_markets > 0)
@@ -345,8 +349,7 @@ get_coal (int x, int y, int coal)
   return (0);
 }
 
-int
-put_coal (int x, int y, int coal)
+int put_coal (int x, int y, int coal)
 {
   int q;
   if (numof_markets > 0)
@@ -370,8 +373,7 @@ put_coal (int x, int y, int coal)
 }
 
 
-int
-add_a_market (int x, int y)	/* add to marketx markety to list */
+int add_a_market (int x, int y)	/* add to marketx markety to list */
 {
   if (numof_markets >= MAX_NUMOF_MARKETS)
     return (0);
@@ -384,8 +386,7 @@ add_a_market (int x, int y)	/* add to marketx markety to list */
   return (1);
 }
 
-void
-remove_a_market (int x, int y)
+void remove_a_market (int x, int y)
 {
   int q;
   for (q = 0; q < numof_markets; q++)
@@ -399,8 +400,7 @@ remove_a_market (int x, int y)
   numof_markets--;
 }
 
-void
-do_market (int x, int y)
+void do_market (int x, int y)
 {
   /*
      //  int_1 contains the food it holds
@@ -470,8 +470,7 @@ do_market (int x, int y)
   inventory(x,y);
 }
 
-void
-shuffle_markets (void)
+void shuffle_markets (void)
 {
   register int x;
   int q, r, m;
@@ -491,8 +490,7 @@ shuffle_markets (void)
 }
 
 
-int
-deal_with_transport (int x, int y, int tx, int ty)
+int deal_with_transport (int x, int y, int tx, int ty)
 {
   int i, r, extra_jobs = 3, flags;
   flags = MP_INFO(x,y).flags;
@@ -729,8 +727,7 @@ deal_with_transport (int x, int y, int tx, int ty)
   return (extra_jobs);
 }
 
-int
-get_stuff (int x, int y, int stuff, int stuff_type)
+int get_stuff (int x, int y, int stuff, int stuff_type)
 {
   int res = 0;
   Map_Point_Info *minfo = &MP_INFO(x,y);
@@ -766,8 +763,7 @@ static const int
 };
 
 /* worth inlining -- (ThMO) */
-int
-get_stuff2 (Map_Point_Info *map, int stuff, int stuff_type)
+int get_stuff2 (Map_Point_Info *map, int stuff, int stuff_type)
 {
   static int tstart2 = 0;
   int i, st, tst, *ip, *stack[8], **ssp;	/* stack is a pipe -- (ThMO) */
@@ -824,8 +820,7 @@ static const int
 };
 
 /* worth inlining -- (ThMO) */
-int
-get_stuff3 (Map_Point_Info *map, int stuff, int stuff_type)
+int get_stuff3 (Map_Point_Info *map, int stuff, int stuff_type)
 {
   static int tstart3 = 0;
 
@@ -890,8 +885,7 @@ static const int
 };
 
 /* worth inlining -- (ThMO) */
-int
-get_stuff4 (Map_Point_Info *map, int stuff, int stuff_type)
+int get_stuff4 (Map_Point_Info *map, int stuff, int stuff_type)
 {
   static int
     tstart4 = 0;
@@ -934,8 +928,7 @@ get_stuff4 (Map_Point_Info *map, int stuff, int stuff_type)
   return (0);
 }
 
-int
-put_stuff (int x, int y, int stuff, int stuff_type)
+int put_stuff (int x, int y, int stuff, int stuff_type)
 {
     int res = 0;
     short *type = &MP_TYPE(x,y);
@@ -977,8 +970,7 @@ struct stack
   };
 
 /* worth inlining -- (ThMO) */
-int
-put_stuff2 (Map_Point_Info *minfo, short *type, int stuff, int stuff_type)
+int put_stuff2 (Map_Point_Info *minfo, short *type, int stuff, int stuff_type)
 {
   static int tstart2 = 0;
   int i, st, tst, *ip, tp = 0;
@@ -1033,8 +1025,7 @@ put_stuff2 (Map_Point_Info *minfo, short *type, int stuff, int stuff_type)
 }
 
 /* worth inlining -- (ThMO) */
-int
-put_stuff3 (Map_Point_Info *minfo, short *type, int stuff, int stuff_type)
+int put_stuff3 (Map_Point_Info *minfo, short *type, int stuff, int stuff_type)
 {
   static int tstart3 = 0;
   int i, st, tst, *ip, tp = 0;
@@ -1090,8 +1081,7 @@ put_stuff3 (Map_Point_Info *minfo, short *type, int stuff, int stuff_type)
 }
 
 /* worth inlining -- (ThMO) */
-int
-put_stuff4 (Map_Point_Info *minfo, short *type, int stuff, int stuff_type)
+int put_stuff4 (Map_Point_Info *minfo, short *type, int stuff, int stuff_type)
 {
   static int tstart4 = 0;
   int i, st, tst, *ip, tp = 0;
@@ -1145,8 +1135,7 @@ put_stuff4 (Map_Point_Info *minfo, short *type, int stuff, int stuff_type)
   return (0);
 }
 
-void
-mps_market (int x, int y)
+void mps_market (int x, int y)
 {
   int i = 0;
 

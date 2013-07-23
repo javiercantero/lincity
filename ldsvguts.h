@@ -6,7 +6,12 @@
 #ifndef __ldsvguts_h__
 #define __ldsvguts_h__
 
+void remove_scene (char *cname);
+
 void load_saved_city (char *s);
 void sanity_check (void);
+
+void load_city (char *cname);
+void save_city (char *cname);
 
 #endif	/* __ldsvguts_h__ */

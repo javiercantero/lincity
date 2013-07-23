@@ -14,6 +14,7 @@
 #include <engine.h>
 #include <mps.h>
 #include <fire.h>
+#include <engine.h>
 
 
 /* old lin-city.h definitions */

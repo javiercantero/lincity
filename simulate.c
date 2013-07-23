@@ -32,6 +32,41 @@
 #include "pbar.h"
 #include "module_buttons.h"
 
+#include "engine.h"
+#include "market.h"
+#include "modules/blacksmith.h"
+#include "modules/coalmine.h"
+#include "modules/coal_power.h"
+#include "modules/commune.h"
+#include "modules/cricket.h"
+#include "modules/fire.h"
+#include "modules/firestation.h"
+#include "modules/health_centre.h"
+#include "modules/heavy_industry.h"
+#include "modules/light_industry.h"
+#include "modules/mill.h"
+#include "modules/monument.h"
+#include "modules/oremine.h"
+#include "modules/organic_farm.h"
+#include "modules/parkland.h"
+#include "modules/port.h"
+#include "modules/pottery.h"
+#include "modules/power_line.h"
+#include "modules/rail.h"
+#include "modules/recycle.h"
+#include "modules/residence.h"
+#include "modules/road.h"
+#include "modules/rocket_pad.h"
+#include "modules/school.h"
+#include "modules/shanty.h"
+#include "modules/solar_power.h"
+#include "modules/substation.h"
+#include "modules/tip.h"
+#include "modules/track.h"
+#include "modules/university.h"
+#include "modules/windmill.h"
+
+
 /* ---------------------------------------------------------------------- *
  * Private Fn Prototypes
  * ---------------------------------------------------------------------- */
@@ -42,6 +77,12 @@ static void end_of_year_update (void);
 static void random_start (int* originx, int* originy);
 static void simulate_mappoints (void);
 static void quick_start_add (int x, int y, short type, int size);
+void coal_reserve_setup (void);
+void ore_reserve_setup (void);
+void setup_river (void);
+void setup_river2 (int x, int y, int d);
+void sustainability_test (void);
+int sust_fire_cover (void);
 
 /* ---------------------------------------------------------------------- *
  * Public Functions
@@ -462,8 +503,7 @@ new_city (int* originx, int* originy, int random_village)
     refresh_pbars ();
 }
 
-void
-coal_reserve_setup (void)
+void coal_reserve_setup (void)
 {
   int i, j, x, y, xx, yy;
   for (i = 0; i < NUMOF_COAL_RESERVES / 5; i++)
@@ -486,8 +526,7 @@ coal_reserve_setup (void)
     }
 }
 
-void
-ore_reserve_setup (void)
+void ore_reserve_setup (void)
 {
     int x, y;
     for (y = 0; y < WORLD_SIDE_LEN; y++)
@@ -495,8 +534,7 @@ ore_reserve_setup (void)
 	    MP_INFO(x,y).ore_reserve = ORE_RESERVE;
 }
 
-void
-setup_river (void)
+void setup_river (void)
 {
     int x, y, i, j;
     x = WORLD_SIDE_LEN / 2;
@@ -529,8 +567,7 @@ setup_river (void)
     setup_river2 (x + 1, y, 1);	/* right tributary */
 }
 
-void
-setup_river2 (int x, int y, int d)
+void setup_river2 (int x, int y, int d)
 {
     int i, j, r;
     i = (rand () % 55) + 15;
@@ -566,8 +603,7 @@ setup_river2 (int x, int y, int d)
     }
 }
 
-int
-count_groups (int g)
+int count_groups (int g)
 {
   int x, y, i;
   i = 0;
@@ -578,8 +614,7 @@ count_groups (int g)
   return (i);
 }
 
-void 
-count_all_groups (int* group_count)
+void count_all_groups (int* group_count)
 {
     int x, y;
     unsigned short t, g;
@@ -724,8 +759,7 @@ quick_start_add (int x, int y, short type, int size)
   MP_GROUP(x,y) = get_group_of_type(type);
 }
 
-void
-sustainability_test (void)
+void sustainability_test (void)
 {
   int i;
   if (sust_dig_ore_coal_tip_flag == 0)
@@ -794,8 +828,7 @@ sustainability_test (void)
     }
 }
 
-int
-sust_fire_cover (void)
+int sust_fire_cover (void)
 {
   int x, y;
   for (x = 0; x < WORLD_SIDE_LEN; x++)
@@ -831,8 +864,7 @@ debug_mappoints (void)
   }
 }
 
-void
-initialize_tax_rates (void)
+void initialize_tax_rates (void)
 {
   income_tax_rate = INCOME_TAX_RATE;
   coal_tax_rate = COAL_TAX_RATE;

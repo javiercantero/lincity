@@ -23,6 +23,8 @@
 #include "lclib.h"
 #include "module_buttons.h"
 
+#include "modules/rocket_pad.h"
+
 #define DEBUG_MT_CODE 1
 
 extern Update_Scoreboard update_scoreboard;

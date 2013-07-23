@@ -13,6 +13,8 @@
 #include "lcintl.h"
 #include "fileutil.h"
 #include "readpng.h"
+#include "boolean.h"
+#include "screen.h"
 
 struct TYPE main_types[NUM_OF_TYPES];
 
@@ -529,7 +531,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     }
 };
 
-void init_types(void)
+void init_types (void)
 {
     char png_file[LC_PATH_MAX], txt_file[LC_PATH_MAX];
     sprintf (png_file, "%s%c%s", opening_path, PATH_SLASH, "icons.png");
@@ -1477,16 +1479,12 @@ void init_types(void)
     main_types[CST_USED].graphic=0;         /* Won't be dereferenced! */
 }
 
-
-
-int
-get_group_of_type (short type)
+int get_group_of_type (short type)
 {
     return main_types[type].group;
 }
 
-void
-set_map_groups (void)
+void set_map_groups (void)
 {
     int x, y;
     for (x = 0; x < WORLD_SIDE_LEN; x++) {
@@ -1496,8 +1494,7 @@ set_map_groups (void)
     }
 }
 
-int
-get_group_cost (short group)
+int get_group_cost (short group)
 {
     return (int) ((float) main_groups[group].cost
 		  + ((float) main_groups[group].cost
@@ -1506,16 +1503,14 @@ get_group_cost (short group)
 		     / (float) MAX_TECH_LEVEL));
 }
 
-void 
-get_type_name (short type, char * s) 
+void get_type_name (short type, char * s)
 {
      short g;
      g = get_group_of_type (type);
      strcpy (s, _(main_groups[g].name));
 }
 
-int
-get_type_cost (short type)
+int get_type_cost (short type)
 {
     return get_group_cost ((short) get_group_of_type (type));
 }

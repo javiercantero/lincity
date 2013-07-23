@@ -166,7 +166,7 @@ void Fgl_getbox (int, int, int, int, unsigned char *);
 
 #else
 
-void lincityrc ();
+void lincityrc (void);
 
 #define Fgl_setpixel(a,b,c)    gl_setpixel(a,b,c)
 #define Fgl_getpixel(a,b)      gl_getpixel(a,b)
@@ -1452,8 +1452,7 @@ refresh_screen (int x1, int y1, int x2, int y2)		/* bounds of refresh area */
 
 #endif
 
-void
-lincityrc (void)
+void lincityrc (void)
 {
   char s[256], s1[256];
   int i;

@@ -16,6 +16,7 @@
 #include "lin-city.h"
 #include "lctypes.h"
 #include "cliglobs.h"
+#include "screen.h"
 #include "pixmap.h"
 
 #if defined (LC_X11)

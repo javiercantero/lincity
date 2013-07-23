@@ -99,6 +99,9 @@ void dump_screen (void);
 void verify_package (void);
 static const char *guess_category_value (int category, 
 					 const char *categoryname);
+void gunzip_file (char *f1, char *f2);
+void find_libdir (void);
+static const char * guess_category_value (int category, const char *categoryname);
 
 /* ---------------------------------------------------------------------- *
  * Public Global Variables
@@ -152,8 +155,7 @@ _access (const char *path, int mode)
 #endif
 
 /* Executes a system command */
-int
-execute_command (char *cmd, char *p1, char *p2, char *p3)
+int execute_command (char *cmd, char *p1, char *p2, char *p3)
 {
   char *sys_cmd = (char *) malloc (strlen (cmd) + strlen (p1) + strlen (p2)
 				   + strlen (p3) + 4);
@@ -169,8 +171,8 @@ execute_command (char *cmd, char *p1, char *p2, char *p3)
   return ret_value;
 }
 
-void
-copy_file (char *f1, char *f2)
+#if 0 /* unused function */
+void copy_file (char *f1, char *f2)
 {
   int ret_value = execute_command ("cp", f1, f2, "");
   if (ret_value != 0)
@@ -180,9 +182,9 @@ copy_file (char *f1, char *f2)
       do_error ("Can't copy requested file");
     }
 }
+#endif
 
-void
-gunzip_file (char *f1, char *f2)
+void gunzip_file (char *f1, char *f2)
 {
   int ret_value = execute_command ("gzip -c -d", f1, ">", f2);
   if (ret_value != 0)
@@ -193,8 +195,7 @@ gunzip_file (char *f1, char *f2)
     }
 }
 
-FILE* 
-fopen_read_gzipped (char* fn)
+FILE* fopen_read_gzipped (char* fn)
 {
     FILE* fp;
 
@@ -228,8 +229,7 @@ fopen_read_gzipped (char* fn)
     return fp;
 }
 
-void 
-fclose_read_gzipped (FILE* fp)
+void fclose_read_gzipped (FILE* fp)
 {
 #if defined (HAVE_GZIP) && defined (HAVE_POPEN)
     pclose (fp);
@@ -241,8 +241,7 @@ fclose_read_gzipped (FILE* fp)
 #endif
 }
 
-int
-directory_exists (char *dir)
+int directory_exists (char *dir)
 {
 #if defined (WIN32)
     if (_chdir (dir) == -1) {
@@ -260,8 +259,7 @@ directory_exists (char *dir)
     return 1;
 }
 
-int
-file_exists (char *filename)
+int file_exists (char *filename)
 {
     FILE* fp;
     fp = fopen (filename,"rb");
@@ -273,8 +271,7 @@ file_exists (char *filename)
 }
 
 #if defined (WIN32)
-void
-find_libdir (void)
+void find_libdir (void)
 {
     const char searchfile[] = "Colour.pal";
     /* default_dir will be something like "C:\\LINCITY1.11" */
@@ -300,15 +297,13 @@ find_libdir (void)
 }
 
 #elif defined (__EMX__)
-void
-find_libdir (void)
+void find_libdir (void)
 {
     strcpy(LIBDIR, __XOS2RedirRoot(OS2_DEFAULT_LIBDIR));
 }
 
 #else /* Unix with configure */
-void
-find_libdir (void)
+void find_libdir (void)
 {
     const char searchfile[] = "colour.pal";
     char *home_dir, *cwd;
@@ -355,8 +350,7 @@ find_libdir (void)
 /* Guess value of current locale from value of the environment variables.  */
 /* GCS Feb 23, 2003.  This was updated in gettext, but I'm going with the  */
 /* old version here. */
-static const char *
-guess_category_value (int category, const char *categoryname)
+static const char * guess_category_value (int category, const char *categoryname)
 {
     const char *retval;
 
@@ -486,8 +480,7 @@ find_localized_paths (void)
 }
 
 
-void
-init_path_strings (void)
+void init_path_strings (void)
 {
     char* homedir = NULL;
     char* dm = NULL;
@@ -562,8 +555,7 @@ init_path_strings (void)
 #endif
 }
 
-void
-verify_package (void)
+void verify_package (void)
 {
     FILE *fp = fopen (colour_pal_file,"rb");
     if (!fp) {
@@ -572,8 +564,7 @@ verify_package (void)
     fclose (fp);
 }
 
-void
-make_savedir (void)
+void make_savedir (void)
 {
 #if !defined (WIN32)
     DIR *dp;
@@ -606,8 +597,7 @@ make_savedir (void)
 #endif
 }
 
-void
-check_savedir (void)
+void check_savedir (void)
 {
 #if defined (commentout)
     int i = 0, j, k, r, l;
@@ -638,15 +628,13 @@ check_savedir (void)
 #endif
 }
 
-void
-malloc_failure (void)
+void malloc_failure (void)
 {
   printf (_("Out of memory: malloc failure\n"));
   exit (1);
 }
 
-char*
-load_graphic(char *s)
+char* load_graphic(char *s)
 {
     int x,l;
     char ss[LC_PATH_MAX],*graphic;
@@ -668,8 +656,7 @@ load_graphic(char *s)
     return(graphic);
 }
 
-void
-load_lincityrc (void)
+void load_lincityrc (void)
 {
     FILE *fp;
     int arg;
@@ -713,8 +700,7 @@ load_lincityrc (void)
     fclose (fp);
 }
 
-void
-save_lincityrc (void)
+void save_lincityrc (void)
 {
     FILE *fp;
 
@@ -766,8 +752,7 @@ save_lincityrc (void)
     fclose (fp);
 }
 
-void
-undosify_string (char *s)
+void undosify_string (char *s)
 {
     /* Convert '\r\n' to '\n' in string */
     char prev_char = 0;
@@ -788,8 +773,7 @@ undosify_string (char *s)
     *q = '\0';
 }
 
-void
-debug_printf (char* fmt, ...)
+void debug_printf (char* fmt, ...)
 {
 #if (DEBUG_PRINTF_TO_FILE)
     static int initialized = 0;
