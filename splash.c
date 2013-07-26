@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include "lcstring.h"
+#include <string.h>
 
 #if defined (WIN32)
 #include <winsock.h>

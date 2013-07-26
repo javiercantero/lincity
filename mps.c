@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include "lcstring.h"
+#include <string.h>
 #include "common.h"
 #include "lctypes.h"
 #include "lin-city.h"
@@ -20,9 +20,44 @@
 #include "lclib.h"
 #include "lcintl.h"
 #include "stats.h"
-#include <modules.h>
 #include <mouse.h>
 #include <lclib.h>
+
+#include "market.h"
+#include "modules/blacksmith.h"
+#include "modules/coalmine.h"
+#include "modules/coal_power.h"
+#include "modules/commune.h"
+#include "modules/cricket.h"
+#include "modules/fire.h"
+#include "modules/firestation.h"
+#include "modules/health_centre.h"
+#include "modules/heavy_industry.h"
+#include "modules/light_industry.h"
+#include "modules/mill.h"
+#include "modules/monument.h"
+#include "modules/oremine.h"
+#include "modules/organic_farm.h"
+#include "modules/parkland.h"
+#include "modules/port.h"
+#include "modules/pottery.h"
+#include "modules/power_line.h"
+#include "modules/rail.h"
+#include "modules/recycle.h"
+#include "modules/residence.h"
+#include "modules/road.h"
+#include "modules/rocket_pad.h"
+#include "modules/school.h"
+#include "modules/shanty.h"
+#include "modules/solar_power.h"
+#include "modules/substation.h"
+#include "modules/tip.h"
+#include "modules/track.h"
+#include "modules/university.h"
+#include "modules/water.h"
+#include "modules/windmill.h"
+
+
 
 char mps_info[MAPPOINT_STATS_LINES][MPS_INFO_CHARS];
 int mps_global_style;

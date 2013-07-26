@@ -7,7 +7,7 @@
 #include "lcconfig.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "lcstring.h"
+#include <string.h>
 #include <sys/types.h>
 #include <fcntl.h>
 #if defined (WIN32)

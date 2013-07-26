@@ -8,7 +8,7 @@
 #include "lcconfig.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "lcstring.h"
+#include <string.h>
 #include "cliglobs.h"
 #include "lcintl.h"
 

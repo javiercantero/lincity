@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
-#include "lcstring.h"
+#include <string.h>
 #ifdef LC_X11
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>

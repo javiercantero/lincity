@@ -6,7 +6,7 @@
 #include "lcconfig.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "lcstring.h"
+#include <string.h>
 #include "lcintl.h"
 #include "screen.h"
 #include "mouse.h"

@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <assert.h>
-#include "lcstring.h"
+#include <string.h>
 #include "lcintl.h"
 #include "lin-city.h"
 #include "common.h"

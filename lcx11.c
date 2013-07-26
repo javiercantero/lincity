@@ -8,7 +8,8 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <math.h>
-#include "lcstring.h"
+#include <getopt.h>
+#include <string.h>
 #include "lcintl.h"
 #include "fileutil.h"
 #include "lclib.h"

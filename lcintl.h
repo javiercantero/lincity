@@ -6,10 +6,6 @@
 #ifndef __lcintl_h__
 #define __lcintl_h__
 
-#ifdef HAVE_LOCALE_H
-#include <locale.h>
-#endif
-
 #ifdef ENABLE_NLS
 #include <libintl.h>
 #define _(String) gettext(String)

@@ -20,7 +20,7 @@ noinst_HEADERS = \
 	generic.h    geometry.h  dialbox.h \
 	lcconfig.h   \
 	lchelp.h       \
-	lcintl.h     lcstring.h	lclib.h\
+	lcintl.h     lclib.h\
 	lctypes.h    lcwin32.h \
 	lcx11.h      lcsvga.h \
 	ldsvgui.h    ldsvguts.h   \
@@ -32,7 +32,7 @@ noinst_HEADERS = \
 	resource.h	 screen.h \
 	shrglobs.h   stats.h \
 	simulate.h   timer.h	 transport.h \
-	typeinit.h   xpicedit.h	modules.h
+	xpicedit.h
 
 # Directories that need to have CVS and ca subdirectories removed
 LC_DISTDIRS = \

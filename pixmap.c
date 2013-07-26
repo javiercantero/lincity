@@ -11,7 +11,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <math.h>
-#include "lcstring.h"
+#include <string.h>
 
 #include "lin-city.h"
 #include "lctypes.h"

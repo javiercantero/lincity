@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include "lcstring.h"
+#include <string.h>
 #include "common.h"
 #include "lctypes.h"
 #include "lin-city.h"

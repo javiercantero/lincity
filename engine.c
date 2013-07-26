@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "common.h"
-#include "lcstring.h"
+#include <string.h>
 #include "lctypes.h"
 #include "lin-city.h"
 #include "engine.h"
@@ -22,10 +22,9 @@
 #include "stats.h"
 #include "screen.h"
 #include "dialbox.h"
-#include "modules.h"
 #include <mps.h>
 #include "lcconfig.h"
-#include "typeinit.h"
+#include "lintypes.h"
 
 #include "market.h"
 #include "modules/substation.h"

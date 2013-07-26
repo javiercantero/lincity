@@ -8,7 +8,7 @@
 #include <math.h>
 #include <malloc.h>
 #include <memory.h>
-#include "lcstring.h"
+#include <string.h>
 #include "lin-city.h"
 #include "common.h"
 #include "generic.h"

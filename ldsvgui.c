@@ -13,7 +13,7 @@
 #ifdef LC_X11
 #include <X11/cursorfont.h>
 #endif
-#include "lcstring.h"
+#include <string.h>
 #include "lctypes.h"
 #include "lcintl.h"
 #include "cliglobs.h"

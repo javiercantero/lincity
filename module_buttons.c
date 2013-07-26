@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "lcconfig.h"
-#include "lcstring.h"
+#include <string.h>
 #include "geometry.h"
 #include "module_buttons.h"
 #include "cliglobs.h"

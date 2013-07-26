@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <stdarg.h> /* XXX: GCS FIX: What does configure need to know? */
 #include "lcintl.h"
-#include "lcstring.h"
+#include <string.h>
 #include "ldsvgui.h"
 
 /* XXX: Where are SVGA specific includes? */
@@ -47,6 +47,11 @@
 #include <direct.h>
 #include <process.h>
 #include <lcwin32.h>
+#endif
+
+#if ! defined (WIN32)
+/* Unix functionality */
+#include <unistd.h>
 #endif
 
 #if defined (HAVE_DIRENT_H)

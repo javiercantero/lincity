@@ -12,7 +12,7 @@
 #if defined (HAVE_UNISTD_H)
 #include <unistd.h>
 #endif
-#include "lcstring.h"
+#include <string.h>
 #include "common.h"
 #include "lctypes.h"
 #include "lin-city.h"
