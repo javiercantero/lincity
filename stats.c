@@ -4,16 +4,27 @@
  * Lincity is copyright (c) I J Peters 1995-1997, (c) Greg Sharp 1997-2002.
  * Portions copyright (c) Corey Keasling, 2000-2002.
  * ---------------------------------------------------------------------- */
-#include "lcconfig.h"
+
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+#include "stats.h"
+
+/* system libraries */
 #include <stdio.h>
 #include <stdlib.h>
 
+/* app general headers */
+#include "lcconfig.h"
 #include "lin-city.h"
 #include "lintypes.h"
 #include "lctypes.h"
-#include "engglobs.h"
+
+/* other modules */
 #include "pbar.h"
-#include "stats.h"
+#include "engglobs.h"
+
+/* ----------------------------------------------------------------- */
 
 /* ---------------------------------------------------------------------- *
  * Public Global Variables

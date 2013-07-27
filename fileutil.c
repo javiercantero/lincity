@@ -3,39 +3,24 @@
  * This file is part of lincity.
  * Lincity is copyright (c) I J Peters 1995-1997, (c) Greg Sharp 1997-2001.
  * ---------------------------------------------------------------------- */
-#include "lcconfig.h"
+
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+#include "fileutil.h"
+
+/* system libraries */
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h> /* XXX: GCS FIX: What does configure need to know? */
-#include "common.h"
-#include "lcintl.h"
 #include <string.h>
-#include "ldsvgui.h"
-
-/* XXX: Where are SVGA specific includes? */
-
-/* this is for OS/2 - RVI */
-#ifdef __EMX__
-#include <sys/select.h>
-#include <X11/Xlibint.h>      /* required for __XOS2RedirRoot */
-#define chown(x,y,z)
-#define OS2_DEFAULT_LIBDIR "/XFree86/lib/X11/lincity"
-#endif
 
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 
-#if defined (TIME_WITH_SYS_TIME)
-#include <time.h>
-#include <sys/time.h>
-#else
-#if defined (HAVE_SYS_TIME_H)
-#include <sys/time.h>
-#else
-#include <time.h>
-#endif
-#endif
+/* XXX: Where are SVGA specific includes? */
 
 #if defined (WIN32)
 #include <winsock.h>
@@ -48,11 +33,47 @@
 #include <direct.h>
 #include <process.h>
 #endif
-
+#ifdef LC_X11
+#include <X11/cursorfont.h>
+#endif
 #if ! defined (WIN32)
 /* Unix functionality */
 #include <unistd.h>
 #endif
+
+/* app general headers */
+#include "lcconfig.h"
+#include "common.h"
+#include "lin-city.h"
+#include "lctypes.h"
+#include "lcintl.h"
+
+/* other modules */
+#include "cliglobs.h"
+#include "ldsvgui.h"
+#include "engglobs.h"
+
+/* ----------------------------------------------------------------- */
+
+/* this is for OS/2 - RVI */
+#ifdef __EMX__
+#include <sys/select.h>
+#include <X11/Xlibint.h>      /* required for __XOS2RedirRoot */
+#define chown(x,y,z)
+#define OS2_DEFAULT_LIBDIR "/XFree86/lib/X11/lincity"
+#endif
+
+#if defined (TIME_WITH_SYS_TIME)
+#include <time.h>
+#include <sys/time.h>
+#else
+#if defined (HAVE_SYS_TIME_H)
+#include <sys/time.h>
+#else
+#include <time.h>
+#endif
+#endif
+
 
 #if defined (HAVE_DIRENT_H)
 #include <dirent.h>
@@ -71,15 +92,6 @@
 #endif
 #endif
 
-#include <ctype.h>
-#ifdef LC_X11
-#include <X11/cursorfont.h>
-#endif
-#include "lctypes.h"
-#include "lin-city.h"
-#include "cliglobs.h"
-#include "engglobs.h"
-#include "fileutil.h"
 
 /* GCS: This is from dcgettext.c in the gettext package.      */
 /* XPG3 defines the result of `setlocale (category, NULL)' as:

@@ -4,10 +4,17 @@
  * Lincity is copyright (c) I J Peters 1995-1997, (c) Greg Sharp 1997-2001.
  * ---------------------------------------------------------------------- */
 
-#include "lcconfig.h"
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+#include "simulate.h"
+
+/* system libraries */
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #include <sys/types.h>
 #include <fcntl.h>
 #if defined (WIN32)
@@ -16,23 +23,25 @@
 #include <direct.h>
 #include <process.h>
 #endif
-
-#include <ctype.h>
-#include "common.h"
 #ifdef LC_X11
 #include <X11/cursorfont.h>
 #endif
-#include "lctypes.h"
-#include "lin-city.h"
-#include "cliglobs.h"
-#include "engglobs.h"
-#include "screen.h"
-#include "power.h"
-#include "stats.h"
-#include "pbar.h"
-#include "module_buttons.h"
 
+/* app general headers */
+#include "lcconfig.h"
+#include "common.h"
+#include "lin-city.h"
+#include "lctypes.h"
+
+/* other modules */
+#include "screen.h"
+#include "cliglobs.h"
+#include "module_buttons.h"
+#include "pbar.h"
+#include "stats.h"
+#include "engglobs.h"
 #include "engine.h"
+#include "power.h"
 #include "market.h"
 #include "modules/blacksmith.h"
 #include "modules/coalmine.h"
@@ -65,6 +74,8 @@
 #include "modules/track.h"
 #include "modules/university.h"
 #include "modules/windmill.h"
+
+/* ----------------------------------------------------------------- */
 
 
 /* ---------------------------------------------------------------------- *

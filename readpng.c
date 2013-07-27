@@ -2,12 +2,26 @@
  * readpng.c
  * This file is part of lincity (see COPYRIGHT for copyright information).
  * ---------------------------------------------------------------------- */
+
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+#include "readpng.h"
+
+/* system libraries */
 #include <stdlib.h>
-#include "png.h"
-#include "malloc.h"
+#include <malloc.h>
+
+#include <png.h>
+
+/* app general headers */
 #include "lin-city.h"
-#include "lctypes.h"
 #include "lintypes.h"
+#include "lctypes.h"
+
+/* other modules */
+
+/* ----------------------------------------------------------------- */
 
 /* Read a PNG file.  You may want to return an error code if the read
  * fails (depending upon the failure).  There are two "prototypes" given

@@ -5,15 +5,26 @@
  * (c) Corey Keasling, 2004
  * ---------------------------------------------------------------------- */
 
-#include <lctypes.h>
-#include <lcintl.h>
-#include <lcconfig.h>
-#include <cliglobs.h>
-#include <engglobs.h>
-#include <stats.h>
-#include <mps.h>
-#include <monument.h>
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+#include "monument.h"
+
+/* system libraries */
+
+/* app general headers */
+#include "lcconfig.h"
+#include "lctypes.h"
+#include "lcintl.h"
+
+/* other modules */
+#include "cliglobs.h"
+#include "mps.h"
+#include "stats.h"
+#include "engglobs.h"
 #include "market.h"
+
+/* ----------------------------------------------------------------- */
 
 
 /* old lin-city.h definitions */

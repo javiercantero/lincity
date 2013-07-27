@@ -5,16 +5,26 @@
  * (c) Corey Keasling, 2004
  * ---------------------------------------------------------------------- */
 
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+#include "fire.h"
+
+/* system libraries */
 #include <stdlib.h>
-#include <lin-city.h>
-#include <lctypes.h>
-#include <engglobs.h>
-#include <cliglobs.h>
-#include <stats.h>
-#include <engine.h>
-#include <mps.h>
-#include <fire.h>
-#include <engine.h>
+
+/* app general headers */
+#include "lin-city.h"
+#include "lctypes.h"
+
+/* other modules */
+#include "cliglobs.h"
+#include "mps.h"
+#include "stats.h"
+#include "engglobs.h"
+#include "engine.h"
+
+/* ----------------------------------------------------------------- */
 
 
 /* old lin-city.h definitions */

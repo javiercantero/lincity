@@ -3,15 +3,69 @@
  * This file is part of lincity.
  * Lincity is copyright (c) I J Peters 1995-1997, (c) Greg Sharp 1997-2001.
  * ---------------------------------------------------------------------- */
-#include "lcconfig.h"
+
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+
+/* system libraries */
+
+/* app general headers */
+
+/* other modules */
+
+/* ----------------------------------------------------------------- */
+
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+
+/* system libraries */
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <signal.h>
 #include <string.h>
+
+#include <time.h>
+#include <signal.h>
+#include <sys/types.h>
+#include <fcntl.h>
+
+#if defined (WIN32)
+#include <winsock.h>
+#include <io.h>
+#include <direct.h>
+#include <process.h>
+#endif
+#ifdef LC_X11
+#include <X11/cursorfont.h>
+#endif
+
+/* app general headers */
+#include "lcconfig.h"
+#include "common.h"
+#include "lin-city.h"
+#include "lintypes.h"
+#include "lctypes.h"
+#include "lcintl.h"
+
+/* other modules */
+#include "pixmap.h"
+#include "screen.h"
+#include "mouse.h"
 #include "cliglobs.h"
-#include "lchelp.h"
 #include "dialbox.h"
-#include <mps.h>
+#include "module_buttons.h"
+#include "mps.h"
+#include "lchelp.h"
+#include "ldsvgui.h"
+#include "engglobs.h"
+#include "engine.h"
+#include "simulate.h"
+#include "timer.h"
+#include "fileutil.h"
+
+/* ----------------------------------------------------------------- */
 
 /* this is for OS/2 - RVI */
 #ifdef __EMX__
@@ -22,39 +76,6 @@
 /* This was moved to fileutil.c */
 #endif
 
-#include <sys/types.h>
-#include <fcntl.h>
-
-#if defined (WIN32)
-#include <winsock.h>
-#include <io.h>
-#include <direct.h>
-#include <process.h>
-#endif
-
-#include <time.h>
-
-#include <ctype.h>
-#include "common.h"
-#ifdef LC_X11
-#include <X11/cursorfont.h>
-#endif
-
-#include "lctypes.h"
-#include "lin-city.h"
-#include "cliglobs.h"
-#include "engglobs.h"
-#include "timer.h"
-#include "ldsvgui.h"
-#include "simulate.h"
-#include "mouse.h"
-#include "pixmap.h"
-#include "screen.h"
-#include "lcintl.h"
-#include "engine.h"
-#include "module_buttons.h"
-#include "fileutil.h"
-#include "lintypes.h"
 
 #if defined (WIN32) && !defined (NDEBUG)
 #define START_FAST_SPEED 1

@@ -5,18 +5,29 @@
  * (c) Corey Keasling, 2004
  * ---------------------------------------------------------------------- */
 
-#include <lin-city.h>
-#include <lctypes.h>
-#include <lcintl.h>
-#include <lcconfig.h>
-#include <lclib.h>
-#include <engglobs.h>
-#include <cliglobs.h>
-#include <stats.h>
-#include <power.h>
-#include <coal_power.h>
-#include <mps.h>
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+#include "coal_power.h"
+
+/* system libraries */
+
+/* app general headers */
+#include "lcconfig.h"
+#include "lin-city.h"
+#include "lctypes.h"
+#include "lcintl.h"
+
+/* other modules */
+#include "cliglobs.h"
+#include "mps.h"
+#include "stats.h"
+#include "engglobs.h"
+#include "power.h"
 #include "market.h"
+#include "lclib.h"
+
+/* ----------------------------------------------------------------- */
 
 
 /* old lin-city.h definitions */

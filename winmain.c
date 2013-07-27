@@ -3,18 +3,31 @@
  * This file is part of lincity.
  * Lincity is copyright (c) I J Peters 1995-1997, (c) Greg Sharp 1997-2001.
  * ---------------------------------------------------------------------- */
+
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+
+/* system libraries */
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <math.h>
 #include <malloc.h>
 #include <memory.h>
-#include <string.h>
-#include "lin-city.h"
+
+/* app general headers */
 #include "common.h"
+#include "lin-city.h"
+
 #include "generic.h"
+
+/* other modules */
 #include "mouse.h"
-#include "lchelp.h"
 #include "module_buttons.h"
+#include "lchelp.h"
+
+/* ----------------------------------------------------------------- */
 
 // Define this to use DIB's instead of DDB's
 // GCS: WIN32_USEDIB will no longer work, since I didn't update the 

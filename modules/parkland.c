@@ -5,12 +5,23 @@
  * (c) Corey Keasling, 2004
  * ---------------------------------------------------------------------- */
 
-#include <lin-city.h>
-#include <lctypes.h>
-#include <engglobs.h>
-#include <cliglobs.h>
-#include <stats.h>
-#include <parkland.h>
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+#include "parkland.h"
+
+/* system libraries */
+
+/* app general headers */
+#include "lin-city.h"
+#include "lctypes.h"
+
+/* other modules */
+#include "cliglobs.h"
+#include "stats.h"
+#include "engglobs.h"
+
+/* ----------------------------------------------------------------- */
 
 void
 do_parkland (int x, int y)

@@ -5,19 +5,30 @@
  * (c) Corey Keasling, 2004
  * ---------------------------------------------------------------------- */
 
-#include <stdlib.h>
-#include <lin-city.h>
-#include <lctypes.h>
-#include <engglobs.h>
-#include <cliglobs.h>
-#include <stats.h>
-#include <mouse.h> /* XXX: fire_area! */
-#include <mps.h>
+/* ----------------------------------------------------------------- */
+
+/* module header file */
 #include "shanty.h"
+
+/* system libraries */
+#include <stdio.h>
+#include <stdlib.h>
+
+/* app general headers */
+#include "lin-city.h"
+#include "lctypes.h"
+
+/* other modules */
+#include "mouse.h" /* XXX: fire_area! */
+#include "cliglobs.h"
+#include "mps.h"
+#include "stats.h"
+#include "engglobs.h"
 #include "engine.h"
 #include "market.h"
 
-#include <stdio.h>
+/* ----------------------------------------------------------------- */
+
 
 void add_a_shanty(void);
 void remove_a_shanty(void);

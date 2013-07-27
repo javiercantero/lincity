@@ -5,17 +5,27 @@
  * (c) Corey Keasling, 2004
  * ---------------------------------------------------------------------- */
 
-#include <lin-city.h>
-#include <lctypes.h>
-#include <lcintl.h>
-#include <lcconfig.h>
-#include <engglobs.h>
-#include <cliglobs.h>
-#include <stats.h>
-#include <mps.h>
-#include <coalmine.h>
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+#include "coalmine.h"
+
+/* system libraries */
+
+/* app general headers */
+#include "lcconfig.h"
+#include "lin-city.h"
+#include "lctypes.h"
+#include "lcintl.h"
+
+/* other modules */
+#include "cliglobs.h"
+#include "mps.h"
+#include "stats.h"
+#include "engglobs.h"
 #include "market.h"
 
+/* ----------------------------------------------------------------- */
 
 /* old lin-city.h definitions */
 #define MAX_COAL_AT_MINE 100000

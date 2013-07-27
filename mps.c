@@ -3,27 +3,33 @@
  * This file is part of lincity.
  * Lincity is copyright (c) I J Peters 1995-1997, (c) Greg Sharp 1997-2001.
  * ---------------------------------------------------------------------- */
-#include "lcconfig.h"
+
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+#include "mps.h"
+
+/* system libraries */
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
-#include "common.h"
-#include "lctypes.h"
-#include "lin-city.h"
-#include "mps.h"
-#include "engglobs.h"
-#include "mouse.h"
-#include "screen.h"
-#include "power.h"
-#include "engine.h"
-#include "lclib.h"
-#include "lcintl.h"
-#include "stats.h"
-#include <mouse.h>
-#include <lclib.h>
-#include "cliglobs.h"
 
+/* app general headers */
+#include "lcconfig.h"
+#include "common.h"
+#include "lin-city.h"
+#include "lctypes.h"
+#include "lcintl.h"
+
+/* other modules */
+#include "screen.h"
+#include "mouse.h"
+#include "cliglobs.h"
+#include "stats.h"
+#include "engglobs.h"
+#include "engine.h"
+#include "power.h"
 #include "market.h"
 #include "modules/blacksmith.h"
 #include "modules/coalmine.h"
@@ -57,7 +63,9 @@
 #include "modules/university.h"
 #include "modules/water.h"
 #include "modules/windmill.h"
+#include "lclib.h"
 
+/* ----------------------------------------------------------------- */
 
 
 char mps_info[MAPPOINT_STATS_LINES][MPS_INFO_CHARS];

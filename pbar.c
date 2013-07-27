@@ -3,19 +3,31 @@
  * Lincity is copyright (c) I J Peters 1995-1997, (c) Greg Sharp 1997-2001.
  * Portions copyright (c) 2001 Corey Keasling.
  * ---------------------------------------------------------------------- */
-#include "lcconfig.h"
+
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+#include "pbar.h"
+
+/* system libraries */
+#include <stdio.h>
 #include <math.h>
+
+/* app general headers */
+#include "lcconfig.h"
+#include "lin-city.h"
+
+/* other modules */
+#include "mouse.h"
 #include "cliglobs.h"
 #include "lchelp.h"
-#include "mouse.h"
-#include "shrglobs.h"
-#include "pbar.h"
-#include "lin-city.h"
-#include "lclib.h"
 #include "stats.h"
 #include "engglobs.h"
+#include "shrglobs.h"
+#include "lclib.h"
 
-#include <stdio.h>
+/* ----------------------------------------------------------------- */
+
 
 struct pbar_st pbars[NUM_PBARS];
 

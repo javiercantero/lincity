@@ -5,18 +5,29 @@
  * (c) Corey Keasling, 2004
  * ---------------------------------------------------------------------- */
 
-#include <lin-city.h>
-#include <lctypes.h>
-#include <lcintl.h>
-#include <lcconfig.h>
-#include <engglobs.h>
-#include <cliglobs.h>
-#include <stats.h>
-#include <engine.h>
-#include <screen.h>
-#include <mps.h>
-#include <oremine.h>
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+#include "oremine.h"
+
+/* system libraries */
+
+/* app general headers */
+#include "lcconfig.h"
+#include "lin-city.h"
+#include "lctypes.h"
+#include "lcintl.h"
+
+/* other modules */
+#include "screen.h"
+#include "cliglobs.h"
+#include "mps.h"
+#include "stats.h"
+#include "engglobs.h"
+#include "engine.h"
 #include "market.h"
+
+/* ----------------------------------------------------------------- */
 
 
 

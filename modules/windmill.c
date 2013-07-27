@@ -5,20 +5,31 @@
  * (c) Corey Keasling, 2004
  * ---------------------------------------------------------------------- */
 
-#include <lin-city.h>
-#include <lctypes.h>
-#include <lcintl.h>
-#include <lcconfig.h>
-#include <engglobs.h>
-#include <cliglobs.h>
-#include <stats.h>
-#include <mps.h>
-#include <lclib.h>
-#include <power.h>
-#include <windmill.h>
-#include "market.h"
+/* ----------------------------------------------------------------- */
 
+/* module header file */
+#include "windmill.h"
+
+/* system libraries */
 #include <stdio.h>
+
+/* app general headers */
+#include "lcconfig.h"
+#include "lin-city.h"
+#include "lctypes.h"
+#include "lcintl.h"
+
+/* other modules */
+#include "cliglobs.h"
+#include "mps.h"
+#include "stats.h"
+#include "engglobs.h"
+#include "power.h"
+#include "market.h"
+#include "lclib.h"
+
+/* ----------------------------------------------------------------- */
+
 
 /* old lin-city.h definitions */
 #define WINDMILL_JOBS       10

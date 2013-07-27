@@ -6,24 +6,35 @@
 /* The pixmap contains only the main screen, not the border.
  * When pix doubled, pixmap does contain the doubled pixels.
  * ---------------------------------------------------------------------- */
-#include "lcconfig.h"
+
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+#include "pixmap.h"
+
+/* system libraries */
 #include <stdio.h>
 #include <stdlib.h>
-#include <assert.h>
-#include <math.h>
 #include <string.h>
-
-#include "lin-city.h"
-#include "lctypes.h"
-#include "cliglobs.h"
-#include "screen.h"
-#include "pixmap.h"
+#include <math.h>
+#include <assert.h>
 
 #if defined (LC_X11)
 #include "lcx11.h"
 #include <X11/keysym.h>
 #include <X11/keysymdef.h>
 #endif
+
+/* app general headers */
+#include "lcconfig.h"
+#include "lin-city.h"
+#include "lctypes.h"
+
+/* other modules */
+#include "screen.h"
+#include "cliglobs.h"
+
+/* ----------------------------------------------------------------- */
 
 
 #define USE_IMAGES 1

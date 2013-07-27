@@ -3,19 +3,33 @@
  * This file is part of lincity.
  * Lincity is copyright (c) I J Peters 1995-1997, (c) Greg Sharp 1997-2001.
  * ---------------------------------------------------------------------- */
-#include "lcconfig.h"
+
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+#include "lcwin32.h"
+
+/* system libraries */
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <math.h>
 #include <assert.h>
-#include <string.h>
-#include "lcintl.h"
+
+/* app general headers */
+#include "lcconfig.h"
 #include "lin-city.h"
 #include "common.h"
 #include "lctypes.h"
+#include "lcintl.h"
+
+/* other modules */
 #include "pixmap.h"
 #include "screen.h"
 #include "timer.h"
+
+/* ----------------------------------------------------------------- */
+
 
 #define USE_WINDOWS_FONT 1
 #undef USE_WINDOWS_FONT

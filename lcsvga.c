@@ -3,21 +3,34 @@
  * This file is part of lincity.
  * Lincity is copyright (c) I J Peters 1995-1997, (c) Greg Sharp 1997-2001.
  * ---------------------------------------------------------------------- */
-#include "lcconfig.h"
+
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+#include "lcsvga.h"
+
+/* system libraries */
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #include <string.h>
+#include <math.h>
+
+/* app general headers */
+#include "lcconfig.h"
 #include "common.h"
-#include "lctypes.h"
 #include "lin-city.h"
+#include "lctypes.h"
+#include "lcintl.h"
+
+/* other modules */
+#include "screen.h"
 #include "mouse.h"
 #include "cliglobs.h"
 #include "engglobs.h"
 #include "engine.h"
-#include "screen.h"
-#include "lcintl.h"
 #include "fileutil.h"
+
+/* ----------------------------------------------------------------- */
 
 
 unsigned char mouse_pointer[] = {

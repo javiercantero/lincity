@@ -5,16 +5,27 @@
  * (c) Corey Keasling, 2004
  * ---------------------------------------------------------------------- */
 
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+#include "residence.h"
+
+/* system libraries */
 #include <stdlib.h>
-#include <lcintl.h>
-#include <lcconfig.h>
-#include <lctypes.h>
-#include <engglobs.h>
-#include <stats.h>
-#include <mps.h>
-#include <residence.h>
-#include <power.h>
+
+/* app general headers */
+#include "lcconfig.h"
+#include "lctypes.h"
+#include "lcintl.h"
+
+/* other modules */
+#include "mps.h"
+#include "stats.h"
+#include "engglobs.h"
+#include "power.h"
 #include "market.h"
+
+/* ----------------------------------------------------------------- */
 
 
 /* old lin-city.h definitions */

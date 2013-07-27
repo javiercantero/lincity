@@ -4,11 +4,17 @@
  * Lincity is copyright (c) I J Peters 1995-1997, (c) Greg Sharp 1997-2001.
  * Thanks to Gerben V for X true color support.
  * ---------------------------------------------------------------------- */
-#include "lcconfig.h"
+
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+
+/* system libraries */
 #include <stdio.h>
 #include <stdlib.h>
-#include <sys/types.h>
 #include <string.h>
+#include <sys/types.h>
+
 #ifdef LC_X11
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
@@ -19,6 +25,13 @@
 #include <vgagl.h>
 #include <vgamouse.h>
 #endif
+
+/* app general headers */
+#include "lcconfig.h"
+
+/* other modules */
+
+/* ----------------------------------------------------------------- */
 
 #define LIBDIR DEFAULT_LIBDIR
 

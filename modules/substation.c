@@ -5,20 +5,31 @@
  * (c) Corey Keasling, 2004
  * ---------------------------------------------------------------------- */
 
-#include <stdlib.h>
-#include <lin-city.h>
-#include <lctypes.h>
-#include <lcintl.h>
-#include <lcconfig.h>
-#include <engglobs.h>
-#include <cliglobs.h>
-#include <stats.h>
-#include <substation.h>
-#include <lclib.h>
-#include <mps.h>
-#include <power.h>
+/* ----------------------------------------------------------------- */
 
+/* module header file */
+#include "substation.h"
+
+/* system libraries */
 #include <stdio.h>
+#include <stdlib.h>
+
+/* app general headers */
+#include "lcconfig.h"
+#include "lin-city.h"
+#include "lctypes.h"
+#include "lcintl.h"
+
+/* other modules */
+#include "cliglobs.h"
+#include "mps.h"
+#include "stats.h"
+#include "engglobs.h"
+#include "power.h"
+#include "lclib.h"
+
+/* ----------------------------------------------------------------- */
+
 
 /*** Substations ***/
 /*

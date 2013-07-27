@@ -3,36 +3,49 @@
  * This file is part of lincity.
  * Lincity is copyright (c) I J Peters 1995-1997, (c) Greg Sharp 1997-2001.
  * ---------------------------------------------------------------------- */
-#include "lcconfig.h"
+
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+#include "screen.h"
+
+/* system libraries */
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <math.h>
+
 #include <sys/types.h>
 #include <sys/stat.h>
 #if defined (HAVE_UNISTD_H)
 #include <unistd.h>
 #endif
-#include <string.h>
+
+/* app general headers */
+#include "lcconfig.h"
 #include "common.h"
-#include "lctypes.h"
 #include "lin-city.h"
-#include "screen.h"
-#include "engglobs.h"
-#include "cliglobs.h"
-#include "pixmap.h"
-#include "lchelp.h"
-#include "mouse.h"
-#include "mps.h"
+#include "lctypes.h"
 #include "lcintl.h"
+
+/* other modules */
+#include "pixmap.h"
+#include "mouse.h"
+#include "cliglobs.h"
+#include "dialbox.h"
+#include "module_buttons.h"
+#include "mps.h"
+#include "lchelp.h"
 #include "ldsvgui.h"
 #include "pbar.h"
-#include "dialbox.h"
-#include "lclib.h"
-#include "module_buttons.h"
 #include "stats.h"
+#include "engglobs.h"
 #include "engine.h"
-#include "fileutil.h"
 #include "power.h"
+#include "lclib.h"
+#include "fileutil.h"
+
+/* ----------------------------------------------------------------- */
 
 
 /* old lin-city.h definitions */

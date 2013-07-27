@@ -5,20 +5,31 @@
  * (c) Corey Keasling, 2004
  * ---------------------------------------------------------------------- */
 
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+#include "rocket_pad.h"
+
+/* system libraries */
 #include <stdlib.h>
-#include <lin-city.h>
-#include <lctypes.h>
-#include <lcintl.h>
-#include <lcconfig.h>
-#include <engglobs.h>
-#include <cliglobs.h>
-#include <stats.h>
+
+/* app general headers */
+#include "lcconfig.h"
+#include "lin-city.h"
+#include "lctypes.h"
+#include "lcintl.h"
+
+/* other modules */
 #include "screen.h"
-#include <mouse.h> /* XXX: for fire_area! */
-#include <mps.h>
-#include <rocket_pad.h>
-#include <engine.h>
+#include "mouse.h" /* XXX: for fire_area! */
+#include "cliglobs.h"
+#include "mps.h"
+#include "stats.h"
+#include "engglobs.h"
+#include "engine.h"
 #include "market.h"
+
+/* ----------------------------------------------------------------- */
 
 
 /* old lin-city.h definitions */

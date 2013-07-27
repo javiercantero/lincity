@@ -3,10 +3,22 @@
  * This file is part of lincity.
  * Lincity is copyright (c) I J Peters 1995-1997, (c) Greg Sharp 1997-2001.
  * ---------------------------------------------------------------------- */
+
+/* ----------------------------------------------------------------- */
+
+/* module header file */
 #include "cliglobs.h"
+
+/* system libraries */
+
+/* app general headers */
 #include "common.h"
-#include "geometry.h"
 #include "lcintl.h"
+
+/* other modules */
+#include "geometry.h"
+
+/* ----------------------------------------------------------------- */
 
 Screen_Geometry scr;
 short mappointoldtype[WORLD_SIDE_LEN][WORLD_SIDE_LEN];

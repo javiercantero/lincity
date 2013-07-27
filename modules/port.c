@@ -5,17 +5,28 @@
  * (c) Corey Keasling, 2004
  * ---------------------------------------------------------------------- */
 
-#include <lin-city.h>
-#include <lctypes.h>
-#include <lcintl.h>
-#include <lcconfig.h>
-#include <lclib.h>
-#include <engglobs.h>
-#include <cliglobs.h>
-#include <stats.h>
-#include <mps.h>
-#include <port.h>
-#include <engine.h>
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+#include "port.h"
+
+/* system libraries */
+
+/* app general headers */
+#include "lcconfig.h"
+#include "lin-city.h"
+#include "lctypes.h"
+#include "lcintl.h"
+
+/* other modules */
+#include "cliglobs.h"
+#include "mps.h"
+#include "stats.h"
+#include "engglobs.h"
+#include "engine.h"
+#include "lclib.h"
+
+/* ----------------------------------------------------------------- */
 
 void
 do_port (int x, int y)

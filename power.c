@@ -5,18 +5,29 @@
  * (c) Corey Keasling 2001-2004.
  * ---------------------------------------------------------------------- */
 
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+#include "power.h"
+
+/* system libraries */
 #include <stdio.h>
 #include <stdlib.h>
-#include "lclib.h"
+
+/* app general headers */
 #include "common.h"
-#include "lctypes.h"
 #include "lin-city.h"
-#include "engine.h"
-#include "engglobs.h"
-#include "cliglobs.h"
-#include "simulate.h"
+#include "lctypes.h"
 #include "lcintl.h"
-#include "power.h"
+
+/* other modules */
+#include "cliglobs.h"
+#include "engglobs.h"
+#include "engine.h"
+#include "simulate.h"
+#include "lclib.h"
+
+/* ----------------------------------------------------------------- */
 
 
 /* old lin-city.h definitions */

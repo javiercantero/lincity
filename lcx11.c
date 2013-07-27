@@ -3,30 +3,43 @@
  * This file is part of lincity.
  * Lincity is copyright (c) I J Peters 1995-1997, (c) Greg Sharp 1997-2001.
  * ---------------------------------------------------------------------- */
-#include "lcconfig.h"
+
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+#include "lcx11.h"
+
+/* system libraries */
 #include <stdio.h>
 #include <stdlib.h>
-#include <assert.h>
-#include <math.h>
-#include <getopt.h>
 #include <string.h>
-#include "lcintl.h"
-#include "fileutil.h"
-#include "lclib.h"
+#include <math.h>
+#include <assert.h>
+#include <getopt.h>
 
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
 #include <X11/Xutil.h>
 #include <X11/keysym.h>
 #include <X11/keysymdef.h>
+
+/* app general headers */
+#include "lcconfig.h"
 #include "lin-city.h"
 #include "lctypes.h"
-#include "cliglobs.h"
-#include "lcx11.h"
+#include "lcintl.h"
+
+/* other modules */
 #include "pixmap.h"
-#include "mouse.h"
 #include "screen.h"
+#include "mouse.h"
+#include "cliglobs.h"
 #include "timer.h"
+#include "lclib.h"
+#include "fileutil.h"
+
+/* ----------------------------------------------------------------- */
+
 
 #ifndef M_PI
 #define M_PI            3.14159265358979323846

@@ -3,53 +3,21 @@
  * This file is part of lincity.
  * Lincity is copyright (c) I J Peters 1995-1997, (c) Greg Sharp 1997-2001.
  * ---------------------------------------------------------------------- */
-#include "lcconfig.h"
+
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+#include "ldsvgui.h"
+
+/* system libraries */
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
-
-#include "lin-city.h"
-#include "common.h"
-#ifdef LC_X11
-#include <X11/cursorfont.h>
-#endif
 #include <string.h>
-#include "lctypes.h"
-#include "lcintl.h"
-#include "cliglobs.h"
-#include "engglobs.h"
-#include "mouse.h"
-#include "screen.h"
-#include "pbar.h"
-#include "module_buttons.h"
-#include "fileutil.h"
-#include "ldsvguts.h"
-#include "ldsvgui.h"
-#include "stats.h"
-#include "timer.h"
-
-/* this is for OS/2 - RVI */
-#ifdef __EMX__
-#include <sys/select.h>
-#include <X11/Xlibint.h>      /* required for __XOS2RedirRoot */
-#define chown(x,y,z)
-#define OS2_DEFAULT_LIBDIR "/XFree86/lib/X11/lincity"
-#endif
 
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-
-#if defined (TIME_WITH_SYS_TIME)
-#include <time.h>
-#include <sys/time.h>
-#else
-#if defined (HAVE_SYS_TIME_H)
-#include <sys/time.h>
-#else
-#include <time.h>
-#endif
-#endif
 
 #if defined (WIN32)
 #include <winsock.h>
@@ -61,6 +29,49 @@
 #include <io.h>
 #include <direct.h>
 #include <process.h>
+#endif
+#ifdef LC_X11
+#include <X11/cursorfont.h>
+#endif
+
+/* app general headers */
+#include "lcconfig.h"
+#include "common.h"
+#include "lin-city.h"
+#include "lctypes.h"
+#include "lcintl.h"
+
+/* other modules */
+#include "screen.h"
+#include "mouse.h"
+#include "cliglobs.h"
+#include "pbar.h"
+#include "module_buttons.h"
+#include "stats.h"
+#include "ldsvguts.h"
+#include "engglobs.h"
+#include "timer.h"
+#include "fileutil.h"
+
+/* ----------------------------------------------------------------- */
+
+/* this is for OS/2 - RVI */
+#ifdef __EMX__
+#include <sys/select.h>
+#include <X11/Xlibint.h>      /* required for __XOS2RedirRoot */
+#define chown(x,y,z)
+#define OS2_DEFAULT_LIBDIR "/XFree86/lib/X11/lincity"
+#endif
+
+#if defined (TIME_WITH_SYS_TIME)
+#include <time.h>
+#include <sys/time.h>
+#else
+#if defined (HAVE_SYS_TIME_H)
+#include <sys/time.h>
+#else
+#include <time.h>
+#endif
 #endif
 
 #if defined (HAVE_DIRENT_H)

@@ -3,6 +3,24 @@
  * This file is part of lincity.
  * Lincity is copyright (c) I J Peters 1995-1997, (c) Greg Sharp 1997-2001.
  * ---------------------------------------------------------------------- */
+
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+#include "timer.h"
+
+/* system libraries */
+
+/* app general headers */
+
+/* other modules */
+#include "geometry.h"
+#include "mouse.h"
+#include "cliglobs.h"
+#include "lchelp.h"
+
+/* ----------------------------------------------------------------- */
+
 #if defined (HAVE_CONFIG_H)
 #include "config.h"
 #elif defined (WIN32)
@@ -22,13 +40,6 @@
 #if defined(AIX) || defined(__EMX__)
 #include <sys/select.h>
 #endif
-
-#include "cliglobs.h"
-#include "mouse.h"
-#include "geometry.h"
-#include "lchelp.h"
-#include "timer.h"
-
 
 /* ---------------------------------------------------------------------- *
  * Private Global Variables

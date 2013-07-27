@@ -3,18 +3,30 @@
  * This file is part of lincity.
  * Lincity is copyright (c) I J Peters 1995-1997, (c) Greg Sharp 1997-2001.
  * ---------------------------------------------------------------------- */
+
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+#include "lintypes.h"
+
+/* system libraries */
 #include <string.h> /* XXX: portability issue?  for strcpy */
+
+/* app general headers */
+#include "boolean.h"
 #include "lcconfig.h"
 #include "lin-city.h"
-#include "engglobs.h"
 #include "lctypes.h"
-#include "shrglobs.h"
-#include "lintypes.h"
 #include "lcintl.h"
+
+/* other modules */
+#include "screen.h"
+#include "engglobs.h"
+#include "shrglobs.h"
 #include "fileutil.h"
 #include "readpng.h"
-#include "boolean.h"
-#include "screen.h"
+
+/* ----------------------------------------------------------------- */
 
 struct TYPE main_types[NUM_OF_TYPES];
 

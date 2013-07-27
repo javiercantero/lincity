@@ -3,24 +3,37 @@
  * This file is part of lincity.
  * Lincity is copyright (c) I J Peters 1995-1997, (c) Greg Sharp 1997-2001.
  * ---------------------------------------------------------------------- */
-#include "lcconfig.h"
+
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+#include "lchelp.h"
+
+/* system libraries */
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
+
+/* app general headers */
+#include "lcconfig.h"
 #include "common.h"
-#include "lctypes.h"
-#include "fileutil.h"
 #include "lin-city.h"
-#include "lchelp.h"
-#include "mouse.h"
-#include "geometry.h"
+#include "lctypes.h"
 #include "lcintl.h"
-#include "module_buttons.h"
+
+/* other modules */
+#include "geometry.h"
 #include "screen.h"
-#include "simulate.h"
-#include "ldsvgui.h"
+#include "mouse.h"
 #include "cliglobs.h"
+#include "module_buttons.h"
+#include "ldsvgui.h"
+#include "simulate.h"
+#include "fileutil.h"
+
+/* ----------------------------------------------------------------- */
+
 
 /* About help history:
    History count starts at 0, but is immediately incremented to 1.

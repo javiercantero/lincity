@@ -3,18 +3,52 @@
  * This file is part of lincity.
  * Lincity is copyright (c) I J Peters 1995-1997, (c) Greg Sharp 1997-2001.
  * ---------------------------------------------------------------------- */
-#include "lcconfig.h"
+
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+#include "ldsvguts.h"
+
+/* system libraries */
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#include <sys/types.h>
+#include <fcntl.h>
+
+#if defined (WIN32)
+#include <winsock.h>
+#include <io.h>
+#include <direct.h>
+#include <process.h>
+#endif
+#ifdef LC_X11
+#include <X11/cursorfont.h>
+#endif
+
+/* app general headers */
+#include "lcconfig.h"
+#include "common.h"
+#include "lin-city.h"
+#include "lctypes.h"
 #include "lcintl.h"
+
+/* other modules */
 #include "screen.h"
 #include "mouse.h"
+#include "cliglobs.h"
 #include "module_buttons.h"
+#include "pbar.h"
 #include "stats.h"
+#include "engglobs.h"
+#include "engine.h"
+#include "power.h"
+#include "simulate.h"
+#include "fileutil.h"
 
-#include <fcntl.h>
-#include <sys/types.h>
+/* ----------------------------------------------------------------- */
 
 #if defined (TIME_WITH_SYS_TIME)
 #include <time.h>
@@ -25,13 +59,6 @@
 #else
 #include <time.h>
 #endif
-#endif
-
-#if defined (WIN32)
-#include <winsock.h>
-#include <io.h>
-#include <direct.h>
-#include <process.h>
 #endif
 
 #ifdef __EMX__
@@ -55,21 +82,6 @@
 #endif
 #endif
 
-#include <ctype.h>
-#include "common.h"
-#ifdef LC_X11
-#include <X11/cursorfont.h>
-#endif
-#include "lctypes.h"
-#include "lin-city.h"
-#include "cliglobs.h"
-#include "engglobs.h"
-#include "fileutil.h"
-#include "power.h"
-#include "pbar.h"
-#include "stats.h"
-#include "engine.h"
-#include "simulate.h"
 
 #if defined (WIN32) && !defined (NDEBUG)
 #define START_FAST_SPEED 1

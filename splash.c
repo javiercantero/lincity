@@ -3,10 +3,15 @@
  * This file is part of lincity.
  * Lincity is copyright (c) I J Peters 1995-1997, (c) Greg Sharp 1997-2001.
  * ---------------------------------------------------------------------- */
-#include "lcconfig.h"
+
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+
+/* system libraries */
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
 #include <string.h>
 
 #if defined (WIN32)
@@ -15,18 +20,24 @@
 #include <direct.h>
 #include <process.h>
 #endif
-
-#include "common.h"
 #ifdef LC_X11
 #include <X11/cursorfont.h>
 #endif
-#include "lctypes.h"
+
+/* app general headers */
+#include "lcconfig.h"
+#include "common.h"
 #include "lin-city.h"
+#include "lctypes.h"
+
+/* other modules */
+#include "screen.h"
 #include "cliglobs.h"
 #include "engglobs.h"
-#include "screen.h"
 #include "fileutil.h"
 #include "timer.h"
+
+/* ----------------------------------------------------------------- */
 
 #define SI_BLACK 252
 #define SI_RED 253

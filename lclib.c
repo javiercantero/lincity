@@ -1,16 +1,28 @@
 /* ---------------------------------------------------------------------- *
- * screen.c
+ * lclib.c
  * This file is part of lincity.
  * Lincity is copyright (c) I J Peters 1995-1997, (c) Greg Sharp 1997-2001.
  * Portions copyright (c) Corey Keasling, 2001.
  * ---------------------------------------------------------------------- */
 
-#include "lcconfig.h"
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+#include "lclib.h"
+
+/* system libraries */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "cliglobs.h"
+
+/* app general headers */
+#include "lcconfig.h"
 #include "lcintl.h"
+
+/* other modules */
+#include "cliglobs.h"
+
+/* ----------------------------------------------------------------- */
 
 char* 
 current_month (int current_time)

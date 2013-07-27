@@ -3,34 +3,46 @@
  * This file is part of lincity.
  * Lincity is copyright (c) I J Peters 1995-1997, (c) Greg Sharp 1997-2001.
  * ---------------------------------------------------------------------- */
+
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+#include "engine.h"
+
+/* system libraries */
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
-#include "common.h"
 #include <string.h>
-#include "lctypes.h"
+#include <time.h>
+
+/* app general headers */
+#include "lcconfig.h"
+#include "common.h"
 #include "lin-city.h"
-#include "engine.h"
-#include "engglobs.h"
-#include "cliglobs.h"
-#include "simulate.h"
+#include "lintypes.h"
+#include "lctypes.h"
 #include "lcintl.h"
-#include "power.h"
+
+/* other modules */
+#include "screen.h"
 #include "mouse.h"
+#include "cliglobs.h"
+#include "dialbox.h"
 #include "module_buttons.h"
+#include "mps.h"
 #include "pbar.h"
 #include "stats.h"
-#include "screen.h"
-#include "dialbox.h"
-#include <mps.h>
-#include "lcconfig.h"
-#include "lintypes.h"
-
+#include "engglobs.h"
 #include "market.h"
+#include "power.h"
+#include "simulate.h"
 #include "modules/substation.h"
 #include "modules/firestation.h"
 #include "modules/health_centre.h"
 #include "modules/cricket.h"
+
+/* ----------------------------------------------------------------- */
+
 
 extern int selected_type_cost;
 

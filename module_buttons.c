@@ -1,16 +1,29 @@
-#include <stdio.h>
-#include "lcconfig.h"
-#include <string.h>
-#include "geometry.h"
+
+/* ----------------------------------------------------------------- */
+
+/* module header file */
 #include "module_buttons.h"
-#include "cliglobs.h"
-#include "mouse.h"
-#include "lcintl.h"
+
+/* system libraries */
+#include <stdio.h>
+#include <string.h>
+
+/* app general headers */
+#include "lcconfig.h"
 #include "lctypes.h"
-#include "lclib.h"
-#include "lchelp.h"
-#include "fileutil.h"
+#include "lcintl.h"
+
+/* other modules */
+#include "geometry.h"
 #include "screen.h"
+#include "mouse.h"
+#include "cliglobs.h"
+#include "lchelp.h"
+#include "lclib.h"
+#include "fileutil.h"
+
+/* ----------------------------------------------------------------- */
+
 
 #define DEBUG_MODULES 0
 

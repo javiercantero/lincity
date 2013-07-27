@@ -5,19 +5,31 @@
  * Portions copyright (c) Corey Keasling, 2001.
  * ---------------------------------------------------------------------- */
 
-#include "lcconfig.h"
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+#include "dialbox.h"
+
+/* system libraries */
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
-#include <stdarg.h> /* XXX: WCK: What does configure need to know? */
 #include <string.h>
-#include "screen.h"
+#include <stdarg.h> /* XXX: WCK: What does configure need to know? */
+#include <math.h>
+
+/* app general headers */
+#include "lcconfig.h"
+
+/* other modules */
 #include "geometry.h"
-#include "dialbox.h"
+#include "screen.h"
 #include "mouse.h"
-#include "lclib.h"
-#include "timer.h"
 #include "cliglobs.h"
+#include "timer.h"
+#include "lclib.h"
+
+/* ----------------------------------------------------------------- */
+
 
 static Dialog_Box db_entry[MAX_DBOX_ENTRIES];
 

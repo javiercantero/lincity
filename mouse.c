@@ -3,27 +3,39 @@
  * This file is part of lincity.
  * Lincity is copyright (c) I J Peters 1995-1997, (c) Greg Sharp 1997-2001.
  * ---------------------------------------------------------------------- */
-#include "lcconfig.h"
+
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+#include "mouse.h"
+
+/* system libraries */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+/* app general headers */
+#include "lcconfig.h"
 #include "common.h"
+#include "lin-city.h"
 #include "lctypes.h"
 #include "lcintl.h"
-#include "lin-city.h"
-#include "mouse.h"
-#include "engglobs.h"
-#include "cliglobs.h"
-#include "engine.h"
-#include "screen.h"
-#include "mps.h"
-#include "fileutil.h"
-#include "lchelp.h"
-#include "pbar.h"
-#include "lclib.h"
-#include "module_buttons.h"
 
+/* other modules */
+#include "screen.h"
+#include "cliglobs.h"
+#include "module_buttons.h"
+#include "mps.h"
+#include "pbar.h"
+#include "lchelp.h"
+#include "engglobs.h"
+#include "engine.h"
 #include "modules/rocket_pad.h"
+#include "lclib.h"
+#include "fileutil.h"
+
+/* ----------------------------------------------------------------- */
+
 
 #define DEBUG_MT_CODE 1
 

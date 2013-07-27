@@ -5,17 +5,28 @@
  * (c) Corey Keasling, 2004
  * ---------------------------------------------------------------------- */
 
-#include <lcintl.h>
-#include <lcconfig.h>
-#include <lctypes.h>
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+#include "organic_farm.h"
+
+/* system libraries */
+#include <stdio.h>
 #include <stdlib.h>
-#include <engglobs.h>
-#include <mps.h>
-#include <organic_farm.h>
-#include <power.h>
+
+/* app general headers */
+#include "lcconfig.h"
+#include "lctypes.h"
+#include "lcintl.h"
+
+/* other modules */
+#include "mps.h"
+#include "engglobs.h"
+#include "power.h"
 #include "market.h"
 
-#include <stdio.h>
+/* ----------------------------------------------------------------- */
+
 
 /* old lin-city.h definitions */
 #define FARM_JOBS_USED 13

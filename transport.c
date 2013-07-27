@@ -3,16 +3,27 @@
  * This file is part of lincity.
  * Lincity is copyright (c) I J Peters 1995-1997, (c) Greg Sharp 1997-2001.
  * ---------------------------------------------------------------------- */
+
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+#include "transport.h"
+
+/* system libraries */
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
-#include "common.h"
-#include "lctypes.h"
-#include "lin-city.h"
-#include "transport.h"
-#include "power.h"
-#include "stats.h" /* for transport_cost */
 
+/* app general headers */
+#include "common.h"
+#include "lin-city.h"
+#include "lctypes.h"
+
+/* other modules */
+#include "stats.h" /* for transport_cost */
+#include "power.h"
+
+/* ----------------------------------------------------------------- */
 
 /* old lin-city.h definitions */
 #define WASTE_BURN_ON_TRANSPORT 20

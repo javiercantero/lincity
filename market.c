@@ -3,19 +3,30 @@
  * This file is part of lincity.
  * Lincity is copyright (c) I J Peters 1995-1997, (c) Greg Sharp 1997-2001.
  * ---------------------------------------------------------------------- */
+
+/* ----------------------------------------------------------------- */
+
+/* module header file */
+#include "market.h"
+
+/* system libraries */
 #include <stdio.h>
 #include <stdlib.h>
+
+/* app general headers */
+#include "lcconfig.h"
 #include "common.h"
-#include "lctypes.h"
 #include "lin-city.h"
 #include "lintypes.h"
-#include "stats.h"
-#include <mps.h>
-#include <lcintl.h>
-#include <lcconfig.h>
+#include "lctypes.h"
+#include "lcintl.h"
 
-#include "market.h"
+/* other modules */
+#include "mps.h"
+#include "stats.h"
 #include "engglobs.h"
+
+/* ----------------------------------------------------------------- */
 
 
 /* old lin-city.h definitions */
