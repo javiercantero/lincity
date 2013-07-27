@@ -18,6 +18,8 @@
 #include <mps.h>
 #include <power.h>
 
+#include <stdio.h>
+
 /*** Substations ***/
 /*
   int_5 is the power demand at this substation

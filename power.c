@@ -17,7 +17,6 @@
 #include "simulate.h"
 #include "lcintl.h"
 #include "power.h"
-#include "transport.h" /* for XY_IS_TRANSPORT */
 
 
 /* old lin-city.h definitions */

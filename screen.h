@@ -6,7 +6,7 @@
 #ifndef __screen_h__
 #define __screen_h__
 
-#include "cliglobs.h"
+#include "geometry.h" /* Rect dependency */
 
 #define MONTHGRAPH_STYLE_ECONOMY      1
 #define MONTHGRAPH_STYLE_SUSTAIN      2

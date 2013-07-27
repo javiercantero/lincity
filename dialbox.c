@@ -17,6 +17,7 @@
 #include "mouse.h"
 #include "lclib.h"
 #include "timer.h"
+#include "cliglobs.h"
 
 static Dialog_Box db_entry[MAX_DBOX_ENTRIES];
 

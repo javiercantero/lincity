@@ -7,7 +7,7 @@
 #ifndef _pbar_h
 #define _pbar_h
 
-#include "geometry.h"
+#include "geometry.h" /* Rect dependency */
 
 void init_pbars (void);
 void pbars_full_refresh (void);

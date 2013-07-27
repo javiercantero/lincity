@@ -16,8 +16,6 @@
 #include <power.h>
 #include <coal_power.h>
 #include <mps.h>
-#include <transport.h>  /* XXX: This seems to be an anomaly; no other modules
-			  use XY_IS_TRANSPORT */
 #include "market.h"
 
 

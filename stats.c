@@ -9,6 +9,7 @@
 #include <stdlib.h>
 
 #include "lin-city.h"
+#include "lintypes.h"
 #include "lctypes.h"
 #include "engglobs.h"
 #include "pbar.h"

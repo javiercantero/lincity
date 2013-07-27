@@ -12,11 +12,13 @@
 #include "lctypes.h"
 #include "lin-city.h"
 #include "mouse.h"
+#include "cliglobs.h"
 #include "engglobs.h"
 #include "engine.h"
 #include "screen.h"
 #include "lcintl.h"
 #include "fileutil.h"
+
 
 unsigned char mouse_pointer[] = {
     255, 255, 255, 255, 1, 1, 1, 1,

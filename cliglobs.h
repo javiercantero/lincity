@@ -6,9 +6,13 @@
 #ifndef __cliglobs_h__
 #define __cliglobs_h__
 
-#include "common.h"
-#include "lin-city.h"
-#include "geometry.h"
+#include "common.h"   /* Cursor, Pixmap (X11) */
+#include "lin-city.h" /* WORLD_SIDE_LEN, PROGBOXW, PROGBOXH, MARKET_CB_W,
+                         MARKET_CB_H, MAX_NUMOF_HELP_BUTTONS,
+                         MAX_LENOF_HELP_FILENAME, MAX_HELP_HISTORY,
+                         MAX_ICON_LEN dependencies */
+#include "lintypes.h" /* NUM_OF_TYPES dependency */
+#include "geometry.h" /* Screen_Geometry dependency*/
 
 extern Screen_Geometry scr;
 extern short mappointoldtype[WORLD_SIDE_LEN][WORLD_SIDE_LEN];

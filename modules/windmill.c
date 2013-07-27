@@ -18,6 +18,7 @@
 #include <windmill.h>
 #include "market.h"
 
+#include <stdio.h>
 
 /* old lin-city.h definitions */
 #define WINDMILL_JOBS       10

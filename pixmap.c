@@ -20,12 +20,9 @@
 #include "pixmap.h"
 
 #if defined (LC_X11)
-#include <X11/Xlib.h>
-#include <X11/Xatom.h>
-#include <X11/Xutil.h>
+#include "lcx11.h"
 #include <X11/keysym.h>
 #include <X11/keysymdef.h>
-#include "lcx11.h"
 #endif
 
 

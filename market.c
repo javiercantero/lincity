@@ -8,6 +8,7 @@
 #include "common.h"
 #include "lctypes.h"
 #include "lin-city.h"
+#include "lintypes.h"
 #include "stats.h"
 #include <mps.h>
 #include <lcintl.h>

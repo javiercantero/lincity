@@ -6,6 +6,8 @@
 #ifndef __lcwin32_h__
 #define __lcwin32_h__
 
+#include <windows.h>
+
 // Turn off compiler warning converting const double to float
 #pragma warning(disable : 4244)
 

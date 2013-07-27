@@ -6,6 +6,10 @@
 #ifndef __lcsvga_h__
 #define __lcsvga_h__
 
+#include <vga.h>
+#include <vgagl.h>
+#include <vgamouse.h>
+
 typedef struct _disp
 {
     unsigned int winH;

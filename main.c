@@ -38,7 +38,6 @@
 #include "common.h"
 #ifdef LC_X11
 #include <X11/cursorfont.h>
-#include <lcx11.h>
 #endif
 
 #include "lctypes.h"

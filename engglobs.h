@@ -6,10 +6,11 @@
 #ifndef __engglobs_h__
 #define __engglobs_h__
 
-#include "lin-city.h"
-#include "common.h"
-#include "geometry.h"
-
+#include "lin-city.h" /* WORLD_SIDE_LEN, MAX_NUMOF_SUBSTATIONS, MAX_NUMOF_MARKETS,
+                         NUMOF_DISCOUNT_TRIGGERS, GROUP_IS_RESIDENCE, GROUP_TRACK,
+                         GROUP_ROAD, GROUP_RAIL, GROUP_POWER_LINE Map_Point_Info
+                         dependencies */
+/*#include "lintypes.h" *//* main_groups dependency */
 
 /* GCS -- One of these days I will get this right. */
 struct map_struct
@@ -32,6 +33,11 @@ extern Map map;
 #define MP_COLOR(x,y)  main_groups[MP_GROUP(x,y)].colour
 #define MP_GROUP_IS_RESIDENCE(x,y)  (GROUP_IS_RESIDENCE(MP_GROUP(x,y)))
 
+#define XY_IS_TRANSPORT(x,y) \
+((MP_GROUP(x,y) == GROUP_TRACK) || \
+ (MP_GROUP(x,y) == GROUP_ROAD) || \
+ (MP_GROUP(x,y) == GROUP_RAIL) || \
+ (MP_GROUP(x,y) == GROUP_POWER_LINE))
 
 
 extern int mappoint_array_x[WORLD_SIDE_LEN], mappoint_array_y[WORLD_SIDE_LEN];

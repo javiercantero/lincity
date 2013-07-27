@@ -16,6 +16,7 @@
 #include <university.h>
 #include "market.h"
 
+#include <stdio.h>
 
 /* old lin-city.h definitions */
 #define UNIVERSITY_JOBS   250

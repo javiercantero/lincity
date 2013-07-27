@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h> /* XXX: GCS FIX: What does configure need to know? */
+#include "common.h"
 #include "lcintl.h"
 #include <string.h>
 #include "ldsvgui.h"
@@ -46,7 +47,6 @@
 #include <io.h>
 #include <direct.h>
 #include <process.h>
-#include <lcwin32.h>
 #endif
 
 #if ! defined (WIN32)
@@ -72,10 +72,8 @@
 #endif
 
 #include <ctype.h>
-#include "common.h"
 #ifdef LC_X11
 #include <X11/cursorfont.h>
-#include <lcx11.h>
 #endif
 #include "lctypes.h"
 #include "lin-city.h"

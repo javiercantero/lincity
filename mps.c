@@ -22,6 +22,7 @@
 #include "stats.h"
 #include <mouse.h>
 #include <lclib.h>
+#include "cliglobs.h"
 
 #include "market.h"
 #include "modules/blacksmith.h"

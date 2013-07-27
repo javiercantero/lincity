@@ -7,13 +7,8 @@
 #ifndef __TRANSPORT_H__
 #define __TRANSPORT_H__
 
-#include "engglobs.h"
+#include "lin-city.h" /* Map_Point_Info dependency */
 
-#define XY_IS_TRANSPORT(x,y) \
-((MP_GROUP(x,y) == GROUP_TRACK) || \
- (MP_GROUP(x,y) == GROUP_ROAD) || \
- (MP_GROUP(x,y) == GROUP_RAIL) || \
- (MP_GROUP(x,y) == GROUP_POWER_LINE))
 
 void general_transport (Map_Point_Info *minfo, int *pol,
                         int max_waste, int *waste_count);

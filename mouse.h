@@ -6,7 +6,7 @@
 #ifndef __mouse_h__
 #define __mouse_h__
 
-#include "cliglobs.h"
+#include "geometry.h" /* Rect dependency */
 
 #define NUM_BUTTONS 3
 

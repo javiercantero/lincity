@@ -20,6 +20,7 @@
 #include "screen.h"
 #include "simulate.h"
 #include "ldsvgui.h"
+#include "cliglobs.h"
 
 /* About help history:
    History count starts at 0, but is immediately incremented to 1.

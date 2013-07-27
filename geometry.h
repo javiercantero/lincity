@@ -6,8 +6,6 @@
 #ifndef __geometry_h__
 #define __geometry_h__
 
-#include "lin-city.h"
-
 struct rect_struct
 {
     int x;

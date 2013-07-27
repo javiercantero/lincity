@@ -8,6 +8,8 @@
 #ifndef _LCLIB_H
 #define _LCLIB_H
 
+#include <stddef.h>  /* size_t dependency -> TODO: remove */
+
 char * current_month(int current_time);
 int current_year (int current_time);
 void format_number5 (char* str, int num);

@@ -7,8 +7,7 @@
 #ifndef __mps_h__
 #define __mps_h__
 
-#include "geometry.h"
-#include "cliglobs.h"
+#include "geometry.h" /* MAPPOINT_STATS_W, MAPPOINT_STATS_LINES dependencies */
 
 void mps_full_refresh (void);
 void mappoint_stats (int, int, int);
@@ -63,11 +62,6 @@ void mps_global_finance(void);
 void mps_global_other_costs(void);
 void mps_global_housing(void);
 void mps_right (int x, int y);
-
-
-#define _generic_mps
-#ifdef _generic_mps
-#endif
 
 
 #endif /* __mps_h__ */

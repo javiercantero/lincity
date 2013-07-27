@@ -6,22 +6,20 @@
 #ifndef __lchelp_h__
 #define __lchelp_h__
 
-#include "cliglobs.h"
-
 #define MAX_HELP_LINE     256  /* Max size of a line of a help file (+1) */
 
 void do_help_mouse (int, int, int);
 void do_prefs_mouse (int, int, int);
 void refresh_help_page (void);
-extern void activate_help (char *);
-extern void draw_help_page (char *);
-extern void parse_tcolourline (char *);
-extern void parse_helpline (char *);
-extern void parse_textline (char *);
-extern void parse_iconline (char *);
-extern void draw_help_icon (int, int, char *);
-extern void parse_buttonline (char *);
-extern void do_help_buttons (int, int);
-extern void parse_tbuttonline (char *);
+void activate_help (char *);
+void draw_help_page (char *);
+void parse_tcolourline (char *);
+void parse_helpline (char *);
+void parse_textline (char *);
+void parse_iconline (char *);
+void draw_help_icon (int, int, char *);
+void parse_buttonline (char *);
+void do_help_buttons (int, int);
+void parse_tbuttonline (char *);
 
 #endif	/* __lchelp_h__ */

@@ -6,6 +6,8 @@
 #ifndef __fileutil_h__
 #define __fileutil_h__
 
+#include <stdio.h> /* FILE dependency -> TODO: remove?? */
+
 extern char *lc_save_dir;
 extern char *lc_temp_file;
 extern int lc_save_dir_len;

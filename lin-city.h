@@ -7,7 +7,6 @@
 #ifndef __lin_city_h__
 #define __lin_city_h__
 
-#include <stdio.h>
 
 #include "boolean.h"
 
@@ -1016,7 +1015,5 @@ extern void update_pixmap (int, int, int, int, int, int, int, char *);
   *******   end of lin-city.h   ***********
   *****************************************
 */
-
-#include "lintypes.h"
 
 #endif /* __lin_city_h__ */

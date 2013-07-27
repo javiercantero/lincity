@@ -15,6 +15,8 @@
 #include "stats.h"
 #include "engglobs.h"
 
+#include <stdio.h>
+
 struct pbar_st pbars[NUM_PBARS];
 
 void

@@ -6,10 +6,9 @@
 #ifndef __lcx11_h__
 #define __lcx11_h__
 
-#include "lin-city.h"
-
-#define TRUE 1
-#define FALSE 0
+#include <X11/Xlib.h>
+#include <X11/Xatom.h>
+#include <X11/Xutil.h>
 
 #if defined (commentout)
 #define MOUSE_LEFTBUTTON Button1

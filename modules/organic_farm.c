@@ -15,6 +15,7 @@
 #include <power.h>
 #include "market.h"
 
+#include <stdio.h>
 
 /* old lin-city.h definitions */
 #define FARM_JOBS_USED 13

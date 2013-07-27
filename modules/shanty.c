@@ -17,6 +17,8 @@
 #include "engine.h"
 #include "market.h"
 
+#include <stdio.h>
+
 void add_a_shanty(void);
 void remove_a_shanty(void);
 
