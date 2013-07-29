@@ -11,7 +11,7 @@
 #include "university.h"
 
 /* system libraries */
-#include <stdio.h>
+#include <stdio.h> /* snprintf() */
 
 /* app general headers */
 #include "lcconfig.h"

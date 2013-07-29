@@ -13,13 +13,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
+#include <math.h> /* log(), sqrt() */
 
-#include <sys/types.h>
-#include <sys/stat.h>
-#if defined (HAVE_UNISTD_H)
-#include <unistd.h>
-#endif
+#include <sys/stat.h>       /* struct stat, stat() */
 
 /* app general headers */
 #include "lcconfig.h"

@@ -11,7 +11,7 @@
 #include "fire.h"
 
 /* system libraries */
-#include <stdlib.h>
+#include <stdlib.h> /* rand() */
 
 /* app general headers */
 #include "lin-city.h"

@@ -10,8 +10,13 @@
 #include "timer.h"
 
 /* system libraries */
+#include <stddef.h> /* NULL */
+#if !defined (WIN32)
+#include <sys/time.h> /* struct timeval, gettimeofday() */
+#endif
 
 /* app general headers */
+#include "lcconfig.h"
 
 /* other modules */
 #include "geometry.h"
@@ -21,22 +26,6 @@
 
 /* ----------------------------------------------------------------- */
 
-#if defined (HAVE_CONFIG_H)
-#include "config.h"
-#elif defined (WIN32)
-#include "confw32.h"
-#endif
-
-#if defined (TIME_WITH_SYS_TIME)
-#include <time.h>
-#include <sys/time.h>
-#else
-#if defined (HAVE_SYS_TIME_H)
-#include <sys/time.h>
-#else
-#include <time.h>
-#endif
-#endif
 
 /* ---------------------------------------------------------------------- *
  * Private Global Variables

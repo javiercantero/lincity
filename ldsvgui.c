@@ -10,15 +10,10 @@
 #include "ldsvgui.h"
 
 /* system libraries */
-#include <ctype.h>
+#include <ctype.h> /* isalnum() */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-
 #if defined (WIN32)
 #include <winsock.h>
 #if defined (__BORLANDC__)
@@ -29,9 +24,6 @@
 #include <io.h>
 #include <direct.h>
 #include <process.h>
-#endif
-#ifdef LC_X11
-#include <X11/cursorfont.h>
 #endif
 
 /* app general headers */
@@ -54,17 +46,6 @@
 #include "fileutil.h"
 
 /* ----------------------------------------------------------------- */
-
-#if defined (TIME_WITH_SYS_TIME)
-#include <time.h>
-#include <sys/time.h>
-#else
-#if defined (HAVE_SYS_TIME_H)
-#include <sys/time.h>
-#else
-#include <time.h>
-#endif
-#endif
 
 #if defined (HAVE_DIRENT_H)
 #include <dirent.h>

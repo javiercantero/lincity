@@ -16,19 +16,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
-#include <assert.h>
-
-#if defined (LC_X11)
-#include "lcx11.h"
-#include <X11/keysym.h>
-#include <X11/keysymdef.h>
-#endif
 
 /* app general headers */
 #include "lcconfig.h"
 #include "lin-city.h"
 #include "lctypes.h"
+#if defined (LC_X11)
+#include "lcx11.h" /* FIXME: use common.h ??? */
+#endif
 
 /* other modules */
 #include "screen.h"

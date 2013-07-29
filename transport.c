@@ -12,7 +12,6 @@
 /* system libraries */
 #include <stdio.h>
 #include <stdlib.h>
-#include <assert.h>
 
 /* app general headers */
 #include "common.h"

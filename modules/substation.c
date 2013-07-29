@@ -11,8 +11,7 @@
 #include "substation.h"
 
 /* system libraries */
-#include <stdio.h>
-#include <stdlib.h>
+#include <stdio.h> /* printf() */
 
 /* app general headers */
 #include "lcconfig.h"

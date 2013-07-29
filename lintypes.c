@@ -10,6 +10,7 @@
 #include "lintypes.h"
 
 /* system libraries */
+#include <stdio.h>
 #include <string.h> /* XXX: portability issue?  for strcpy */
 
 /* app general headers */

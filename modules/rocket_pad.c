@@ -11,7 +11,7 @@
 #include "rocket_pad.h"
 
 /* system libraries */
-#include <stdlib.h>
+#include <stdlib.h> /* rand() */
 
 /* app general headers */
 #include "lcconfig.h"

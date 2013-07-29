@@ -15,7 +15,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdarg.h> /* XXX: WCK: What does configure need to know? */
-#include <math.h>
 
 /* app general headers */
 #include "lcconfig.h"

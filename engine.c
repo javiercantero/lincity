@@ -10,10 +10,7 @@
 #include "engine.h"
 
 /* system libraries */
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
+#include <stdlib.h> /* rand() */
 
 /* app general headers */
 #include "lcconfig.h"

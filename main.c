@@ -21,16 +21,11 @@
 /* module header file */
 
 /* system libraries */
-#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-#include <time.h>
-#include <signal.h>
-#include <sys/types.h>
-#include <fcntl.h>
-
+#include <time.h> /* time() */
+#include <signal.h> /* SIGPIPE, SIG_IGN, signal() */
 #if defined (WIN32)
 #include <winsock.h>
 #include <io.h>
@@ -38,7 +33,7 @@
 #include <process.h>
 #endif
 #ifdef LC_X11
-#include <X11/cursorfont.h>
+#include <X11/cursorfont.h> /* XC_pirate */
 #endif
 
 /* app general headers */

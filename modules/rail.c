@@ -13,7 +13,7 @@
 /* system libraries */
 
 /* app general headers */
-#include "config.h" /* FIXME: change to lcconfig.h */
+#include "lcconfig.h"
 #include "lin-city.h"
 #include "lctypes.h"
 #include "lcintl.h"

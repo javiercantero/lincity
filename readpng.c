@@ -10,7 +10,6 @@
 
 /* system libraries */
 #include <stdlib.h>
-#include <malloc.h>
 
 #include <png.h>
 

@@ -11,8 +11,8 @@
 #include "organic_farm.h"
 
 /* system libraries */
-#include <stdio.h>
-#include <stdlib.h>
+#include <stdio.h> /* snprintf() */
+#include <stdlib.h> /* rand() */
 
 /* app general headers */
 #include "lcconfig.h"

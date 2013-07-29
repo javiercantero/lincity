@@ -11,7 +11,7 @@
 
 /* system libraries */
 #include <stdio.h>
-#include <math.h>
+#include <math.h> /* log() */
 
 /* app general headers */
 #include "lcconfig.h"

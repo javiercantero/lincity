@@ -10,22 +10,14 @@
 #include "ldsvguts.h"
 
 /* system libraries */
-#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-#include <sys/types.h>
-#include <fcntl.h>
-
 #if defined (WIN32)
 #include <winsock.h>
 #include <io.h>
 #include <direct.h>
 #include <process.h>
-#endif
-#ifdef LC_X11
-#include <X11/cursorfont.h>
 #endif
 
 /* app general headers */
@@ -49,34 +41,6 @@
 #include "fileutil.h"
 
 /* ----------------------------------------------------------------- */
-
-#if defined (TIME_WITH_SYS_TIME)
-#include <time.h>
-#include <sys/time.h>
-#else
-#if defined (HAVE_SYS_TIME_H)
-#include <sys/time.h>
-#else
-#include <time.h>
-#endif
-#endif
-
-#if defined (HAVE_DIRENT_H)
-#include <dirent.h>
-#define NAMLEN(dirent) strlen((dirent)->d_name)
-#else
-#define dirent direct
-#define NAMLEN(dirent) (dirent)->d_namlen
-#if defined (HAVE_SYS_NDIR_H)
-#include <sys/ndir.h>
-#endif
-#if defined (HAVE_SYS_DIR_H)
-#include <sys/dir.h>
-#endif
-#if defined (HAVE_NDIR_H)
-#include <ndir.h>
-#endif
-#endif
 
 
 #if defined (WIN32) && !defined (NDEBUG)

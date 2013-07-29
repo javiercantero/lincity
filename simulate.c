@@ -10,21 +10,13 @@
 #include "simulate.h"
 
 /* system libraries */
-#include <ctype.h>
-#include <stdio.h>
+#include <stdio.h> /*printf() */
 #include <stdlib.h>
-#include <string.h>
-
-#include <sys/types.h>
-#include <fcntl.h>
 #if defined (WIN32)
 #include <winsock.h>
 #include <io.h>
 #include <direct.h>
 #include <process.h>
-#endif
-#ifdef LC_X11
-#include <X11/cursorfont.h>
 #endif
 
 /* app general headers */

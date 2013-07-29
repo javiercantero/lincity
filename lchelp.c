@@ -10,7 +10,7 @@
 #include "lchelp.h"
 
 /* system libraries */
-#include <ctype.h>
+#include <ctype.h> /* isspace() */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

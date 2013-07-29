@@ -11,8 +11,8 @@
 #include "shanty.h"
 
 /* system libraries */
-#include <stdio.h>
-#include <stdlib.h>
+#include <stdio.h> /* printf() */
+#include <stdlib.h> /* rand() */
 
 /* app general headers */
 #include "lin-city.h"

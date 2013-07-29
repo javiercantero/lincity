@@ -11,7 +11,7 @@
 #include "windmill.h"
 
 /* system libraries */
-#include <stdio.h>
+#include <stdio.h> /* printf() */
 
 /* app general headers */
 #include "lcconfig.h"

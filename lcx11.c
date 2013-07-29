@@ -13,15 +13,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
-#include <assert.h>
-#include <getopt.h>
-
-#include <X11/Xlib.h>
-#include <X11/Xatom.h>
-#include <X11/Xutil.h>
-#include <X11/keysym.h>
-#include <X11/keysymdef.h>
+#include <math.h> /* sin() */
+#include <assert.h> /* assert() */
+#include <getopt.h> /* getopt() */
 
 /* app general headers */
 #include "lcconfig.h"
