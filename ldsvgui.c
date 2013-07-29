@@ -55,14 +55,6 @@
 
 /* ----------------------------------------------------------------- */
 
-/* this is for OS/2 - RVI */
-#ifdef __EMX__
-#include <sys/select.h>
-#include <X11/Xlibint.h>      /* required for __XOS2RedirRoot */
-#define chown(x,y,z)
-#define OS2_DEFAULT_LIBDIR "/XFree86/lib/X11/lincity"
-#endif
-
 #if defined (TIME_WITH_SYS_TIME)
 #include <time.h>
 #include <sys/time.h>
@@ -106,11 +98,6 @@ void input_save_filename (char *s);
  * ---------------------------------------------------------------------- */
 #if defined (WIN32)
 char LIBDIR[_MAX_PATH];
-#elif defined (__EMX__)
-#ifdef LIBDIR
-#undef LIBDIR   /* yes, I know I shouldn't ;-) */
-#endif
-char LIBDIR[256];
 #endif
 
 char *lc_save_dir;

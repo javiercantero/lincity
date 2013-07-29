@@ -37,9 +37,6 @@
 #include <time.h>
 #endif
 #endif
-#if defined(AIX) || defined(__EMX__)
-#include <sys/select.h>
-#endif
 
 /* ---------------------------------------------------------------------- *
  * Private Global Variables

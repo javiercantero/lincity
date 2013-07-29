@@ -67,15 +67,6 @@
 
 /* ----------------------------------------------------------------- */
 
-/* this is for OS/2 - RVI */
-#ifdef __EMX__
-#include <sys/select.h>
-#include <X11/Xlibint.h>      /* required for __XOS2RedirRoot */
-#define chown(x,y,z)
-/* #define OS2_DEFAULT_LIBDIR "/XFree86/lib/X11/lincity" */
-/* This was moved to fileutil.c */
-#endif
-
 
 #if defined (WIN32) && !defined (NDEBUG)
 #define START_FAST_SPEED 1
@@ -110,15 +101,6 @@ void print_results (void);
 #if defined (commentout)          /* Moved to fileutil.c */
 #if defined (WIN32)
 char LIBDIR[_MAX_PATH];
-#elif defined (__EMX__)
-#ifdef LIBDIR
-#undef LIBDIR   /* yes, I know I shouldn't ;-) */
-#endif
-/* GCS: Presumably I can do this, right? */
-#if defined (commentout)
-char LIBDIR[256];
-#endif
-char LIBDIR[LC_PATH_MAX];
 #endif
 #endif
 

@@ -35,16 +35,6 @@
 
 #define LIBDIR DEFAULT_LIBDIR
 
-#ifdef __EMX__
-#include <X11/Xlibint.h>      /* required for __XOS2RedirRoot */
-#define chown(x,y,z)
-#ifdef LIBDIR
-#undef LIBDIR   /* yes, I know I shouldn't ;-) */
-#endif
-char LIBDIR[256];
-#define OS2_DEFAULT_LIBDIR "/XFree86/lib/X11/lincity"
-#endif
-
 #define COLOUR_PAL_FILE "/colour.pal"
 #define FONTFILE "/opening/iso8859-1-8x8.raw"
 
@@ -226,10 +216,6 @@ main (int argc, char *argv[])
   c = 0;
   stopflag = 0;
   newimagesize = 1;
-
-#ifdef __EMX__
-  strcpy(LIBDIR, __XOS2RedirRoot(OS2_DEFAULT_LIBDIR));
-#endif
 
 #ifdef LC_X11
   borderx = BORDERX;

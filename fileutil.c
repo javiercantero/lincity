@@ -55,14 +55,6 @@
 
 /* ----------------------------------------------------------------- */
 
-/* this is for OS/2 - RVI */
-#ifdef __EMX__
-#include <sys/select.h>
-#include <X11/Xlibint.h>      /* required for __XOS2RedirRoot */
-#define chown(x,y,z)
-#define OS2_DEFAULT_LIBDIR "/XFree86/lib/X11/lincity"
-#endif
-
 #if defined (TIME_WITH_SYS_TIME)
 #include <time.h>
 #include <sys/time.h>
@@ -215,19 +207,11 @@ FILE* fopen_read_gzipped (char* fn)
     FILE* fp;
 
 #if defined (HAVE_GZIP) && defined (HAVE_POPEN)
-#ifdef __EMX__
-    const char* cmd_str = "gzip -d -c < %s 2> nul";
-#else
     const char* cmd_str = "gzip -d -c < %s 2> /dev/null";
-#endif
     char *cmd = (char*) malloc (strlen (cmd_str) + strlen (fn) + 1);
     
     sprintf (cmd, cmd_str, fn);
-#ifdef __EMX__
-    fp=popen(cmd,"rb");
-#else
     fp=popen(cmd,"r");
-#endif
     if (fp==NULL) {
        fprintf(stderr, "Failed to open pipe cmd: %s\n", cmd);
     }
@@ -309,12 +293,6 @@ void find_libdir (void)
 
     /* Finally give up */
     HandleError (_("Error. Can't find LINCITY_HOME"), FATAL);
-}
-
-#elif defined (__EMX__)
-void find_libdir (void)
-{
-    strcpy(LIBDIR, __XOS2RedirRoot(OS2_DEFAULT_LIBDIR));
 }
 
 #else /* Unix with configure */
@@ -505,8 +483,6 @@ void init_path_strings (void)
 
 #if defined (WIN32)
     homedir = LIBDIR;
-#elif defined (__EMX__)
-    homedir = getenv ("HOME");
 #else
     homedir = getenv ("HOME");
 #endif

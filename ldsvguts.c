@@ -61,10 +61,6 @@
 #endif
 #endif
 
-#ifdef __EMX__
-#define chown(x,y,z)
-#endif
-
 #if defined (HAVE_DIRENT_H)
 #include <dirent.h>
 #define NAMLEN(dirent) strlen((dirent)->d_name)
