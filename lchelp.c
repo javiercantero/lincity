@@ -643,6 +643,6 @@ parse_tbuttonline (char *st)
     sprintf (ss, "text %d %d ", x + 2, y + 2);
     strcat (ss, st);
     parse_textline (ss);
-    sprintf (ss, "button %d %d %d %d %s", x, y, (strlen (st) * 8) + 4, 12, s);
+    sprintf (ss, "button %d %d %lu %d %s", x, y, (strlen (st) * 8) + 4, 12, s);
     parse_buttonline (ss);
 }

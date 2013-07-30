@@ -763,7 +763,7 @@ check_endian (void)
 		eswap32 ((int *) &(MP_INFO(x,y).coal_reserve));
 		eswap32 ((int *) &(MP_INFO(x,y).ore_reserve));
 	    } else {
-		printf ("Strange size (%d) for short, please mail me.\n",
+		printf ("Strange size (%lu) for short, please mail me.\n",
 			sizeof (short));
 	    }
 	    eswap32 (&(MP_INFO(x,y).int_1));
