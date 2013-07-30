@@ -823,12 +823,17 @@ drag_screen (void)
     int origin_x = 0;
     int origin_y = 0;
 
-    int in_main_window;
+#ifdef REMOVE_LATER
+    int in_main_window; /* FIXME: use the variable or remove it */
+#endif
 
     if (buttons[LC_MOUSE_MIDDLEBUTTON-1].mappoint_x == 0) 
 	return;   /* Not pressed in main window */
 
-    in_main_window = pixel_to_mappoint(cs_mouse_x, cs_mouse_y, 
+#ifdef REMOVE_LATER
+    in_main_window =
+#endif
+        pixel_to_mappoint(cs_mouse_x, cs_mouse_y, 
 				       &cur_mappoint_x, &cur_mappoint_y);
   
     pixel_to_winpoint(cs_mouse_x, cs_mouse_y, &cur_winpoint_x, &cur_winpoint_y);

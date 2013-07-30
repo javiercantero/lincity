@@ -141,7 +141,10 @@ open_setcustompalette (XColor * inpal)
 void
 do_setcustompalette (XColor * inpal)
 {
-  int i, n, me = 0, flag[256], vid;
+  int i, n, me = 0;
+#ifdef REMOVE_LATER
+  int flag[256], vid; /* FIXME: use the variable or remove it */
+#endif
   int depth;
   long unsigned int plane_masks[3];
   XColor pal[256];
@@ -167,7 +170,9 @@ do_setcustompalette (XColor * inpal)
 			    ,plane_masks, 0, colour_table, 256) == 0)
 	{
 	  me = (*DefaultVisual (display.dpy, display.screen)).map_entries;
+#ifdef REMOVE_LATER
 	  vid = (*DefaultVisual (display.dpy, display.screen)).visualid;
+#endif
 	  display.cmap = XCreateColormap (display.dpy, display.win
 				,DefaultVisual (display.dpy, display.screen)
 	  /*      ,PseudoColor */
@@ -190,8 +195,10 @@ do_setcustompalette (XColor * inpal)
 	HandleError ("No default colour map", FATAL);
     }
 
+#ifdef REMOVE_LATER
   for (i = 0; i < 256; i++)
     flag[i] = 0;
+#endif
 
   for (n = 0; n < 256; n++)
     {
@@ -212,7 +219,9 @@ do_setcustompalette (XColor * inpal)
 			  ,display.pixcolour_gc[n]
 			  ,colour_table[n]);
 	}
+#ifdef REMOVE_LATER
       flag[n] = 1;
+#endif
     }
 
   if (writeable_p)
@@ -331,7 +340,9 @@ void
 Create_Window (char *geometry)
 {
     short q;
-    Visual *vid;
+#ifdef REMOVE_LATER
+    Visual *vid; /* FIXME: use the variable or remove it */
+#endif
     XSetWindowAttributes xswa;
     XSizeHints sizehint;
     XWMHints wmhints;
@@ -347,7 +358,9 @@ Create_Window (char *geometry)
 		  (int) (*DefaultVisual (display.dpy, display.screen)).visualid,
 		  (*DefaultVisual (display.dpy, display.screen)).bits_per_rgb,
 		  (*DefaultVisual (display.dpy, display.screen)).map_entries);
+#ifdef REMOVE_LATER
     vid = DefaultVisual (display.dpy, display.screen);
+#endif
     display.cmap
 	    = XDefaultColormap (display.dpy, display.screen);
     display.win = XCreateWindow (display.dpy, display.root,

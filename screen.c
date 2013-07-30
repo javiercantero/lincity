@@ -2103,7 +2103,10 @@ draw_cb_box (int row, int col, int checked)
 void
 draw_cb_template (int is_market_cb)
 {
-    int x, y, flags;
+    int x, y;
+#ifdef REMOVE_LATER
+    int flags;
+#endif
     char s[100];
     Rect* mcb = &scr.market_cb;
 
@@ -2111,7 +2114,9 @@ draw_cb_template (int is_market_cb)
     debug_printf ("Coords are %d %d %d %d\n",mcb->x,mcb->y,mcb->w,mcb->h);
     x = mcbx;	/* x & y are the market's pos. */
     y = mcby;
+#ifdef REMOVE_LATER
     flags = MP_INFO(x,y).flags;
+#endif
     Fgl_getbox (mcb->x, mcb->y, mcb->w, mcb->h, market_cb_gbuf);
     Fgl_fillbox (mcb->x, mcb->y, mcb->w, mcb->h, 28);
     draw_small_bezel(mcb->x+4, mcb->y+4, mcb->w-8, mcb->h-8, blue(0));
@@ -2237,7 +2242,6 @@ ok_dial_box (char *fn, int good_bad, char *xs)
     int colour;
     char * ss;
     char s[LC_PATH_MAX];
-    int retval;
 
     if (suppress_ok_buttons != 0)
 	return;
@@ -2271,7 +2275,7 @@ ok_dial_box (char *fn, int good_bad, char *xs)
     stat(s,&statbuf);
 
     ss = (char *)lcalloc(statbuf.st_size + 1);
-    retval = fread(ss,sizeof(char),statbuf.st_size,inf);
+    fread(ss,sizeof(char),statbuf.st_size,inf); /* FIXME: check errors */
     ss[statbuf.st_size] = '\0';
 
     undosify_string (ss);
