@@ -382,7 +382,7 @@ update_main_screen_ub40 (void)
 		xx = MP_INFO(x,y).int_1;
 		yy = MP_INFO(x,y).int_2;
 	    }
-	    if (MP_GROUP_IS_RESIDENCE(xx,yy)) {
+	    if (GROUP_IS_RESIDENCE(MP_GROUP(xx,yy))) {
 		if (MP_INFO(xx,yy).int_1 < -20)
 		    col = red (28);
 		else if (MP_INFO(xx,yy).int_1 < 10)
@@ -415,7 +415,7 @@ update_main_screen_starve (void)
 		xx = MP_INFO(x,y).int_1;
 		yy = MP_INFO(x,y).int_2;
 	    }
-	    if (MP_GROUP_IS_RESIDENCE(xx,yy)) {
+	    if (GROUP_IS_RESIDENCE(MP_GROUP(xx,yy))) {
 		if ((total_time - MP_INFO(x,y).int_2) < 20)
 		    col = red (28);
 		else if ((total_time - MP_INFO(x,y).int_2) < 100)
@@ -1272,7 +1272,7 @@ void draw_mini_screen_ub40 (void)
     Fgl_fillbox (mm->x, mm->y, WORLD_SIDE_LEN, WORLD_SIDE_LEN, green (14));
     for (y = 0; y < WORLD_SIDE_LEN; y++) {
 	for (x = 0; x < WORLD_SIDE_LEN; x++) {
-	    if (MP_GROUP_IS_RESIDENCE(x,y)) {
+	    if (GROUP_IS_RESIDENCE(MP_GROUP(x,y))) {
 		if (MP_INFO(x,y).int_1 < -20)
 		    col = red (28);
 		else if (MP_INFO(x,y).int_1 < 10)
@@ -1301,7 +1301,7 @@ void draw_mini_screen_starve (void)
 		 WORLD_SIDE_LEN, WORLD_SIDE_LEN, green (14));
     for (y = 0; y < WORLD_SIDE_LEN; y++) {
 	for (x = 0; x < WORLD_SIDE_LEN; x++) {
-	    if (MP_GROUP_IS_RESIDENCE(x,y)) {
+	    if (GROUP_IS_RESIDENCE(MP_GROUP(x,y))) {
 		if ((total_time - MP_INFO(x,y).int_2) < 20)
 		    col = red (28);
 		else if ((total_time - MP_INFO(x,y).int_2) < 100)

@@ -89,7 +89,7 @@ map_power_grid ()
 
     for (mapx = 0; mapx < WORLD_SIDE_LEN; mapx++) {
 	for (mapy = 0; mapy < WORLD_SIDE_LEN; mapy++) {
-	    if (XY_IS_GRID(mapx,mapy)) {
+	    if (GROUP_IS_GRID(MP_GROUP(mapx,mapy))) {
 		if (MP_INFO(mapx,mapy).int_7 != grid_inc) {
 		    if (grid_num == MAX_GRIDS) {
 			printf("You have too many power grids.  Join some of them\n");
@@ -126,7 +126,7 @@ total.  Now set it to our grid.  If it is a power line, return
 int 
 check_grid(int x, int y, int xi, int yi) 
 {
-  if (XY_IS_GRID(x,y) && !IS_OLD_WINDMILL(x,y)) {
+  if (GROUP_IS_GRID(MP_GROUP(x,y)) && !IS_OLD_WINDMILL(x,y)) {
     if (GRID_CURRENT(x,y)) {
       if (MP_INFO(x,y).int_6 != grid_num)
 	/* XXX: This can occur if connecting to a power source at different
@@ -136,8 +136,8 @@ check_grid(int x, int y, int xi, int yi)
 	*/
 	printf("recurse_power_grid insane: %d, %d on a different grid!\n",
 	       x,y);
-    } else if (!IS_POWER_LINE(x,y)) {
-      if (IS_POWER_SOURCE(x,y)) {
+    } else if (MP_GROUP(x,y) != GROUP_POWER_LINE) {
+      if (GROUP_IS_POWER_SOURCE(MP_GROUP(x,y))) {
 	project_power(x,y); 
 	grid[grid_num]->total_power += MP_INFO(x,y).int_1;
       }
@@ -147,7 +147,7 @@ check_grid(int x, int y, int xi, int yi)
       
     } else /* is a power line */
       return 1;
-  } else if (XY_IS_TRANSPORT(x,y) || XY_IS_WATER(x,y)) { /* can we step over?*/
+  } else if (GROUP_IS_TRANSPORT(MP_GROUP(x,y)) || (MP_GROUP(x,y) == GROUP_WATER)) { /* can we step over?*/
     if (xi == 0 && yi == 0) /* already stepped */
       return 0;
     if (x+xi >= 1 && x+xi < WORLD_SIDE_LEN &&
@@ -201,7 +201,7 @@ recurse_power_grid (int startx, int starty, int steps)
 	/* Set to current grid */
 
 	/* figure out what we are on */
-	if (IS_POWER_LINE(mapx,mapy)) {
+	if (MP_GROUP(mapx,mapy) == GROUP_POWER_LINE) {
 	    grid[grid_num]->power_lines++;
 	    MP_INFO(mapx,mapy).int_5 = (count++ % POWER_MODULUS);
 	    if ((MP_TYPE(mapx,mapy) >= 1) && (MP_TYPE(mapx,mapy) <= 11))

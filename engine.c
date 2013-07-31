@@ -1062,7 +1062,7 @@ void remove_people (int num)
   while (f && (num > 0)) {
       for (y = 0; y < WORLD_SIDE_LEN; y++)
 	for (x = 0; x < WORLD_SIDE_LEN; x++)
-	  if (MP_GROUP_IS_RESIDENCE(x,y) && MP_INFO(x,y).population > 0)
+	  if (GROUP_IS_RESIDENCE(MP_GROUP(x,y)) && MP_INFO(x,y).population > 0)
 	    {
 	      MP_INFO(x,y).population--;
 	      // f = 1;
@@ -1085,7 +1085,7 @@ void remove_people (int num)
       housed_population = 0;
       for (y = 0; y < WORLD_SIDE_LEN; y++)
 	for (x = 0; x < WORLD_SIDE_LEN; x++)
-	  if (MP_GROUP_IS_RESIDENCE(x,y) && MP_INFO(x,y).population > 0) {
+	  if (GROUP_IS_RESIDENCE(MP_GROUP(x,y)) && MP_INFO(x,y).population > 0) {
 	      MP_INFO(x,y).population--;
 	      housed_population += MP_INFO(x,y).population;
 	      num--;
@@ -1185,7 +1185,7 @@ void do_random_fire (int x, int y, int pwarning)	/* well random if x=y=-1 */
 	ok_dial_box ("fire.mes", BAD, _("It's at a solar power station."));
       else if (MP_GROUP(x,y) == GROUP_SUBSTATION)
 	ok_dial_box ("fire.mes", BAD, _("It's at a substation."));
-      else if (MP_GROUP_IS_RESIDENCE(x,y))
+      else if (GROUP_IS_RESIDENCE(MP_GROUP(x,y)))
 	ok_dial_box ("fire.mes", BAD, _("It's at a residential area."));
       else if (MP_GROUP(x,y) == GROUP_ORGANIC_FARM)
 	ok_dial_box ("fire.mes", BAD, _("It's at a farm."));

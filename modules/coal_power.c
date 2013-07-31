@@ -54,7 +54,7 @@ do_power_source_coal (int x, int y)
     if (MP_INFO(x,y).int_2 < MAX_COAL_AT_POWER_STATION) {
 
 	/* left side */
-	if (XY_IS_TRANSPORT(x-1, y+1) && MP_INFO(x-1, y+1).int_3 > 0) {
+	if (GROUP_IS_TRANSPORT(MP_GROUP(x-1, y+1)) && MP_INFO(x-1, y+1).int_3 > 0) {
 	    if (get_jobs (x, y, JOBS_LOAD_COAL) != 0)
 	    {
 		MP_INFO(x,y).int_2 += (MP_INFO(x-1, y+1).int_3 / 2
@@ -64,7 +64,7 @@ do_power_source_coal (int x, int y)
 	    }
 	}
 	/* top side */
-	else if (XY_IS_TRANSPORT(x+1, y-1) && MP_INFO(x+1, y-1).int_3 > 0) {
+	else if (GROUP_IS_TRANSPORT(MP_GROUP(x+1, y-1)) && MP_INFO(x+1, y-1).int_3 > 0) {
 	    if (get_jobs (x, y, JOBS_LOAD_COAL) != 0)
 		MP_INFO(x,y).int_2 += (MP_INFO(x+1, y-1).int_3 / 2
 				       + ((MP_INFO(x+1, y-1).int_3) % 2));

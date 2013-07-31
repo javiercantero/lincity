@@ -625,7 +625,7 @@ void reset_animation_times (void)
     int x, y;
     for (y = 0; y < WORLD_SIDE_LEN; y++)
 	for (x = 0; x < WORLD_SIDE_LEN; x++) {
-	    if (MP_GROUP_IS_RESIDENCE(x,y))
+	    if (GROUP_IS_RESIDENCE(MP_GROUP(x,y)))
 		MP_INFO(x,y).int_3 = 0;
 	    else if (MP_GROUP(x,y) == GROUP_WINDMILL)
 		MP_INFO(x,y).int_4 = 0;
