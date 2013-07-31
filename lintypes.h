@@ -78,6 +78,45 @@
 #define GROUP_RECYCLE_NO_CREDIT
 #define GROUP_ROCKET_NO_CREDIT
 
+#define GROUP_IS_TRANSPORT(group) \
+            ((group == GROUP_TRACK) || \
+             (group == GROUP_ROAD) || \
+             (group == GROUP_RAIL) || \
+             (group == GROUP_POWER_LINE))
+
+#define XY_IS_TRANSPORT(x,y) \
+            ((MP_GROUP(x,y) == GROUP_TRACK) || \
+             (MP_GROUP(x,y) == GROUP_ROAD) || \
+             (MP_GROUP(x,y) == GROUP_RAIL) || \
+             (MP_GROUP(x,y) == GROUP_POWER_LINE))
+
+#define GROUP_IS_RESIDENCE(group) \
+            ((group == GROUP_RESIDENCE_LL) || \
+             (group == GROUP_RESIDENCE_ML) || \
+             (group == GROUP_RESIDENCE_HL) || \
+             (group == GROUP_RESIDENCE_LH) || \
+             (group == GROUP_RESIDENCE_MH) || \
+             (group == GROUP_RESIDENCE_HH))
+
+#define MP_GROUP_IS_RESIDENCE(x,y)  (GROUP_IS_RESIDENCE(MP_GROUP(x,y)))
+
+#define XY_IS_WATER(x,y) (MP_GROUP(x,y) == GROUP_WATER)
+
+#define XY_IS_GRID(x,y) \
+            ((MP_GROUP(x,y) == GROUP_COAL_POWER) ||\
+             (MP_GROUP(x,y) == GROUP_WINDMILL) || \
+             (MP_GROUP(x,y) == GROUP_POWER_LINE) || \
+             (MP_GROUP(x,y) == GROUP_SOLAR_POWER) || \
+             (MP_GROUP(x,y) == GROUP_SUBSTATION))
+
+#define IS_POWER_SOURCE(x,y) \
+            ((MP_GROUP(x,y) == GROUP_COAL_POWER) || \
+             (MP_GROUP(x,y) == GROUP_SOLAR_POWER) || \
+             (MP_GROUP(x,y) == GROUP_WINDMILL))
+
+#define IS_POWER_LINE(x,y) (MP_GROUP(x,y) == GROUP_POWER_LINE)
+
+
 struct GROUP
 {
     char  name[GROUP_NAME_LEN+1];      /* name of group */

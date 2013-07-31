@@ -461,21 +461,6 @@
 #define MAPPOINT_STATS_H (11*8)
 #endif
 
-#define GROUP_IS_TRANSPORT(group) \
-            ((group == GROUP_TRACK) || \
-             (group == GROUP_ROAD) || \
-             (group == GROUP_RAIL) || \
-             (group == GROUP_POWER_LINE))
-
-#define GROUP_IS_RESIDENCE(group) \
-            ((group == GROUP_RESIDENCE_LL) || \
-             (group == GROUP_RESIDENCE_ML) || \
-             (group == GROUP_RESIDENCE_HL) || \
-             (group == GROUP_RESIDENCE_LH) || \
-             (group == GROUP_RESIDENCE_MH) || \
-             (group == GROUP_RESIDENCE_HH))
-
-
 
 #define MOUSE_TYPE_NORMAL 1
 #define MOUSE_TYPE_SQUARE 2

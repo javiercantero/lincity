@@ -317,7 +317,7 @@ bulldoze_item (int x, int y)
 	return -1;
     }
 
-    size = MP_SIZE(x,y);
+    size = main_groups[MP_GROUP(x,y)].size;
     g = MP_GROUP(x,y);
 
     if (g == GROUP_BARE) {
@@ -1364,7 +1364,7 @@ void do_bulldoze_area (short fill, int xx, int yy)
       x = xx;
       y = yy;
     }
-  size = MP_SIZE(x,y);
+  size = main_groups[MP_GROUP(x,y)].size;
   if (MP_GROUP(x,y) == GROUP_SUBSTATION
       || MP_GROUP(x,y) == GROUP_WINDMILL)
     remove_a_substation (x, y);

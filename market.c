@@ -740,24 +740,25 @@ int deal_with_transport (int x, int y, int tx, int ty)
 
 int get_stuff (int x, int y, int stuff, int stuff_type)
 {
-  int res = 0;
-  Map_Point_Info *minfo = &MP_INFO(x,y);
+    int res = 0;
+    Map_Point_Info *minfo = &MP_INFO(x,y);
 
-  switch (MP_SIZE(x,y))
+    switch (main_groups[MP_GROUP(x,y)].size)
     {
     case 2:
-      res = get_stuff2 (minfo, stuff, stuff_type);
-      break;
+        res = get_stuff2 (minfo, stuff, stuff_type);
+        break;
     case 3:
-      res = get_stuff3 (minfo, stuff, stuff_type);
-      break;
+        res = get_stuff3 (minfo, stuff, stuff_type);
+        break;
     case 4:
-      res = get_stuff4 (minfo, stuff, stuff_type);
-      break;
+        res = get_stuff4 (minfo, stuff, stuff_type);
+        break;
     default:
-      do_error ("Bad area size in get_stuff()");
+        do_error ("Bad area size in get_stuff()");
     }
-  return (res);
+
+    return res;
 }
 
 static const int
@@ -944,20 +945,22 @@ int put_stuff (int x, int y, int stuff, int stuff_type)
     int res = 0;
     short *type = &MP_TYPE(x,y);
     Map_Point_Info *minfo = &MP_INFO(x,y);
-    switch (MP_SIZE(x,y))
+
+    switch (main_groups[MP_GROUP(x,y)].size)
     {
     case 2:
-	res = put_stuff2 (minfo, type, stuff, stuff_type);
-	break;
+        res = put_stuff2 (minfo, type, stuff, stuff_type);
+        break;
     case 3:
-	res = put_stuff3 (minfo, type, stuff, stuff_type);
-	break;
+        res = put_stuff3 (minfo, type, stuff, stuff_type);
+        break;
     case 4:
-	res = put_stuff4 (minfo, type, stuff, stuff_type);
-	break;
+        res = put_stuff4 (minfo, type, stuff, stuff_type);
+        break;
     default:
-	do_error ("Bad area size in put_stuff()");
+        do_error ("Bad area size in put_stuff()");
     }
+
     return res;
 }
 

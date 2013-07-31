@@ -6,10 +6,7 @@
 #ifndef __engglobs_h__
 #define __engglobs_h__
 
-#include "lin-city.h" /* WORLD_SIDE_LEN, GROUP_IS_RESIDENCE, GROUP_TRACK,
-                         GROUP_ROAD, GROUP_RAIL, GROUP_POWER_LINE Map_Point_Info
-                         dependencies */
-/*#include "lintypes.h" *//* main_groups dependency */
+#include "lin-city.h" /* WORLD_SIDE_LEN, Map_Point_Info dependencies */
 
 /* GCS -- One of these days I will get this right. */
 struct map_struct
@@ -27,17 +24,6 @@ extern Map map;
 #define MP_GROUP(x,y)  map.group[x][y]
 #define MP_POL(x,y)    map.pollution[x][y]
 #define MP_INFO(x,y)   map.info[x][y]
-
-#define MP_SIZE(x,y)   main_groups[MP_GROUP(x,y)].size
-#define MP_COLOR(x,y)  main_groups[MP_GROUP(x,y)].colour
-#define MP_GROUP_IS_RESIDENCE(x,y)  (GROUP_IS_RESIDENCE(MP_GROUP(x,y)))
-
-#define XY_IS_TRANSPORT(x,y) \
-((MP_GROUP(x,y) == GROUP_TRACK) || \
- (MP_GROUP(x,y) == GROUP_ROAD) || \
- (MP_GROUP(x,y) == GROUP_RAIL) || \
- (MP_GROUP(x,y) == GROUP_POWER_LINE))
-
 
 extern int mappoint_array_x[], mappoint_array_y[];
 extern int numof_shanties, numof_communes;
