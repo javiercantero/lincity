@@ -18,6 +18,7 @@
 #include "lcconfig.h"
 #include "common.h"
 #include "lin-city.h"
+#include "lintypes.h"
 #include "lctypes.h"
 #include "lcintl.h"
 

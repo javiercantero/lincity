@@ -16,6 +16,7 @@
 
 /* app general headers */
 #include "lin-city.h"
+#include "lintypes.h"
 #include "lctypes.h"
 
 /* other modules */
@@ -28,6 +29,16 @@
 #include "market.h"
 
 /* ----------------------------------------------------------------- */
+
+/* old lin-city.h definitions */
+#define SHANTY_MIN_PP     150
+#define SHANTY_POP        50
+#define SHANTY_GET_FOOD   50
+#define SHANTY_GET_JOBS   5
+#define SHANTY_GET_GOODS  50
+#define SHANTY_GET_COAL   1
+#define SHANTY_GET_ORE    10
+#define SHANTY_GET_STEEL  1
 
 
 void add_a_shanty(void);

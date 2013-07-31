@@ -20,6 +20,7 @@
 /* app general headers */
 #include "lcconfig.h"
 #include "lin-city.h"
+#include "lintypes.h"
 #include "lctypes.h"
 #include "lcintl.h"
 

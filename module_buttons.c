@@ -10,6 +10,7 @@
 
 /* app general headers */
 #include "lcconfig.h"
+#include "lintypes.h"
 #include "lctypes.h"
 #include "lcintl.h"
 
