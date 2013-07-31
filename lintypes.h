@@ -99,8 +99,8 @@ struct TYPE
     char* graphic;      /* Bitmap of the graphic */
 };
 
-extern struct GROUP main_groups[NUM_OF_GROUPS];
-extern struct TYPE main_types[NUM_OF_TYPES];
+extern struct GROUP main_groups[];
+extern struct TYPE main_types[];
 
 void init_types (void);
 int get_group_of_type (short selected_type);

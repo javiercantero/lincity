@@ -20,6 +20,7 @@
 /* app general headers */
 #include "lcconfig.h"
 #include "lin-city.h"
+#include "lintypes.h" /* NUM_OF_TYPES dependency */
 #include "lctypes.h"
 #if defined (LC_X11)
 #include "lcx11.h" /* FIXME: use common.h ??? */

@@ -6,8 +6,7 @@
 #ifndef __engglobs_h__
 #define __engglobs_h__
 
-#include "lin-city.h" /* WORLD_SIDE_LEN, MAX_NUMOF_SUBSTATIONS, MAX_NUMOF_MARKETS,
-                         NUMOF_DISCOUNT_TRIGGERS, GROUP_IS_RESIDENCE, GROUP_TRACK,
+#include "lin-city.h" /* WORLD_SIDE_LEN, GROUP_IS_RESIDENCE, GROUP_TRACK,
                          GROUP_ROAD, GROUP_RAIL, GROUP_POWER_LINE Map_Point_Info
                          dependencies */
 /*#include "lintypes.h" *//* main_groups dependency */
@@ -40,7 +39,7 @@ extern Map map;
  (MP_GROUP(x,y) == GROUP_POWER_LINE))
 
 
-extern int mappoint_array_x[WORLD_SIDE_LEN], mappoint_array_y[WORLD_SIDE_LEN];
+extern int mappoint_array_x[], mappoint_array_y[];
 extern int numof_shanties, numof_communes;
 extern int last_built_x, last_built_y;
 
@@ -54,9 +53,9 @@ extern int total_time;    /* game time */
 extern int population, starving_population;
 extern int housed_population;
 extern int unemployed_population, people_pool;
-extern int substationx[MAX_NUMOF_SUBSTATIONS], substationy[MAX_NUMOF_SUBSTATIONS];
+extern int substationx[], substationy[];
 extern int numof_substations;
-extern int marketx[MAX_NUMOF_MARKETS], markety[MAX_NUMOF_MARKETS], numof_markets;
+extern int marketx[], markety[], numof_markets;
 extern int numof_health_centres, max_pop_ever, total_evacuated, total_births;
 
 extern int total_money, income_tax_rate, coal_tax_rate;
@@ -78,6 +77,6 @@ extern int coal_survey_done;
 
 extern int selected_type_cost;
 
-extern int ex_tax_dis[NUMOF_DISCOUNT_TRIGGERS];
+extern int ex_tax_dis[];
 
 #endif /* __engglobs_h__ */

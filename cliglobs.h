@@ -7,18 +7,16 @@
 #define __cliglobs_h__
 
 #include "common.h"   /* Cursor, Pixmap (X11) */
-#include "lin-city.h" /* WORLD_SIDE_LEN, PROGBOXW, PROGBOXH, MARKET_CB_W,
-                         MARKET_CB_H, MAX_NUMOF_HELP_BUTTONS,
-                         MAX_LENOF_HELP_FILENAME, MAX_HELP_HISTORY,
-                         MAX_ICON_LEN dependencies */
-#include "lintypes.h" /* NUM_OF_TYPES dependency */
+#include "lin-city.h" /* WORLD_SIDE_LEN, MAX_NUMOF_HELP_BUTTONS,
+                         MAX_LENOF_HELP_FILENAME, MAX_HELP_HISTORY
+                         dependencies */
 #include "geometry.h" /* Screen_Geometry dependency*/
 
 extern Screen_Geometry scr;
 extern short mappointoldtype[WORLD_SIDE_LEN][WORLD_SIDE_LEN];
 
 extern int lc_mouse_type;
-extern char progbox[(PROGBOXW + 16) * (PROGBOXH + 16)];
+extern char progbox[];
 
 /* Preferences */
 extern int time_multiplex_stats;
@@ -49,10 +47,10 @@ extern int cs_square_mouse_visible;
 extern int kmousex, kmousey, kmouse_val, reset_mouse_flag, mt_flag;
 extern int modern_windmill_flag;
 
-extern char under_square_mouse_pointer_top[20 * 2 * 4];
-extern char under_square_mouse_pointer_left[18 * 2 * 4];
-extern char under_square_mouse_pointer_right[18 * 2 * 4];
-extern char under_square_mouse_pointer_bottom[20 * 2 * 4];
+extern char under_square_mouse_pointer_top[];
+extern char under_square_mouse_pointer_left[];
+extern char under_square_mouse_pointer_right[];
+extern char under_square_mouse_pointer_bottom[];
 extern int mouse_type;
 
 extern int mt_start_posx, mt_start_posy, mt_current_posx, mt_current_posy;
@@ -106,7 +104,7 @@ extern char *ms_starve_button_graphic, *ms_ocost_button_graphic;
 extern char *ms_power_button_graphic;
 extern char *checked_box_graphic, *unchecked_box_graphic;
 
-extern char market_cb_gbuf[MARKET_CB_W * MARKET_CB_H];
+extern char market_cb_gbuf[];
 extern int market_cb_flag, mcbx, mcby, market_cb_drawn_flag;
 extern int port_cb_flag, port_cb_drawn_flag;
 
@@ -125,13 +123,13 @@ extern int last_built_x, last_built_y;
 
 extern int help_flag, numof_help_buttons, help_history_count, help_return_val;
 extern int block_help_exit;
-extern int help_button_x[MAX_NUMOF_HELP_BUTTONS];
-extern int help_button_y[MAX_NUMOF_HELP_BUTTONS];
-extern int help_button_w[MAX_NUMOF_HELP_BUTTONS];
-extern int help_button_h[MAX_NUMOF_HELP_BUTTONS];
+extern int help_button_x[];
+extern int help_button_y[];
+extern int help_button_w[];
+extern int help_button_h[];
 extern char help_button_s[MAX_NUMOF_HELP_BUTTONS][MAX_LENOF_HELP_FILENAME];
 extern char help_button_history[MAX_HELP_HISTORY][MAX_LENOF_HELP_FILENAME];
-extern char *help_button_graphic, help_graphic[MAX_ICON_LEN];
+extern char *help_button_graphic, help_graphic[];
 extern char *quit_button_graphic, *load_button_graphic, *save_button_graphic;
 extern char *menu_button_graphic;
 extern int quit_flag, network_flag, load_flag, save_flag, cheat_flag;
@@ -185,8 +183,8 @@ extern int open_font_height, suppress_next_expose;
 extern Cursor pirate_cursor;
 
 #ifdef USE_PIXMAPS
-extern Pixmap icon_pixmap[NUM_OF_TYPES];
-extern char icon_pixmap_flag[NUM_OF_TYPES];
+extern Pixmap icon_pixmap[];
+extern char icon_pixmap_flag[];
 #endif
 #endif
 
@@ -205,8 +203,8 @@ extern unsigned char *open_font;
 extern int open_font_height, suppress_next_expose;
 
 #if defined (USE_PIXMAPS)
-extern HBITMAP icon_pixmap[NUM_OF_TYPES];
-extern char icon_pixmap_flag[NUM_OF_TYPES];
+extern HBITMAP icon_pixmap[];
+extern char icon_pixmap_flag[];
 #endif
 
 #endif /* WIN32 */

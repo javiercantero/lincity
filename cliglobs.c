@@ -13,6 +13,7 @@
 
 /* app general headers */
 #include "common.h"
+#include "lintypes.h" /* NUM_OF_TYPES dependency */
 #include "lcintl.h"
 
 /* other modules */
