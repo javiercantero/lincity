@@ -56,48 +56,55 @@ do_power_substation (int x, int y)
     }
 }
 
-int
-add_a_substation (int x, int y)	/* add to substationx substationy to list */
+int add_a_substation (int x, int y)	/* add to substations list */
 {
-  if (numof_substations >= MAX_NUMOF_SUBSTATIONS)
-    return (0);
-  substationx[numof_substations] = x;
-  substationy[numof_substations] = y;
-  numof_substations++;
-  return (1);
+    if (numof_substations >= MAX_NUMOF_SUBSTATIONS)
+        return 0;
+
+    substations[numof_substations].x = x;
+    substations[numof_substations].y = y;
+    numof_substations++;
+    return 1;
 }
 
-void
-remove_a_substation (int x, int y)
+void remove_a_substation (int x, int y)
 {
-  int q;
-  for (q = 0; q < numof_substations; q++)
-    if (substationx[q] == x && substationy[q] == y)
-      break;
-  for (; q < numof_substations; q++)
+    unsigned int i;
+
+    /* search for coordinate of the substation */
+    for (i = 0; i < numof_substations; i++)
     {
-      substationx[q] = substationx[q + 1];
-      substationy[q] = substationy[q + 1];
+        if (substations[i].x == x && substations[i].y == y)
+            break;
     }
-  numof_substations--;
+
+    /* shift left the rest of the array */
+    for (; i < numof_substations; i++)
+    {
+        substations[i] = substations[i + 1];
+    }
+    numof_substations--; /* FIXME: this always decrement the counter, not when found it */
 }
 
-#if 0 /* no se invoca */
+#if 0 /* TODO: not in use */
 void shuffle_substations (void)
 {
-  int q, x, r, m;
-  m = (numof_substations / 2) + 1;
-  for (x = 0; x < m; x++)
+    unsigned int num_swaps;
+    unsigned int random_pos;
+    Map_Coord tmp;
+    unsigned int i;
+
+    num_swaps = (numof_substations / 2) + 1;
+    for (i = 0; i < num_swaps; i++)
     {
-      r = rand () % numof_substations;
-      if (r == x)
-	continue;
-      q = substationx[x];
-      substationx[x] = substationx[r];
-      substationx[r] = q;
-      q = substationy[x];
-      substationy[x] = substationy[r];
-      substationy[r] = q;
+        random_pos = rand() % numof_substations;
+        if (random_pos == i)
+            continue;
+
+        /* swap values */
+        tmp = substations[i];
+        substations[i] = substations[random_pos];
+        substations[random_pos] = tmp;
     }
 }
 #endif

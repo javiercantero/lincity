@@ -140,8 +140,10 @@ do_rocket_pad (int x, int y)
 	if (ask_launch_rocket_now (x,y)) {
 	    launch_rocket (x,y);
 	}
+
 	/* so we don't get get our money back when we bulldoze. */
-	if (x == last_built_x && y == last_built_y) {
+	if (x == last_built.x && y == last_built.y)
+	{
 	    x = 0;
 	    y = 0;
 	}

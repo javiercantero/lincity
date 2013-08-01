@@ -164,18 +164,18 @@ save_city_raw (char *cname)
     fprintf (ofile, "%d\n", total_time);
     for (x = 0; x < MAX_NUMOF_SUBSTATIONS; x++)
     {
-	fprintf (ofile, "%d\n", substationx[x]);
-	fprintf (ofile, "%d\n", substationy[x]);
+        fprintf (ofile, "%d\n", substations[x].x);
+        fprintf (ofile, "%d\n", substations[x].y);
     }
     prog_box ("", 92);
-    fprintf (ofile, "%d\n", numof_substations);
+    fprintf (ofile, "%d\n", numof_substations); /* FIXME: beware, unsigned int */
     for (x = 0; x < MAX_NUMOF_MARKETS; x++)
     {
-	fprintf (ofile, "%d\n", marketx[x]);
-	fprintf (ofile, "%d\n", markety[x]);
+        fprintf (ofile, "%d\n", markets[x].x);
+        fprintf (ofile, "%d\n", markets[x].y);
     }
     prog_box ("", 94);
-    fprintf (ofile, "%d\n", numof_markets);
+    fprintf (ofile, "%d\n", numof_markets); /* FIXME: beware, unsigned int */
     fprintf (ofile, "%d\n", people_pool);
     fprintf (ofile, "%d\n", total_money);
     fprintf (ofile, "%d\n", income_tax_rate);
@@ -422,22 +422,22 @@ void load_city (char *cname)
 	i = MAX_NUMOF_SUBSTATIONS;
     for (x = 0; x < i; x++)
     {
-	fscanf (ofile, "%d", &substationx[x]);
-	fscanf (ofile, "%d", &substationy[x]);
+        fscanf (ofile, "%d", &(substations[x].x));
+        fscanf (ofile, "%d", &(substations[x].y));
     }
     prog_box ("", 92);
-    fscanf (ofile, "%d", &numof_substations);
+    fscanf (ofile, "%d", &numof_substations); /* FIXME: beware, unsigned int */
     if (ver <= MM_MS_C_VER)
 	i = OLD_MAX_NUMOF_MARKETS;
     else
 	i = MAX_NUMOF_MARKETS;
     for (x = 0; x < i; x++)
     {
-	fscanf (ofile, "%d", &marketx[x]);
-	fscanf (ofile, "%d", &markety[x]);
+        fscanf (ofile, "%d", &(markets[x].x));
+        fscanf (ofile, "%d", &(markets[x].y));
     }
     prog_box ("", 94);
-    fscanf (ofile, "%d", &numof_markets);
+    fscanf (ofile, "%d", &numof_markets); /* FIXME: beware, unsigned int */
     fscanf (ofile, "%d", &people_pool);
     fscanf (ofile, "%d", &total_money);
     fscanf (ofile, "%d", &income_tax_rate);

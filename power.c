@@ -54,6 +54,7 @@ power_time_step ()
 {
     int gi;
     int net; /* net power */
+    unsigned int i;
 
     if (grid_num == 0)
 	return;
@@ -75,8 +76,8 @@ power_time_step ()
     }
 
     /* Clear substation 'Here' counter */
-    for (gi = 0; gi < numof_substations; gi++) 
-	MP_INFO(substationx[gi],substationy[gi]).int_5 = 0;
+    for (i = 0; i < numof_substations; i++)
+        MP_INFO(substations[i].x, substations[i].y).int_5 = 0;
 }
 
 
@@ -359,8 +360,7 @@ project_power(int mapx, int mapy)
 int 
 get_power (int x, int y, int power, int block_industry)
 {
-
-  int i;
+  unsigned int i;
   int xi, yi;
   int grid_tmp; /* for simplicity */
 
@@ -369,8 +369,8 @@ get_power (int x, int y, int power, int block_industry)
 
   for (i = 0; i < numof_substations; i++) 
     {
-      xi = substationx[i];
-      yi = substationy[i];
+      xi = substations[i].x;
+      yi = substations[i].y;
       if (abs (xi - x) < SUBSTATION_RANGE && 
 	  abs (yi - y) < SUBSTATION_RANGE) {
 

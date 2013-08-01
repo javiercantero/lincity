@@ -114,13 +114,6 @@ extern int diffgraph_goods[MAPPOINT_STATS_W], diffgraph_ore[MAPPOINT_STATS_W];
 extern int diffgraph_population[MAPPOINT_STATS_W], diff_old_population;
 #endif
 
-/* GCS -- this one is difficult to deal with.
-   LinCity will give your money back if you bulldoze
-   the most recently constructed building (i.e. if 
-   you make a mistake.  How does this fit into a 
-   multiplayer game?  Not at all, I suppose... */
-extern int last_built_x, last_built_y;
-
 extern int help_flag, numof_help_buttons, help_history_count, help_return_val;
 extern int block_help_exit;
 extern int help_button_x[];

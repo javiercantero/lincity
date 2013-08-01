@@ -141,133 +141,131 @@ clear_mappoint (short fill, int x, int y)
     MP_INFO(x,y).int_7 = 0;
 }
 
-static void 
-simulate_mappoints (void)
+static void simulate_mappoints (void)
 {
-    int xx, yy;
+    Map_Coord coord;
+    int x, y;
+    short group;
+
     shuffle_mappoint_array ();
-    for (yy = 0; yy < WORLD_SIDE_LEN; yy++) {
-	/* indirection to rand array to stop lots of linear effects */
-	int y = mappoint_array_y[yy];
-	for (xx = 0; xx < WORLD_SIDE_LEN; xx++) {
-	    int x = mappoint_array_x[xx];
-	    short grp = MP_GROUP(x,y);
-	    if (grp == GROUP_USED || grp == GROUP_BARE)
-		continue;
-	    switch (grp) {
-	    case GROUP_TRACK:
-		do_track (x, y);
-		break;
-	    case GROUP_RAIL:
-		do_rail (x, y);
-		break;
-	    case GROUP_ROAD:
-		do_road (x, y);
-		break;
-	    case GROUP_ORGANIC_FARM:
-		do_organic_farm (x, y);
-		break;
-	    case GROUP_MARKET:
-		do_market (x, y);
-		break;
-	    case GROUP_RESIDENCE_LL:
-		do_residence (x, y);
-		break;
-	    case GROUP_RESIDENCE_ML:
-		do_residence (x, y);
-		break;
-	    case GROUP_RESIDENCE_HL:
-		do_residence (x, y);
-		break;
-	    case GROUP_RESIDENCE_LH:
-		do_residence (x, y);
-		break;
-	    case GROUP_RESIDENCE_MH:
-		do_residence (x, y);
-		break;
-	    case GROUP_RESIDENCE_HH:
-		do_residence (x, y);
-		break;
-	    case GROUP_POWER_LINE:
-	        do_power_line (x, y);
-		break;
-	    case GROUP_SOLAR_POWER:
-		do_power_source (x, y);
-		break;
-	    case GROUP_SUBSTATION:
-		do_power_substation (x, y);
-		break;
-	    case GROUP_COALMINE:
-		do_coalmine (x, y);
-		break;
-	    case GROUP_COAL_POWER:
-		do_power_source_coal (x, y);
-		break;
-	    case GROUP_INDUSTRY_L:
-		do_industry_l (x, y);
-		break;
-	    case GROUP_INDUSTRY_H:
-		do_industry_h (x, y);
-		break;
-	    case GROUP_COMMUNE:
-		do_commune (x, y);
-		break;
-	    case GROUP_OREMINE:
-		do_oremine (x, y);
-		break;
-	    case GROUP_PORT:
-		do_port (x, y);
-		break;
-	    case GROUP_TIP:
-		do_tip (x, y);
-		break;
-	    case GROUP_PARKLAND:
-		do_parkland (x, y);
-		break;
-	    case GROUP_UNIVERSITY:
-		do_university (x, y);
-		break;
-	    case GROUP_RECYCLE:
-		do_recycle (x, y);
-		break;
-	    case GROUP_HEALTH:
-		do_health_centre (x, y);
-		break;
-	    case GROUP_ROCKET:
-		do_rocket_pad (x, y);
-		break;
-	    case GROUP_WINDMILL:
-		do_windmill (x, y);
-		break;
-	    case GROUP_MONUMENT:
-		do_monument (x, y);
-		break;
-	    case GROUP_SCHOOL:
-		do_school (x, y);
-		break;
-	    case GROUP_BLACKSMITH:
-		do_blacksmith (x, y);
-		break;
-	    case GROUP_MILL:
-		do_mill (x, y);
-		break;
-	    case GROUP_POTTERY:
-		do_pottery (x, y);
-		break;
-	    case GROUP_FIRESTATION:
-		do_firestation (x, y);
-		break;
-	    case GROUP_CRICKET:
-		do_cricket (x, y);
-		break;
-	    case GROUP_FIRE:
-		do_fire (x, y);
-		break;
-	    case GROUP_SHANTY:
-		do_shanty (x, y);
-		break;
-	    }
-	}
+
+    for (coord.y = 0; coord.y < WORLD_SIDE_LEN; coord.y++)
+    {
+        /* indirection to rand array to stop lots of linear effects */
+        y = mappoint_array[coord.y].y;
+        for (coord.x = 0; coord.x < WORLD_SIDE_LEN; coord.x++)
+        {
+            x = mappoint_array[coord.x].x;
+            group = MP_GROUP(x,y);
+
+            if (group == GROUP_USED || group == GROUP_BARE)
+                continue;
+
+            switch (group)
+            {
+            case GROUP_TRACK:
+                do_track (x, y);
+                break;
+            case GROUP_RAIL:
+                do_rail (x, y);
+                break;
+            case GROUP_ROAD:
+                do_road (x, y);
+                break;
+            case GROUP_ORGANIC_FARM:
+                do_organic_farm (x, y);
+                break;
+            case GROUP_MARKET:
+                do_market (x, y);
+                break;
+            case GROUP_RESIDENCE_LL:
+            case GROUP_RESIDENCE_ML:
+            case GROUP_RESIDENCE_HL:
+            case GROUP_RESIDENCE_LH:
+            case GROUP_RESIDENCE_MH:
+            case GROUP_RESIDENCE_HH:
+                do_residence (x, y);
+                break;
+            case GROUP_POWER_LINE:
+                do_power_line (x, y);
+                break;
+            case GROUP_SOLAR_POWER:
+                do_power_source (x, y);
+                break;
+            case GROUP_SUBSTATION:
+                do_power_substation (x, y);
+                break;
+            case GROUP_COALMINE:
+                do_coalmine (x, y);
+                break;
+            case GROUP_COAL_POWER:
+                do_power_source_coal (x, y);
+                break;
+            case GROUP_INDUSTRY_L:
+                do_industry_l (x, y);
+                break;
+            case GROUP_INDUSTRY_H:
+                do_industry_h (x, y);
+                break;
+            case GROUP_COMMUNE:
+                do_commune (x, y);
+                break;
+            case GROUP_OREMINE:
+                do_oremine (x, y);
+                break;
+            case GROUP_PORT:
+                do_port (x, y);
+                break;
+            case GROUP_TIP:
+                do_tip (x, y);
+                break;
+            case GROUP_PARKLAND:
+                do_parkland (x, y);
+                break;
+            case GROUP_UNIVERSITY:
+                do_university (x, y);
+                break;
+            case GROUP_RECYCLE:
+                do_recycle (x, y);
+                break;
+            case GROUP_HEALTH:
+                do_health_centre (x, y);
+                break;
+            case GROUP_ROCKET:
+                do_rocket_pad (x, y);
+                break;
+            case GROUP_WINDMILL:
+                do_windmill (x, y);
+                break;
+            case GROUP_MONUMENT:
+                do_monument (x, y);
+                break;
+            case GROUP_SCHOOL:
+                do_school (x, y);
+                break;
+            case GROUP_BLACKSMITH:
+                do_blacksmith (x, y);
+                break;
+            case GROUP_MILL:
+                do_mill (x, y);
+                break;
+            case GROUP_POTTERY:
+                do_pottery (x, y);
+                break;
+            case GROUP_FIRESTATION:
+                do_firestation (x, y);
+                break;
+            case GROUP_CRICKET:
+                do_cricket (x, y);
+                break;
+            case GROUP_FIRE:
+                do_fire (x, y);
+                break;
+            case GROUP_SHANTY:
+                do_shanty (x, y);
+                break;
+            }
+        }
     }
 }
 
@@ -675,8 +673,8 @@ random_start (int* originx, int* originy)
     MP_INFO(xx + 9,yy + 6).population = 50;
     MP_INFO(xx + 9,yy + 6).flags |= (FLAG_FED + FLAG_EMPLOYED);
     quick_start_add (xx + 7, yy + 9, CST_MARKET_EMPTY, 2);
-    marketx[numof_markets] = xx + 7;
-    markety[numof_markets] = yy + 9;
+    markets[numof_markets].x = xx + 7;
+    markets[numof_markets].y = yy + 9;
     numof_markets++;
     /* Bootstap markets with some stuff. */
     MP_INFO(xx + 7,yy + 9).int_1 = 2000;
@@ -695,8 +693,8 @@ random_start (int* originx, int* originy)
     MP_INFO(xx + 14,yy + 6).flags |= (FLAG_FED + FLAG_EMPLOYED);
     quick_start_add (xx + 17, yy + 5, CST_FARM_O0, 4);
     quick_start_add (xx + 17, yy + 9, CST_MARKET_EMPTY, 2);
-    marketx[numof_markets] = xx + 17;
-    markety[numof_markets] = yy + 9;
+    markets[numof_markets].x = xx + 17;
+    markets[numof_markets].y = yy + 9;
     numof_markets++;
     MP_INFO(xx + 17,yy + 9).int_1 = 2000;
     MP_INFO(xx + 17,yy + 9).int_2 = 8000;

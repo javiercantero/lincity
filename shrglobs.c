@@ -21,11 +21,10 @@
 
 Map map;
 
-int mappoint_array_x[WORLD_SIDE_LEN];
-int mappoint_array_y[WORLD_SIDE_LEN];
+Map_Coord mappoint_array[WORLD_SIDE_LEN];
 int numof_shanties;
 int numof_communes;
-int last_built_x, last_built_y;
+Map_Coord last_built;
 int main_screen_originx, main_screen_originy;
 
 int pix_double = 0;
@@ -68,9 +67,10 @@ int total_time = 0;    /* game time */
 int population, starving_population;
 int housed_population;
 int unemployed_population, people_pool;
-int substationx[MAX_NUMOF_SUBSTATIONS], substationy[MAX_NUMOF_SUBSTATIONS];
-int numof_substations = 0;
-int marketx[MAX_NUMOF_MARKETS], markety[MAX_NUMOF_MARKETS], numof_markets = 0;
+Map_Coord substations[MAX_NUMOF_SUBSTATIONS];
+unsigned int numof_substations = 0;
+Map_Coord markets[MAX_NUMOF_MARKETS];
+unsigned int numof_markets = 0;
 int numof_health_centres, max_pop_ever = 0, total_evacuated = 0, total_births = 0;
 
 int total_money = 0, income_tax_rate, coal_tax_rate;

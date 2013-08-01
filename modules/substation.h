@@ -11,7 +11,7 @@
 void do_power_substation(int x, int y);
 int add_a_substation(int x, int y);
 void remove_a_substation(int x, int y);
-/*void shuffle_substations(void);*/
+/*void shuffle_substations(void);*/ /* TODO: not in use */
 
 void mps_substation (int x, int y);
 

@@ -40,6 +40,9 @@
 
 /* ----------------------------------------------------------------- */
 
+/* old lin-city.h definitions */
+#define SHUFFLE_MAPPOINT_COUNT 4
+
 
 extern int selected_type_cost;
 
@@ -209,8 +212,8 @@ int place_item (int x, int y, short type)
     } /* end case */
 
     /* Store last_built for refund on "mistakes" */
-    last_built_x = x;
-    last_built_y = y;
+    last_built.x = x;
+    last_built.y = y;
 
     /* Make sure that the correct windmill graphic shows up */
     if (group == GROUP_WINDMILL) {
@@ -807,26 +810,33 @@ void connect_transport (int originx, int originy, int w, int h)
 
 void init_mappoint_array (void)
 {
-    int x;
-    for (x = 0; x < WORLD_SIDE_LEN; x++) {
-	mappoint_array_x[x] = x;
-	mappoint_array_y[x] = x;
+    unsigned int i;
+
+    for (i = 0; i < WORLD_SIDE_LEN; i++)
+    {
+	    mappoint_array[i].x = i;
+	    mappoint_array[i].y = i;
     }
 }
 
 void shuffle_mappoint_array (void)
 {
-  int i, x, a;
-  for (i = 0; i < SHUFFLE_MAPPOINT_COUNT; i++)
+    Map_Coord random_coord;
+    Map_Coord tmp;
+    unsigned int i;
+
+    for (i = 0; i < SHUFFLE_MAPPOINT_COUNT; i++)
     {
-      x = rand () % WORLD_SIDE_LEN;
-      a = mappoint_array_x[i];
-      mappoint_array_x[i] = mappoint_array_x[x];
-      mappoint_array_x[x] = a;
-      x = rand () % WORLD_SIDE_LEN;
-      a = mappoint_array_y[i];
-      mappoint_array_y[i] = mappoint_array_y[x];
-      mappoint_array_y[x] = a;
+        random_coord.x = rand() % WORLD_SIDE_LEN;
+        random_coord.y = rand() % WORLD_SIDE_LEN;
+
+        /* swap values */
+        tmp.x = mappoint_array[i].x;
+        tmp.y = mappoint_array[i].y;
+        mappoint_array[i].x = mappoint_array[random_coord.x].x;
+        mappoint_array[i].y = mappoint_array[random_coord.y].y;
+        mappoint_array[random_coord.x].x = tmp.x;
+        mappoint_array[random_coord.y].y = tmp.y;
     }
 }
 

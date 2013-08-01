@@ -8,15 +8,21 @@
 
 #include "lin-city.h" /* WORLD_SIDE_LEN, Map_Point_Info dependencies */
 
+typedef struct
+{
+    int x; /* FIXME: should be unsigned int */
+    int y; /* FIXME: should be unsigned int */
+
+} Map_Coord;
+
 /* GCS -- One of these days I will get this right. */
-struct map_struct
+typedef struct
 {
     short type[WORLD_SIDE_LEN][WORLD_SIDE_LEN];
     short group[WORLD_SIDE_LEN][WORLD_SIDE_LEN];
     int pollution[WORLD_SIDE_LEN][WORLD_SIDE_LEN];
     Map_Point_Info info[WORLD_SIDE_LEN][WORLD_SIDE_LEN];
-};
-typedef struct map_struct Map;
+} Map;
 
 extern Map map;
 
@@ -25,9 +31,14 @@ extern Map map;
 #define MP_POL(x,y)    map.pollution[x][y]
 #define MP_INFO(x,y)   map.info[x][y]
 
-extern int mappoint_array_x[], mappoint_array_y[];
+extern Map_Coord mappoint_array[];
 extern int numof_shanties, numof_communes;
-extern int last_built_x, last_built_y;
+/* GCS -- this one is difficult to deal with.
+   LinCity will give your money back if you bulldoze
+   the most recently constructed building (i.e. if
+   you make a mistake.  How does this fit into a
+   multiplayer game?  Not at all, I suppose... */
+extern Map_Coord last_built;
 
 extern int sust_dig_ore_coal_tip_flag, sust_port_flag, sustain_flag;
 extern int sust_dig_ore_coal_count, sust_port_count, sust_old_money;
@@ -39,9 +50,10 @@ extern int total_time;    /* game time */
 extern int population, starving_population;
 extern int housed_population;
 extern int unemployed_population, people_pool;
-extern int substationx[], substationy[];
-extern int numof_substations;
-extern int marketx[], markety[], numof_markets;
+extern Map_Coord substations[];
+extern unsigned int numof_substations;
+extern Map_Coord markets[];
+extern unsigned int numof_markets;
 extern int numof_health_centres, max_pop_ever, total_evacuated, total_births;
 
 extern int total_money, income_tax_rate, coal_tax_rate;

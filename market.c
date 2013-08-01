@@ -55,16 +55,16 @@ int put_stuff4 (Map_Point_Info *minfo, short *type, int stuff, int stuff_type);
 
 int get_jobs (int x, int y, int jobs)
 {
-  int q;
+  unsigned int q;
   if (numof_markets > 0)
     {
       for (q = 0; q < numof_markets; q++)
 	{
-	  if ((abs (marketx[q] - x) < MARKET_RANGE
-	       && abs (markety[q] - y) < MARKET_RANGE
-	       && (MP_INFO(marketx[q],markety[q]).int_2 > (3 * jobs / 2))))
+	  if ((abs (markets[q].x - x) < MARKET_RANGE
+	       && abs (markets[q].y - y) < MARKET_RANGE
+	       && (MP_INFO(markets[q].x, markets[q].y).int_2 > (3 * jobs / 2))))
 	    {
-	      MP_INFO(marketx[q],markety[q]).int_2 -= jobs;
+	      MP_INFO(markets[q].x, markets[q].y).int_2 -= jobs;
 	      income_tax += jobs;
 	      return (1);
 	    }
@@ -80,16 +80,16 @@ int get_jobs (int x, int y, int jobs)
 
 int put_jobs (int x, int y, int jobs)
 {
-  int q;
+  unsigned int q;
   if (numof_markets > 0) {
       for (q = 0; q < numof_markets; q++) {
-	  if (MP_INFO(marketx[q],markety[q]).int_2
+	  if (MP_INFO(markets[q].x, markets[q].y).int_2
 	      >= (MAX_JOBS_IN_MARKET - jobs))
 	    continue;
-	  if (abs (marketx[q] - x) < EMPLOYER_RANGE
-	      && abs (markety[q] - y) < EMPLOYER_RANGE)
+	  if (abs (markets[q].x - x) < EMPLOYER_RANGE
+	      && abs (markets[q].y - y) < EMPLOYER_RANGE)
 	    {
-	      MP_INFO(marketx[q],markety[q]).int_2 += jobs;
+	      MP_INFO(markets[q].x, markets[q].y).int_2 += jobs;
 	      return (1);
 	    }
 	}
@@ -102,17 +102,17 @@ int put_jobs (int x, int y, int jobs)
 
 int get_food (int x, int y, int food)
 {
-  int q;
+  unsigned int q;
   if (numof_markets > 0)
     {
       for (q = 0; q < numof_markets; q++)
 	{
-	  if ((abs (marketx[q] - x) < MARKET_RANGE)
-	      && (abs (markety[q] - y) < MARKET_RANGE)
-	      && (MP_INFO(marketx[q],markety[q]).int_1
+	  if ((abs (markets[q].x - x) < MARKET_RANGE)
+	      && (abs (markets[q].y - y) < MARKET_RANGE)
+	      && (MP_INFO(markets[q].x,markets[q].y).int_1
 		  > food))
 	    {
-	      MP_INFO(marketx[q],markety[q]).int_1 -= food;
+	      MP_INFO(markets[q].x, markets[q].y).int_1 -= food;
 	      return (1);
 	    }
 	}
@@ -124,18 +124,18 @@ int get_food (int x, int y, int food)
 
 int put_food (int x, int y, int food)
 {
-  int q;
+  unsigned int q;
   if (numof_markets > 0)
     {
       for (q = 0; q < numof_markets; q++)
 	{
-	  if (MP_INFO(marketx[q],markety[q]).int_1
+	  if (MP_INFO(markets[q].x,markets[q].y).int_1
 	      >= (MAX_FOOD_IN_MARKET - food))
 	    continue;
-	  if ((abs (marketx[q] - x) < ORG_FARM_RANGE)
-	      && (abs (markety[q] - y) < ORG_FARM_RANGE))
+	  if ((abs (markets[q].x - x) < ORG_FARM_RANGE)
+	      && (abs (markets[q].y - y) < ORG_FARM_RANGE))
 	    {
-	      MP_INFO(marketx[q],markety[q]).int_1 += food;
+	      MP_INFO(markets[q].x, markets[q].y).int_1 += food;
 	      return (1);
 	    }
 	}
@@ -148,21 +148,21 @@ int put_food (int x, int y, int food)
 
 int get_goods (int x, int y, int goods)
 {
-  int q;
+  unsigned int q;
   if (numof_markets > 0)
     {
       for (q = 0; q < numof_markets; q++)
 	{
-	  if (abs (marketx[q] - x) < MARKET_RANGE
-	      && abs (markety[q] - y) < MARKET_RANGE
-	      && (MP_INFO(marketx[q],markety[q]).int_4
+	  if (abs (markets[q].x - x) < MARKET_RANGE
+	      && abs (markets[q].y - y) < MARKET_RANGE
+	      && (MP_INFO(markets[q].x, markets[q].y).int_4
 		  > goods))
 	    {
-	      MP_INFO(marketx[q],markety[q]).int_4 -= goods;
+	      MP_INFO(markets[q].x, markets[q].y).int_4 -= goods;
 	      goods_tax += goods;
 	      goods_used += goods;
 	      /* make the waste here. */
-	      MP_INFO(marketx[q],markety[q]).int_7 += goods / 3;
+	      MP_INFO(markets[q].x, markets[q].y).int_7 += goods / 3;
 	      return (1);
 	    }
 	}
@@ -179,18 +179,18 @@ int get_goods (int x, int y, int goods)
 
 int put_goods (int x, int y, int goods)
 {
-  int q;
+  unsigned int q;
   if (numof_markets > 0)
     {
       for (q = 0; q < numof_markets; q++)
 	{
-	  if (MP_INFO(marketx[q],markety[q]).int_4
+	  if (MP_INFO(markets[q].x, markets[q].y).int_4
 	      >= (MAX_GOODS_IN_MARKET - goods))
 	    continue;
-	  if ((abs (marketx[q] - x) < MARKET_RANGE)
-	      && (abs (markety[q] - y) < MARKET_RANGE))
+	  if ((abs (markets[q].x - x) < MARKET_RANGE)
+	      && (abs (markets[q].y - y) < MARKET_RANGE))
 	    {
-	      MP_INFO(marketx[q],markety[q]).int_4 += goods;
+	      MP_INFO(markets[q].x, markets[q].y).int_4 += goods;
 	      return (1);
 	    }
 	}
@@ -202,18 +202,18 @@ int put_goods (int x, int y, int goods)
 
 int put_waste (int x, int y, int waste)
 {
-  int q;
+  unsigned int q;
   if (numof_markets > 0)
     {
       for (q = 0; q < numof_markets; q++)
 	{
-	  if (MP_INFO(marketx[q],markety[q]).int_7
+	  if (MP_INFO(markets[q].x, markets[q].y).int_7
 	      >= (MAX_WASTE_IN_MARKET - waste))
 	    continue;
-	  if ((abs (marketx[q] - x) < MARKET_RANGE)
-	      && (abs (markety[q] - y) < MARKET_RANGE))
+	  if ((abs (markets[q].x - x) < MARKET_RANGE)
+	      && (abs (markets[q].y - y) < MARKET_RANGE))
 	    {
-	      MP_INFO(marketx[q],markety[q]).int_7 += waste;
+	      MP_INFO(markets[q].x, markets[q].y).int_7 += waste;
 	      return (1);
 	    }
 	}
@@ -225,17 +225,17 @@ int put_waste (int x, int y, int waste)
 
 int get_waste (int x, int y, int waste)
 {
-  int q;
+  unsigned int q;
   if (numof_markets > 0)
     {
       for (q = 0; q < numof_markets; q++)
 	{
-	  if ((abs (marketx[q] - x) < MARKET_RANGE)
-	      && (abs (markety[q] - y) < MARKET_RANGE)
-	      && (MP_INFO(marketx[q],markety[q]).int_7
+	  if ((abs (markets[q].x - x) < MARKET_RANGE)
+	      && (abs (markets[q].y - y) < MARKET_RANGE)
+	      && (MP_INFO(markets[q].x, markets[q].y).int_7
 		  > waste))
 	    {
-	      MP_INFO(marketx[q],markety[q]).int_7 -= waste;
+	      MP_INFO(markets[q].x, markets[q].y).int_7 -= waste;
 	      return (1);
 	    }
 	}
@@ -248,17 +248,17 @@ int get_waste (int x, int y, int waste)
 
 int get_steel (int x, int y, int steel)
 {
-  int q;
+  unsigned int q;
   if (numof_markets > 0)
     {
       for (q = 0; q < numof_markets; q++)
 	{
-	  if ((abs (marketx[q] - x) < MARKET_RANGE)
-	      && (abs (markety[q] - y) < MARKET_RANGE)
-	      && (MP_INFO(marketx[q],markety[q]).int_6
+	  if ((abs (markets[q].x - x) < MARKET_RANGE)
+	      && (abs (markets[q].y - y) < MARKET_RANGE)
+	      && (MP_INFO(markets[q].x, markets[q].y).int_6
 		  > steel))
 	    {
-	      MP_INFO(marketx[q],markety[q]).int_6 -= steel;
+	      MP_INFO(markets[q].x, markets[q].y).int_6 -= steel;
 	      return (1);
 	    }
 	}
@@ -270,18 +270,18 @@ int get_steel (int x, int y, int steel)
 
 int put_steel (int x, int y, int steel)
 {
-  int q;
+  unsigned int q;
   if (numof_markets > 0)
     {
       for (q = 0; q < numof_markets; q++)
 	{
-	  if (MP_INFO(marketx[q],markety[q]).int_6
+	  if (MP_INFO(markets[q].x, markets[q].y).int_6
 	      >= (MAX_STEEL_IN_MARKET - steel))
 	    continue;
-	  if ((abs (marketx[q] - x) < MARKET_RANGE)
-	      && (abs (markety[q] - y) < MARKET_RANGE))
+	  if ((abs (markets[q].x - x) < MARKET_RANGE)
+	      && (abs (markets[q].y - y) < MARKET_RANGE))
 	    {
-	      MP_INFO(marketx[q],markety[q]).int_6 += steel;
+	      MP_INFO(markets[q].x, markets[q].y).int_6 += steel;
 	      return (1);
 	    }
 	}
@@ -294,17 +294,17 @@ int put_steel (int x, int y, int steel)
 
 int get_ore (int x, int y, int ore)
 {
-  int q;
+  unsigned int q;
   if (numof_markets > 0)
     {
       for (q = 0; q < numof_markets; q++)
 	{
-	  if ((abs (marketx[q] - x) < MARKET_RANGE)
-	      && (abs (markety[q] - y) < MARKET_RANGE)
-	      && (MP_INFO(marketx[q],markety[q]).int_5
+	  if ((abs (markets[q].x - x) < MARKET_RANGE)
+	      && (abs (markets[q].y - y) < MARKET_RANGE)
+	      && (MP_INFO(markets[q].x, markets[q].y).int_5
 		  > ore))
 	    {
-	      MP_INFO(marketx[q],markety[q]).int_5 -= ore;
+	      MP_INFO(markets[q].x, markets[q].y).int_5 -= ore;
 	      return (1);
 	    }
 	}
@@ -316,18 +316,18 @@ int get_ore (int x, int y, int ore)
 
 int put_ore (int x, int y, int ore)
 {
-  int q;
+  unsigned int q;
   if (numof_markets > 0)
     {
       for (q = 0; q < numof_markets; q++)
 	{
-	  if (MP_INFO(marketx[q],markety[q]).int_5
+	  if (MP_INFO(markets[q].x, markets[q].y).int_5
 	      >= (MAX_ORE_IN_MARKET - ore))
 	    continue;
-	  if ((abs (marketx[q] - x) < MARKET_RANGE)
-	      && (abs (markety[q] - y) < MARKET_RANGE))
+	  if ((abs (markets[q].x - x) < MARKET_RANGE)
+	      && (abs (markets[q].y - y) < MARKET_RANGE))
 	    {
-	      MP_INFO(marketx[q],markety[q]).int_5 += ore;
+	      MP_INFO(markets[q].x, markets[q].y).int_5 += ore;
 	      return (1);
 	    }
 	}
@@ -340,17 +340,17 @@ int put_ore (int x, int y, int ore)
 
 int get_coal (int x, int y, int coal)
 {
-  int q;
+  unsigned int q;
   if (numof_markets > 0)
     {
       for (q = 0; q < numof_markets; q++)
 	{
-	  if ((abs (marketx[q] - x) < MARKET_RANGE)
-	      && (abs (markety[q] - y) < MARKET_RANGE)
-	      && (MP_INFO(marketx[q],markety[q]).int_3
+	  if ((abs (markets[q].x - x) < MARKET_RANGE)
+	      && (abs (markets[q].y - y) < MARKET_RANGE)
+	      && (MP_INFO(markets[q].x, markets[q].y).int_3
 		  > coal))
 	    {
-	      MP_INFO(marketx[q],markety[q]).int_3 -= coal;
+	      MP_INFO(markets[q].x, markets[q].y).int_3 -= coal;
 	      return (1);
 	    }
 	}
@@ -362,18 +362,18 @@ int get_coal (int x, int y, int coal)
 
 int put_coal (int x, int y, int coal)
 {
-  int q;
+  unsigned int q;
   if (numof_markets > 0)
     {
       for (q = 0; q < numof_markets; q++)
 	{
-	  if (MP_INFO(marketx[q],markety[q]).int_3
+	  if (MP_INFO(markets[q].x, markets[q].y).int_3
 	      >= (MAX_COAL_IN_MARKET - coal))
 	    continue;
-	  if ((abs (marketx[q] - x) < MARKET_RANGE)
-	      && (abs (markety[q] - y) < MARKET_RANGE))
+	  if ((abs (markets[q].x - x) < MARKET_RANGE)
+	      && (abs (markets[q].y - y) < MARKET_RANGE))
 	    {
-	      MP_INFO(marketx[q],markety[q]).int_3 += coal;
+	      MP_INFO(markets[q].x, markets[q].y).int_3 += coal;
 	      return (1);
 	    }
 	}
@@ -388,8 +388,8 @@ int add_a_market (int x, int y)	/* add to marketx markety to list */
 {
   if (numof_markets >= MAX_NUMOF_MARKETS)
     return (0);
-  marketx[numof_markets] = x;
-  markety[numof_markets] = y;
+  markets[numof_markets].x = x;
+  markets[numof_markets].y = y;
   numof_markets++;
   /* oh dear. Got to bootstap markets with jobs, otherwise power won't work */
   /* GCS: Is this still true?  */
@@ -399,16 +399,21 @@ int add_a_market (int x, int y)	/* add to marketx markety to list */
 
 void remove_a_market (int x, int y)
 {
-  int q;
-  for (q = 0; q < numof_markets; q++)
-    if (marketx[q] == x && markety[q] == y)
-      break;
-  for (; q < numof_markets; q++)
+    unsigned int i;
+
+    /* search for coordinate of the market */
+    for (i = 0; i < numof_markets; i++)
     {
-      marketx[q] = marketx[q + 1];
-      markety[q] = markety[q + 1];
+        if (markets[i].x == x && markets[i].y == y)
+            break;
     }
-  numof_markets--;
+
+    /* shift left the rest of the array */
+    for (; i < numof_markets; i++)
+    {
+        markets[i] = markets[i + 1];
+    }
+    numof_markets--; /* FIXME: this always decrement the counter, not when found it */
 }
 
 void do_market (int x, int y)
@@ -483,20 +488,22 @@ void do_market (int x, int y)
 
 void shuffle_markets (void)
 {
-  register int x;
-  int q, r, m;
-  m = (numof_markets / 4) + 1;
-  for (x = 0; x < m; x++)
+    unsigned int num_swaps;
+    unsigned int random_pos;
+    Map_Coord tmp;
+    unsigned int i;
+
+    num_swaps = (numof_markets / 4) + 1;
+    for (i = 0; i < num_swaps; i++)
     {
-      r = rand () % numof_markets;
-      if (r == x)
-	continue;
-      q = marketx[x];
-      marketx[x] = marketx[r];
-      marketx[r] = q;
-      q = markety[x];
-      markety[x] = markety[r];
-      markety[r] = q;
+        random_pos = rand() % numof_markets;
+        if (random_pos == i)
+            continue;
+
+        /* swap values */
+        tmp = markets[i];
+        markets[i] = markets[random_pos];
+        markets[random_pos] = tmp;
     }
 }
 

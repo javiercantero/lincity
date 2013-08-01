@@ -451,8 +451,6 @@
 #define SCROLL_UP_BUTTON_Y 196
 #define SCROLL_UP_BUTTON_H 32
 
-#define SHUFFLE_MAPPOINT_COUNT 4
-
 #if defined (commentout)
 #define MAPPOINT_STATS_X 91
 /* MAPPOINT_STATS_W must be == MONTHGRAPH_W because of the graph drawing. */
