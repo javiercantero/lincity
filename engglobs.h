@@ -91,6 +91,4 @@ extern int coal_survey_done;
 
 extern int selected_type_cost;
 
-extern int ex_tax_dis[];
-
 #endif /* __engglobs_h__ */

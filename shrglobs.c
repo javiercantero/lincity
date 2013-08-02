@@ -92,14 +92,4 @@ int coal_survey_done;
 
 int selected_type_cost;
 
-int ex_tax_dis[NUMOF_DISCOUNT_TRIGGERS] =
-{
-  EX_DISCOUNT_TRIGGER_1,
-  EX_DISCOUNT_TRIGGER_2,
-  EX_DISCOUNT_TRIGGER_3,
-  EX_DISCOUNT_TRIGGER_4,
-  EX_DISCOUNT_TRIGGER_5,
-  EX_DISCOUNT_TRIGGER_6,
-};
-
 

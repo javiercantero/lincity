@@ -70,6 +70,50 @@
 
 /* ----------------------------------------------------------------- */
 
+/* old lin-city.h definitions */
+#define INCOME_TAX_RATE 8
+#define COAL_TAX_RATE 20
+#define GOODS_TAX_RATE 1
+#define DOLE_RATE 15
+#define TRANSPORT_COST_RATE 14
+#define IM_PORT_COST_RATE 1
+#define NUMOF_DISCOUNT_TRIGGERS 6
+#define EX_DISCOUNT_TRIGGER_1   25000
+#define EX_DISCOUNT_TRIGGER_2   50000
+#define EX_DISCOUNT_TRIGGER_3  100000
+#define EX_DISCOUNT_TRIGGER_4  200000
+#define EX_DISCOUNT_TRIGGER_5  400000
+#define EX_DISCOUNT_TRIGGER_6  800000
+#define TECH_LEVEL_LOSS_START 11000
+/*
+   tech-level/TECH_LEVEL_LOSS is lost every month when
+   above TECH_LEVEL_LOSS_START
+ */
+#define TECH_LEVEL_LOSS    500
+#define TECH_LEVEL_UNAIDED 2
+#define DAYS_PER_POLLUTION      14
+/*#define PORT_POLLUTION          1*/
+#define UNNAT_DEATHS_COST       500
+/* interest rate *10  ie 10 is 1% */
+#define INTEREST_RATE 15
+#define DAYS_BETWEEN_FIRES (NUMOF_DAYS_IN_YEAR*2)
+#define FIRESTATION_RUNNING_COST_MUL 6
+#define DAYS_BETWEEN_SHANTY (NUMOF_DAYS_IN_MONTH*5)
+#define HEALTH_RUNNING_COST_MUL 9
+#define NUMOF_COAL_RESERVES 100
+#define SUST_MIN_POPULATION 5000
+#define SUST_MIN_TECH_LEVEL (MAX_TECH_LEVEL/2)
+
+
+static const int ex_tax_dis[NUMOF_DISCOUNT_TRIGGERS] =
+{
+  EX_DISCOUNT_TRIGGER_1,
+  EX_DISCOUNT_TRIGGER_2,
+  EX_DISCOUNT_TRIGGER_3,
+  EX_DISCOUNT_TRIGGER_4,
+  EX_DISCOUNT_TRIGGER_5,
+  EX_DISCOUNT_TRIGGER_6,
+};
 
 /* ---------------------------------------------------------------------- *
  * Private Fn Prototypes

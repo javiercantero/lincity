@@ -42,7 +42,23 @@
 
 /* old lin-city.h definitions */
 #define SHUFFLE_MAPPOINT_COUNT 4
-
+#define PORT_FOOD_RATE    1
+#define PORT_JOBS_RATE    5
+#define PORT_COAL_RATE    50
+#define PORT_ORE_RATE     1
+#define PORT_GOODS_RATE   3
+#define PORT_STEEL_RATE   100
+/*
+  These next two control the stuff bought or sold as a % of what's on the
+  transport.  1000=100%  500=50% etc.
+*/
+#define PORT_EXPORT_RATE  500
+#define PORT_IMPORT_RATE  500
+/*#define POWER_LINE_CAPACITY 1000000*/
+#define POWERS_SOLAR_OUTPUT 1800
+#define WINDMILL_POWER      450
+#define POL_DIV  64
+#define MIN_ORE_RESERVE_FOR_MINE (ORE_RESERVE)
 
 extern int selected_type_cost;
 
