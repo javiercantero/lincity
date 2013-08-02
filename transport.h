@@ -7,7 +7,7 @@
 #ifndef __TRANSPORT_H__
 #define __TRANSPORT_H__
 
-#include "lin-city.h" /* Map_Point_Info dependency */
+#include "engglobs.h" /* Map_Point_Info dependency */
 
 
 void general_transport (Map_Point_Info *minfo, int *pol,

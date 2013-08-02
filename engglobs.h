@@ -6,7 +6,7 @@
 #ifndef __engglobs_h__
 #define __engglobs_h__
 
-#include "lin-city.h" /* WORLD_SIDE_LEN, Map_Point_Info dependencies */
+#include "lin-city.h" /* WORLD_SIDE_LEN dependency */
 
 typedef struct
 {
@@ -14,6 +14,22 @@ typedef struct
     int y; /* FIXME: should be unsigned int */
 
 } Map_Coord;
+
+typedef struct
+{
+  int population;
+  int flags;
+  unsigned short coal_reserve;
+  unsigned short ore_reserve;
+  int int_1;
+  int int_2;
+  int int_3;
+  int int_4;
+  int int_5;
+  int int_6;
+  int int_7;
+  
+} Map_Point_Info;
 
 /* GCS -- One of these days I will get this right. */
 typedef struct

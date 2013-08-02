@@ -473,23 +473,6 @@
 #define white(x) (224 + x)
 
 
-struct map_point_info_struct
-{
-  int population;
-  int flags;
-  unsigned short coal_reserve;
-  unsigned short ore_reserve;
-  int int_1;
-  int int_2;
-  int int_3;
-  int int_4;
-  int int_5;
-  int int_6;
-  int int_7;
-};
-typedef struct map_point_info_struct Map_Point_Info;
-
-
 /* Set these flags to true when they need to be updated on the screen */
 struct update_scoreboard_struct
 {
