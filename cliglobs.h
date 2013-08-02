@@ -59,12 +59,6 @@ extern int main_screen_originx, main_screen_originy;
 extern long real_time;
 extern int screen_refresh_flag;
 
-extern int total_money, income_tax_rate, coal_tax_rate;
-extern int dole_rate, transport_cost_rate;
-extern int goods_tax_rate;
-extern int export_tax_rate, import_cost_rate;
-extern int tech_level, highest_tech_level, unnat_deaths;
-
 extern char *months[];
 
 extern int monthgraph_size;

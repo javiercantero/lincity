@@ -19,6 +19,7 @@
 #include "screen.h"
 #include "mouse.h"
 #include "cliglobs.h"
+#include "engglobs.h"
 #include "lchelp.h"
 #include "lclib.h"
 #include "fileutil.h"
