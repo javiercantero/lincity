@@ -56,6 +56,181 @@ extern int numof_shanties, numof_communes;
    multiplayer game?  Not at all, I suppose... */
 extern Map_Coord last_built;
 
+
+typedef struct
+{
+    /* FIXME: unsigned */ int made;
+    /* FIXME: unsigned */ int used;
+
+} Resource_State;
+
+typedef struct
+{
+    /* FIXME: boolean */ int flag;
+
+    struct
+    {
+        /* FIXME: boolean */ int flag;
+        /* FIXME: unsigned */ int counter;
+
+    } ore_coal_tip;
+
+    struct
+    {
+        /* FIXME: boolean */ int flag;
+        /* FIXME: unsigned */ int counter;
+
+    } port;
+
+    struct
+    {
+        int last_value; /* same type than money.total */
+        /* FIXME: unsigned */ int counter;
+
+    } money;
+
+    struct
+    {
+        int last_value; /* same type than population */
+        /* FIXME: unsigned */ int counter;
+
+    } population;
+
+    struct
+    {
+        int last_value; /* same type than tech.level */
+        /* FIXME: unsigned */ int counter;
+
+    } tech;
+
+    struct
+    {
+        /* FIXME: unsigned */ int counter;
+
+    } fire;
+
+} Sustainibility_State;
+
+typedef struct
+{
+    struct
+    {
+        /* FIXME: unsigned */ int total;
+
+    } time;
+
+    struct
+    {
+        /* FIXME: unsigned */ int total;
+        /* FIXME: unsigned */ int starving;
+        /* FIXME: unsigned */ int housed;
+        /* FIXME: unsigned */ int unemployed;
+        /* FIXME: unsigned */ int pool;
+        /* FIXME: unsigned */ int max_ever;
+        /* FIXME: unsigned */ int evacuated;
+
+        struct
+        {
+            /* FIXME: unsigned */ int total;
+
+        } births;
+
+        struct
+        {
+            /* FIXME: unsigned */ int days;
+            /* FIXME: unsigned */ int years;
+            float history;
+
+        } unemployment;
+
+        struct
+        {
+            /* FIXME: unsigned */ int unnat_month;
+
+            struct
+            {
+                /* FIXME: unsigned */ int total;
+                float history;
+
+            } starve;
+
+            struct
+            {
+                /* FIXME: unsigned */ int total;
+                float history;
+
+            } pollution;
+
+        } deaths;
+
+    } population;
+
+    struct
+    {
+        int total; /* can be negative */
+        /* FIXME: unsigned */ int dole_rate;
+
+        struct
+        {
+            /* FIXME: unsigned */ int income;
+            /* FIXME: unsigned */ int exports;
+            /* FIXME: unsigned */ int goods;
+            /* FIXME: unsigned */ int coal;
+
+        } tax_rate;
+
+        struct
+        {
+            /* FIXME: unsigned */ int imports;
+            /* FIXME: unsigned */ int transport;
+
+        } cost_rate;
+
+    } money;
+
+    struct
+    {
+        /* FIXME: unsigned */ int university_intake_rate;
+
+    } knowledge;
+
+    struct
+    {
+        /* FIXME: unsigned */ int level;
+        /* FIXME: unsigned */ int highest_level;
+    } tech;
+
+    struct
+    {
+        Resource_State power; /* not used */
+        Resource_State coal;
+        Resource_State goods;
+        Resource_State ore;
+
+    } resources;
+
+    Sustainibility_State sustain;
+
+    struct
+    {
+        /* FIXME: boolean */ int coal_survey_done; /* show minimap with coal resources or not */
+
+    } flags;
+
+    struct /* conditions of victory */
+    {
+        /* FIXME: unsigned */ int rockets_launched;
+        /* FIXME: unsigned */ int rockets_launched_success;
+
+    } victory;
+
+} World_State;
+
+#if 0
+extern World_State world_state;
+extern World_State* world;
+#endif
+
 extern int sust_dig_ore_coal_tip_flag, sust_port_flag, sustain_flag;
 extern int sust_dig_ore_coal_count, sust_port_count, sust_old_money;
 extern int sust_old_money_count, sust_old_population, sust_old_population_count;
@@ -89,6 +264,6 @@ extern int goods_made, goods_used, ore_made, ore_used;
 extern int rockets_launched, rockets_launched_success;
 extern int coal_survey_done;
 
-extern int selected_type_cost;
+/*extern int selected_type_cost;*/ /* Not used */
 
 #endif /* __engglobs_h__ */

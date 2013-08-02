@@ -57,6 +57,11 @@ int diffgraph_population[MAPPOINT_STATS_W];
 int diff_old_population;
 #endif
 
+#if 0
+World_State world_state;
+World_State* world = &world_state;
+#endif
+
 int sust_dig_ore_coal_tip_flag = 0, sust_port_flag = 0, sustain_flag = 0;
 int sust_dig_ore_coal_count = 0, sust_port_count = 0, sust_old_money = 0;
 int sust_old_money_count = 0, sust_old_population = 0, sust_old_population_count = 0;
@@ -90,6 +95,6 @@ int goods_made, goods_used, ore_made, ore_used;
 int rockets_launched, rockets_launched_success;
 int coal_survey_done;
 
-int selected_type_cost;
+/*int selected_type_cost;*/
 
 
