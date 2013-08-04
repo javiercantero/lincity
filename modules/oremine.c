@@ -59,8 +59,8 @@ do_oremine (int x, int y)
 		{
 		  MP_INFO(xx,yy).ore_reserve--;
 		  MP_INFO(x,y).int_1 += 5000;
-		  ore_made += 5000;
-		  sust_dig_ore_coal_tip_flag = 0;
+		  world->resources.ore.made += 5000;
+		  world->sustain.ore_coal_tip.flag = FALSE;
 		  /* maybe want an ore tax? */
 		  yy = ye;
 		  xx = xe;	/* break out */
@@ -149,7 +149,7 @@ do_oremine (int x, int y)
 
 
   /* choose a graphic */
-  if ((total_time & 0x7f) == 0)
+  if ((world->time.total & 0x7f) == 0)
     {
       xx = 7 * (MP_INFO(x,y).int_2 + (3 * ORE_RESERVE / 2))
 	/ (16 * ORE_RESERVE);

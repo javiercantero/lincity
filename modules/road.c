@@ -53,9 +53,9 @@ do_road (int x, int y)
     int *pol = &MP_POL(x,y);
     Map_Point_Info *minfo = &MP_INFO(x,y);
     ++transport_cost;
-    if (total_time % DAYS_PER_ROAD_POLLUTION == 0)
+    if (world->time.total % DAYS_PER_ROAD_POLLUTION == 0)
 	*pol += ROAD_POLLUTION;
-    if ((total_time & ROAD_GOODS_USED_MASK) == 0 && minfo->int_4 > 0) {
+    if ((world->time.total & ROAD_GOODS_USED_MASK) == 0 && minfo->int_4 > 0) {
 	--minfo->int_4;
 	++minfo->int_7;
     }

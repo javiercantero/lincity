@@ -86,7 +86,7 @@ do_power_source_coal (int x, int y)
 	MP_INFO(x,y).int_5 = MP_INFO(x,y).int_1;
 	MP_INFO(x,y).int_3 -= JOBS_COALPS_GENERATE;
 	MP_INFO(x,y).int_2 -= POWERS_COAL_OUTPUT / 500;
-	coal_used += POWERS_COAL_OUTPUT / 500;
+	world->resources.coal.used += POWERS_COAL_OUTPUT / 500;
 	MP_POL(x,y) += POWERS_COAL_POLLUTION;
 	grid[MP_INFO(x,y).int_6]->avail_power += MP_INFO(x,y).int_1;
     }

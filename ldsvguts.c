@@ -161,7 +161,7 @@ save_city_raw (char *cname)
 
     fprintf (ofile, "%d\n", main_screen_originx);
     fprintf (ofile, "%d\n", main_screen_originy);
-    fprintf (ofile, "%d\n", total_time);
+    fprintf (ofile, "%d\n", world->time.total);
     for (x = 0; x < MAX_NUMOF_SUBSTATIONS; x++)
     {
         fprintf (ofile, "%d\n", substations[x].x);
@@ -176,30 +176,30 @@ save_city_raw (char *cname)
     }
     prog_box ("", 94);
     fprintf (ofile, "%d\n", numof_markets); /* FIXME: beware, unsigned int */
-    fprintf (ofile, "%d\n", people_pool);
-    fprintf (ofile, "%d\n", total_money);
-    fprintf (ofile, "%d\n", income_tax_rate);
-    fprintf (ofile, "%d\n", coal_tax_rate);
-    fprintf (ofile, "%d\n", dole_rate);
-    fprintf (ofile, "%d\n", transport_cost_rate);
-    fprintf (ofile, "%d\n", goods_tax_rate);
+    fprintf (ofile, "%d\n", world->population.pool);
+    fprintf (ofile, "%d\n", world->money.total);
+    fprintf (ofile, "%d\n", world->money.tax_rate.income);
+    fprintf (ofile, "%d\n", world->money.tax_rate.coal);
+    fprintf (ofile, "%d\n", world->money.dole_rate);
+    fprintf (ofile, "%d\n", world->money.cost_rate.transport);
+    fprintf (ofile, "%d\n", world->money.tax_rate.goods);
     fprintf (ofile, "%d\n", export_tax);
-    fprintf (ofile, "%d\n", export_tax_rate);
+    fprintf (ofile, "%d\n", world->money.tax_rate.exports);
     fprintf (ofile, "%d\n", import_cost);
-    fprintf (ofile, "%d\n", import_cost_rate);
-    fprintf (ofile, "%d\n", tech_level);
+    fprintf (ofile, "%d\n", world->money.cost_rate.imports);
+    fprintf (ofile, "%d\n", world->tech.level);
     fprintf (ofile, "%d\n", tpopulation);
     fprintf (ofile, "%d\n", tstarving_population);
     fprintf (ofile, "%d\n", tunemployed_population);
     fprintf (ofile, "%d\n", 0); /* waste_goods is obsolete */
-    fprintf (ofile, "%d\n", power_made);
-    fprintf (ofile, "%d\n", power_used);
-    fprintf (ofile, "%d\n", coal_made);
-    fprintf (ofile, "%d\n", coal_used);
-    fprintf (ofile, "%d\n", goods_made);
-    fprintf (ofile, "%d\n", goods_used);
-    fprintf (ofile, "%d\n", ore_made);
-    fprintf (ofile, "%d\n", ore_used);
+    fprintf (ofile, "%d\n", world->resources.power.made);
+    fprintf (ofile, "%d\n", world->resources.power.used);
+    fprintf (ofile, "%d\n", world->resources.coal.made);
+    fprintf (ofile, "%d\n", world->resources.coal.used);
+    fprintf (ofile, "%d\n", world->resources.goods.made);
+    fprintf (ofile, "%d\n", world->resources.goods.used);
+    fprintf (ofile, "%d\n", world->resources.ore.made);
+    fprintf (ofile, "%d\n", world->resources.ore.used);
     fprintf (ofile, "%d\n", 0); /* Removed diff_old_population, version 1.12 */
 
     prog_box ("", 96);
@@ -219,9 +219,9 @@ save_city_raw (char *cname)
 #endif
     }
     prog_box ("", 98);
-    fprintf (ofile, "%d\n", rockets_launched);
-    fprintf (ofile, "%d\n", rockets_launched_success);
-    fprintf (ofile, "%d\n", coal_survey_done);
+    fprintf (ofile, "%d\n", world->victory.rockets_launched);
+    fprintf (ofile, "%d\n", world->victory.rockets_launched_success);
+    fprintf (ofile, "%d\n", world->flags.coal_survey_done);
     for (x = 0; x < PBAR_DATA_SIZE; x++)
 	for (p = 0; p < NUM_PBARS; p++)
 	    fprintf(ofile, "%d\n", pbars[p].data[x]);
@@ -234,15 +234,15 @@ save_city_raw (char *cname)
     }
 
     fprintf (ofile, "%d\n", cheat_flag);
-    fprintf (ofile, "%d\n", total_pollution_deaths);
-    fprintf (ofile, "%f\n", pollution_deaths_history);
-    fprintf (ofile, "%d\n", total_starve_deaths);
-    fprintf (ofile, "%f\n", starve_deaths_history);
-    fprintf (ofile, "%d\n", total_unemployed_years);
-    fprintf (ofile, "%f\n", unemployed_history);
-    fprintf (ofile, "%d\n", max_pop_ever);
-    fprintf (ofile, "%d\n", total_evacuated);
-    fprintf (ofile, "%d\n", total_births);
+    fprintf (ofile, "%d\n", world->population.deaths.pollution.total);
+    fprintf (ofile, "%f\n", world->population.deaths.pollution.history);
+    fprintf (ofile, "%d\n", world->population.deaths.starve.total);
+    fprintf (ofile, "%f\n", world->population.deaths.starve.history);
+    fprintf (ofile, "%d\n", world->population.unemployment.years);
+    fprintf (ofile, "%f\n", world->population.unemployment.history);
+    fprintf (ofile, "%d\n", world->population.highest);
+    fprintf (ofile, "%d\n", world->population.evacuated);
+    fprintf (ofile, "%d\n", world->population.births);
     for (x = 0; x < NUMOF_MODULES; x++)
 	fprintf (ofile, "%d\n", module_help_flag[x]);
     fprintf (ofile, "%d\n", 0);	/* dummy values */
@@ -254,14 +254,19 @@ save_city_raw (char *cname)
     else
 	fprintf (ofile, "dummy\n");	/* 1 */
 
-    fprintf (ofile, "%d\n", highest_tech_level);	/* 2 */
+    fprintf (ofile, "%d\n", world->tech.highest_level);	/* 2 */
 
-    fprintf (ofile, "sust %d %d %d %d %d %d %d %d %d %d\n"
-	     ,sust_dig_ore_coal_count, sust_port_count
-	     ,sust_old_money_count, sust_old_population_count
-	     ,sust_old_tech_count, sust_fire_count
-	     ,sust_old_money, sust_old_population, sust_old_tech
-	     ,sustain_flag);	/* 3 */
+    fprintf (ofile, "sust %d %d %d %d %d %d %d %d %d %d\n",
+                     world->sustain.ore_coal_tip.count,
+                     world->sustain.port.count,
+                     world->sustain.money.count,
+                     world->sustain.population.count,
+                     world->sustain.tech.count,
+                     world->sustain.fire.count,
+                     world->sustain.money.previous,
+                     world->sustain.population.previous,
+                     world->sustain.tech.previous,
+                     world->sustain.flag );	/* 3 */
 
     fprintf (ofile, "dummy\n");	/* 4 */
 
@@ -415,7 +420,7 @@ void load_city (char *cname)
     if (main_screen_originy > WORLD_SIDE_LEN - scr.main_win.h / 16 - 1)
 	main_screen_originy = WORLD_SIDE_LEN - scr.main_win.h / 16 - 1;
 
-    fscanf (ofile, "%d", &total_time);
+    fscanf (ofile, "%d", &(world->time.total));
     if (ver <= MM_MS_C_VER)
 	i = OLD_MAX_NUMOF_SUBSTATIONS;
     else
@@ -438,36 +443,36 @@ void load_city (char *cname)
     }
     prog_box ("", 94);
     fscanf (ofile, "%d", &numof_markets); /* FIXME: beware, unsigned int */
-    fscanf (ofile, "%d", &people_pool);
-    fscanf (ofile, "%d", &total_money);
-    fscanf (ofile, "%d", &income_tax_rate);
-    fscanf (ofile, "%d", &coal_tax_rate);
-    fscanf (ofile, "%d", &dole_rate);
-    fscanf (ofile, "%d", &transport_cost_rate);
-    fscanf (ofile, "%d", &goods_tax_rate);
+    fscanf (ofile, "%d", &(world->population.pool));
+    fscanf (ofile, "%d", &(world->money.total));
+    fscanf (ofile, "%d", &(world->money.tax_rate.income));
+    fscanf (ofile, "%d", &(world->money.tax_rate.coal));
+    fscanf (ofile, "%d", &(world->money.dole_rate));
+    fscanf (ofile, "%d", &(world->money.cost_rate.transport));
+    fscanf (ofile, "%d", &(world->money.tax_rate.goods));
     fscanf (ofile, "%d", &export_tax);
-    fscanf (ofile, "%d", &export_tax_rate);
+    fscanf (ofile, "%d", &(world->money.tax_rate.exports));
     fscanf (ofile, "%d", &import_cost);
-    fscanf (ofile, "%d", &import_cost_rate);
-    fscanf (ofile, "%d", &tech_level);
-    if (tech_level > MODERN_WINDMILL_TECH)
+    fscanf (ofile, "%d", &(world->money.cost_rate.imports));
+    fscanf (ofile, "%d", &(world->tech.level));
+    if (world->tech.level > MODERN_WINDMILL_TECH)
 	modern_windmill_flag = 1;
     fscanf (ofile, "%d", &tpopulation);
     fscanf (ofile, "%d", &tstarving_population);
     fscanf (ofile, "%d", &tunemployed_population);
     fscanf (ofile, "%d", &x);  /* waste_goods obsolete */
-    fscanf (ofile, "%d", &power_made);
-    fscanf (ofile, "%d", &power_used);
-    fscanf (ofile, "%d", &coal_made);
-    fscanf (ofile, "%d", &coal_used);
-    fscanf (ofile, "%d", &goods_made);
-    fscanf (ofile, "%d", &goods_used);
-    fscanf (ofile, "%d", &ore_made);
-    fscanf (ofile, "%d", &ore_used);
+    fscanf (ofile, "%d", &(world->resources.power.made));
+    fscanf (ofile, "%d", &(world->resources.power.used));
+    fscanf (ofile, "%d", &(world->resources.coal.made));
+    fscanf (ofile, "%d", &(world->resources.coal.used));
+    fscanf (ofile, "%d", &(world->resources.goods.made));
+    fscanf (ofile, "%d", &(world->resources.goods.used));
+    fscanf (ofile, "%d", &(world->resources.ore.made));
+    fscanf (ofile, "%d", &(world->resources.ore.used));
     fscanf (ofile, "%d", &dummy); /* &diff_old_population */
 
     /* Update variables calculated from those above */
-    housed_population = tpopulation / NUMOF_DAYS_IN_MONTH;
+    world->population.housed = tpopulation / NUMOF_DAYS_IN_MONTH;
 
     prog_box ("", 96);
     /* Get size of monthgraph array */
@@ -508,9 +513,9 @@ void load_city (char *cname)
 	x++;
     }
     prog_box ("", 98);
-    fscanf (ofile, "%d", &rockets_launched);
-    fscanf (ofile, "%d", &rockets_launched_success);
-    fscanf (ofile, "%d", &coal_survey_done);
+    fscanf (ofile, "%d", &(world->victory.rockets_launched));
+    fscanf (ofile, "%d", &(world->victory.rockets_launched_success));
+    fscanf (ofile, "%d", &(world->flags.coal_survey_done));
     
     for (x = 0; x < pbar_data_size; x++) {
 	for (p = 0; p < num_pbars; p++) {
@@ -532,15 +537,15 @@ void load_city (char *cname)
 
 
     fscanf (ofile, "%d", &cheat_flag);
-    fscanf (ofile, "%d", &total_pollution_deaths);
-    fscanf (ofile, "%f", &pollution_deaths_history);
-    fscanf (ofile, "%d", &total_starve_deaths);
-    fscanf (ofile, "%f", &starve_deaths_history);
-    fscanf (ofile, "%d", &total_unemployed_years);
-    fscanf (ofile, "%f", &unemployed_history);
-    fscanf (ofile, "%d", &max_pop_ever);
-    fscanf (ofile, "%d", &total_evacuated);
-    fscanf (ofile, "%d", &total_births);
+    fscanf (ofile, "%d", &(world->population.deaths.pollution.total));
+    fscanf (ofile, "%f", &(world->population.deaths.pollution.history));
+    fscanf (ofile, "%d", &(world->population.deaths.starve.total));
+    fscanf (ofile, "%f", &(world->population.deaths.starve.history));
+    fscanf (ofile, "%d", &(world->population.unemployment.years));
+    fscanf (ofile, "%f", &(world->population.unemployment.history));
+    fscanf (ofile, "%d", &(world->population.highest));
+    fscanf (ofile, "%d", &(world->population.evacuated));
+    fscanf (ofile, "%d", &(world->population.births));
     for (x = 0; x < NUMOF_MODULES; x++)
 	fscanf (ofile, "%d", &(module_help_flag[x]));
     fscanf (ofile, "%d", &x);	/* just dummy reads */
@@ -555,28 +560,43 @@ void load_city (char *cname)
 	given_scene[0] = 0;
     fscanf (ofile, "%128s", s);
     if (strncmp (given_scene, "dummy", 5) != 0)
-	sscanf (s, "%d", &highest_tech_level);
+	sscanf (s, "%d", &(world->tech.highest_level));
     else
-	highest_tech_level = 0;
+	world->tech.highest_level = 0;
     fgets (s, 80, ofile);		/* this is the CR */
 
     fgets (s, 80, ofile);
-    if (sscanf (s, "sust %d %d %d %d %d %d %d %d %d %d"
-		,&sust_dig_ore_coal_count, &sust_port_count
-		,&sust_old_money_count, &sust_old_population_count
-		,&sust_old_tech_count, &sust_fire_count
-		,&sust_old_money, &sust_old_population, &sust_old_tech
-		,&sustain_flag) == 10)
+    if (10 == sscanf( s, "sust %d %d %d %d %d %d %d %d %d %d",
+                          &(world->sustain.ore_coal_tip.count),
+                          &(world->sustain.port.count),
+                          &(world->sustain.money.count),
+                          &(world->sustain.population.count),
+                          &(world->sustain.tech.count),
+                          &(world->sustain.fire.count),
+                          &(world->sustain.money.previous),
+                          &(world->sustain.population.previous),
+                          &(world->sustain.tech.previous),
+                          &(world->sustain.flag) ))
     {
-	sust_dig_ore_coal_tip_flag = sust_port_flag = 1;
-	/* GCS FIX: Check after loading file if screen is drawn OK */
-	/* draw_sustainable_window (); */
+        world->sustain.ore_coal_tip.flag = TRUE;
+        world->sustain.port.flag = TRUE;
+
+        /* GCS FIX: Check after loading file if screen is drawn OK */
+        /* draw_sustainable_window (); */
     }
     else
-	sustain_flag = sust_dig_ore_coal_count = sust_port_count
-		= sust_old_money_count = sust_old_population_count
-		= sust_old_tech_count = sust_fire_count
-		= sust_old_money = sust_old_population = sust_old_tech = 0;
+    {
+	    world->sustain.flag = FALSE;
+	    world->sustain.ore_coal_tip.count = 0;
+	    world->sustain.port.count = 0;
+	    world->sustain.money.count = 0;
+	    world->sustain.population.count = 0;
+	    world->sustain.tech.count = 0;
+	    world->sustain.fire.count = 0;
+	    world->sustain.money.previous = 0;
+	    world->sustain.population.previous = 0;
+	    world->sustain.tech.previous = 0;
+    }
     fclose_read_gzipped (ofile);
 
     numof_shanties = count_groups (GROUP_SHANTY);
@@ -586,13 +606,13 @@ void load_city (char *cname)
     /* set up the university intake. */
     x = count_groups (GROUP_UNIVERSITY);
     if (x > 0) {
-	university_intake_rate
+	world->knowledge.university_intake_rate
 		= (count_groups (GROUP_SCHOOL) * 20) / x;
-	if (university_intake_rate > 100)
-	    university_intake_rate = 100;
+	if (world->knowledge.university_intake_rate > 100)
+	    world->knowledge.university_intake_rate = 100;
     }
     else
-	university_intake_rate = 50;
+	world->knowledge.university_intake_rate = 50;
     for (x = 0; x < WORLD_SIDE_LEN; x++)
     {
 	for (y = 0; y < WORLD_SIDE_LEN; y++)

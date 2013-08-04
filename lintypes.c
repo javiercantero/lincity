@@ -2076,7 +2076,7 @@ int get_group_cost (short group)
     return (int) ((float) main_groups[group].cost
 		  + ((float) main_groups[group].cost
 		     * ((float) main_groups[group].cost_mul
-			* (float) tech_level) 
+			* (float) world->tech.level) 
 		     / (float) MAX_TECH_LEVEL));
 }
 

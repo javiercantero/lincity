@@ -53,12 +53,12 @@ do_monument (int x, int y)
       MP_TYPE(x,y) = CST_MONUMENT_5;
       /* inc tech level only if fully built and tech less 
          than MONUMENT_TECH_EXPIRE */
-      if (tech_level < (MONUMENT_TECH_EXPIRE * 1000)
-	  && (total_time % MONUMENT_DAYS_PER_TECH) == 1)
+      if (world->tech.level < (MONUMENT_TECH_EXPIRE * 1000)
+	  && (world->time.total % MONUMENT_DAYS_PER_TECH) == 1)
 	{
-	  if (MP_INFO(x,y).int_3++ > (tech_level / 10000) - 2)
+	  if (MP_INFO(x,y).int_3++ > (world->tech.level / 10000) - 2)
 	    {
-	      tech_level++;
+	      world->tech.level++;
 	      MP_INFO(x,y).int_2++;
 	      MP_INFO(x,y).int_3 = 0;
 	    }

@@ -112,7 +112,7 @@ do_blacksmith (int x, int y)
 	  break;
 	}
     }
-  if (total_time % 100 == 0)
+  if (world->time.total % 100 == 0)
     {
       MP_INFO(x,y).int_6 = MP_INFO(x,y).int_5;
       MP_INFO(x,y).int_5 = 0;

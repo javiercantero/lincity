@@ -99,7 +99,7 @@ do_pottery (int x, int y)
     if (put_goods (x, y, MP_INFO(x,y).int_1) != 0)
       MP_INFO(x,y).int_1 = 0;
 
-  if (total_time % 100 == 0)
+  if (world->time.total % 100 == 0)
     {
       MP_INFO(x,y).int_6 = MP_INFO(x,y).int_5;
       MP_INFO(x,y).int_5 = 0;

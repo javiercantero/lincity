@@ -26,6 +26,6 @@
 void
 do_parkland (int x, int y)
 {
-  if (MP_POL(x,y) > 10 && (total_time & 1) == 0)
+  if (MP_POL(x,y) > 10 && (world->time.total & 1) == 0)
     MP_POL(x,y) -= 1;
 }

@@ -103,9 +103,9 @@ void inventory_market(int x, int y);
 void
 init_daily(void)
 {
-    population = 0;
-    starving_population = 0;
-    unemployed_population = 0;
+    world->population.total_day = 0;
+    world->population.starving_day = 0;
+    world->population.unemployed_day = 0;
     food_in_markets = 0;
     jobs_in_markets = 0;
     coal_in_markets = 0;
@@ -128,7 +128,7 @@ init_monthly(void)
     tore_in_markets = 0;
     tsteel_in_markets = 0;
     tunemployed_population = 0;
-    unnat_deaths = 0;
+    world->population.deaths.unnatural_month = 0;
 }
 
 void
@@ -224,8 +224,8 @@ add_daily_to_monthly(void)
 {
     data_last_month++;
     
-    tpopulation += population;
-    tstarving_population += starving_population;
+    tpopulation += world->population.total_day;
+    tstarving_population += world->population.starving_day;
     tfood_in_markets += food_in_markets / 1000;
     tjobs_in_markets += jobs_in_markets / 1000;
     tcoal_in_markets += coal_in_markets / 250;
@@ -233,5 +233,5 @@ add_daily_to_monthly(void)
     tore_in_markets += ore_in_markets / 500;
     tsteel_in_markets += steel_in_markets / 25;
     twaste_in_markets += waste_in_markets;
-    tunemployed_population += unemployed_population;
+    tunemployed_population += world->population.unemployed_day;
 }

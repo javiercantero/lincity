@@ -559,7 +559,7 @@ mps_global_other_costs (void)
     mps_store_title(i++,_("Other Costs"));
 
     /* Don't write year if it's negative. */
-    year = (total_time / NUMOF_DAYS_IN_YEAR) - 1;
+    year = (world->time.total / NUMOF_DAYS_IN_YEAR) - 1;
     if (year >= 0) {
 	mps_store_sd(i++, _("For year"), year);
     }
@@ -591,15 +591,15 @@ void
 mps_global_housing (void)
 {
     int i = 0;
-    int tp = housed_population + people_pool;
+    int tp = world->population.housed + world->population.pool;
 
     mps_store_title(i++,_("Population"));
     i++;
     mps_store_sd(i++,_("Total"),tp);
-    mps_store_sd(i++,_("Housed"),housed_population);
-    mps_store_sd(i++,_("Homeless"),people_pool);
+    mps_store_sd(i++,_("Housed"), world->population.housed);
+    mps_store_sd(i++,_("Homeless"), world->population.pool);
     mps_store_sd(i++,_("Shanties"),numof_shanties);
-    mps_store_sd(i++,_("Unn Dths"),unnat_deaths);
+    mps_store_sd(i++,_("Unn Dths"), world->population.deaths.unnatural_month);
     mps_store_title(i++,_("Unemployment"));
     mps_store_sd(i++,_("Claims"),tunemployed_population);
     mps_store_sfp(i++,_("Rate"),

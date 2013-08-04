@@ -220,7 +220,7 @@ update_main_screen (int full_refresh)
 	    update_main_screen_health_cover ();
 	    break;
 	case MINI_SCREEN_COAL_FLAG:
-	    if (coal_survey_done) {
+	    if (world->flags.coal_survey_done) {
 		update_main_screen_coal ();
 	    } else {
 		update_main_screen_normal (full_refresh);
@@ -416,9 +416,9 @@ update_main_screen_starve (void)
 		yy = MP_INFO(x,y).int_2;
 	    }
 	    if (GROUP_IS_RESIDENCE(MP_GROUP(xx,yy))) {
-		if ((total_time - MP_INFO(x,y).int_2) < 20)
+		if ((world->time.total - MP_INFO(x,y).int_2) < 20)
 		    col = red (28);
-		else if ((total_time - MP_INFO(x,y).int_2) < 100)
+		else if ((world->time.total - MP_INFO(x,y).int_2) < 100)
 		    col = red (14);
 		else
 		    col = green (20);
@@ -896,7 +896,7 @@ mini_map_handler(int x, int y, int button)
 	mini_screen_help ();
 	return;
     }
-    if (mini_screen_flags == MINI_SCREEN_COAL_FLAG && !coal_survey_done) {
+    if (mini_screen_flags == MINI_SCREEN_COAL_FLAG && !world->flags.coal_survey_done) {
 	if (yn_dial_box (_("Coal survey"),
 			 _("This will cost you 1 million"),
 			 _("After that it's is free to call again"),
@@ -1302,9 +1302,9 @@ void draw_mini_screen_starve (void)
     for (y = 0; y < WORLD_SIDE_LEN; y++) {
 	for (x = 0; x < WORLD_SIDE_LEN; x++) {
 	    if (GROUP_IS_RESIDENCE(MP_GROUP(x,y))) {
-		if ((total_time - MP_INFO(x,y).int_2) < 20)
+		if ((world->time.total - MP_INFO(x,y).int_2) < 20)
 		    col = red (28);
-		else if ((total_time - MP_INFO(x,y).int_2) < 100)
+		else if ((world->time.total - MP_INFO(x,y).int_2) < 100)
 		    col = red (14);
 		else
 		    col = green (20);
@@ -1327,7 +1327,7 @@ draw_mini_screen_coal (void)
     mini_screen_flags = MINI_SCREEN_COAL_FLAG;
     draw_ms_text (_("Coal Reserve"));
     draw_ms_button (ms_coal_button_graphic);
-    if (coal_survey_done) {
+    if (world->flags.coal_survey_done) {
 	for (y = 0; y < WORLD_SIDE_LEN; y++) {
 	    for (x = 0; x < WORLD_SIDE_LEN; x++) {
 		if (MP_INFO(x,y).coal_reserve == 0)
@@ -1406,7 +1406,7 @@ void draw_mini_screen_ocost (void)
     Fgl_fillbox (b->x, b->y,
 		 WORLD_SIDE_LEN, WORLD_SIDE_LEN, green (12));
     Fgl_setfontcolors (green (12), TEXT_FG_COLOUR);
-    sprintf (s, "OC yr %04d", (total_time / NUMOF_DAYS_IN_YEAR) - 1);
+    sprintf (s, "OC yr %04d", (world->time.total / NUMOF_DAYS_IN_YEAR) - 1);
     Fgl_write (b->x + 10, b->y + 2, s);
 
     if (ly_interest > 19999)
@@ -1680,14 +1680,14 @@ void print_stats (void)
     hide_mouse ();
 #endif
 
-    if (total_time % NUMOF_DAYS_IN_MONTH == (NUMOF_DAYS_IN_MONTH - 1)) {
+    if (world->time.total % NUMOF_DAYS_IN_MONTH == (NUMOF_DAYS_IN_MONTH - 1)) {
 	update_scoreboard.monthly = 1;
     }
-    if (total_time % NUMOF_DAYS_IN_YEAR == (NUMOF_DAYS_IN_YEAR - 1)) {
+    if (world->time.total % NUMOF_DAYS_IN_YEAR == (NUMOF_DAYS_IN_YEAR - 1)) {
 	update_scoreboard.yearly_1 = 1;
 	update_scoreboard.money = 1;
     }
-    if ((total_time % NUMOF_DAYS_IN_YEAR) == 0) {
+    if ((world->time.total % NUMOF_DAYS_IN_YEAR) == 0) {
 	update_scoreboard.yearly_2 = 1;
     }
     if (real_time > mappoint_stats_time) {
@@ -1699,11 +1699,11 @@ void print_stats (void)
 	update_scoreboard.mini = 1;
 	mini_screen_time = real_time + 1000;
     }
-    if ((total_time % NUMOF_DAYS_IN_YEAR) == 0) {
+    if ((world->time.total % NUMOF_DAYS_IN_YEAR) == 0) {
 	calculate_time_for_year ();
 	print_time_for_year ();
     }
-    if (total_time % NUMOF_DAYS_IN_MONTH == 1) {
+    if (world->time.total % NUMOF_DAYS_IN_MONTH == 1) {
 	update_scoreboard.date = 1;
     }
 
@@ -1765,7 +1765,7 @@ void print_stats (void)
 	do_monthgraph (monthgraph_full_update);
 
 #if defined (STATS_WINDOW)
-	sprintf (s, "%5d ", housed_population + people_pool);
+	sprintf (s, "%5d ", world->population.housed + world->population.pool);
 	Fgl_write (STATS_X + 8 * 11, STATS_Y, s);
 	i = ((tstarving_population / NUMOF_DAYS_IN_MONTH)
 	     * 1000) / ((tpopulation / NUMOF_DAYS_IN_MONTH) + 1);
@@ -1779,9 +1779,9 @@ void print_stats (void)
 	Fgl_write (STATS_X + 8 * 11, STATS_Y + 24, s);
 	sprintf (s, "%5d ", numof_shanties);
 	Fgl_write (STATS_X + 8 * (12 + 20), STATS_Y + 24, s);
-	sprintf (s, "%5.1f ", (float) tech_level * 100.0 / MAX_TECH_LEVEL);
+	sprintf (s, "%5.1f ", (float) world->tech.level * 100.0 / MAX_TECH_LEVEL);
 	Fgl_write (STATS_X + (20 + 12) * 8, STATS_Y, s);
-	sprintf (s, "%5d ", unnat_deaths);
+	sprintf (s, "%5d ", world->population.deaths.unnatural_month);
 	Fgl_write (STATS_X + (20 + 12) * 8, STATS_Y + 8, s);
 #endif
 
@@ -1825,19 +1825,19 @@ void print_total_money (void)
     size_t count;
 
     count = sprintf(str, _("Money: "));
-    count += commify(str + count, (MONEY_W / CHAR_WIDTH) - count, total_money);
+    count += commify(str + count, (MONEY_W / CHAR_WIDTH) - count, world->money.total);
     count += snprintf(str + count, (MONEY_W / CHAR_WIDTH) - count, 
 		      "                                            ");
     str[MONEY_W / CHAR_WIDTH] = '\0';
 
-    if (total_money < 0)
+    if (world->money.total < 0)
 	Fgl_setfontcolors (TEXT_BG_COLOUR, red (30));
 
 /*     Fgl_putbox (b->x, b->y, 16, 16, money_pbar_graphic); */
     //Fgl_write (b->x + 16, b->y, str);
     Fgl_write (b->x + 32, b->y, str);
 
-    if (total_money < 0)
+    if (world->money.total < 0)
 	Fgl_setfontcolors (TEXT_BG_COLOUR, TEXT_FG_COLOUR);
 }
 
@@ -1845,8 +1845,8 @@ void print_date (void)
 {
     char s[50];
     Rect* b = &scr.date;
-    sprintf (s, _("Date %s %04d "), current_month(total_time),
-	     current_year(total_time));
+    sprintf (s, _("Date %s %04d "), current_month(world->time.total),
+	     current_year(world->time.total));
     Fgl_write (b->x, b->y, s);
 #if defined (WIN32)
     UpdateWindow (display.hWnd);
@@ -2086,7 +2086,7 @@ do_history_linegraph (int draw)
 	/* max out at 32  */
 	if (monthgraph_nojobs[0] >= mg->h)
 	    monthgraph_nojobs[0] = mg->h - 1;
-	monthgraph_ppool[0] = ((int) (sqrt (people_pool + 1) * mg->h) / 35);
+	monthgraph_ppool[0] = ((int) (sqrt (world->population.pool + 1) * mg->h) / 35);
 	if (monthgraph_ppool[0] < 0)
 	    monthgraph_ppool[0] = 0;
 	if (monthgraph_ppool[0] >= mg->h)
@@ -2525,36 +2525,36 @@ do_sust_barchart (int draw)
 		     3, SUST_BAR_H, SUST_FIRE_COL);
       }
     }
-  if (sust_dig_ore_coal_count >= SUST_ORE_COAL_YEARS_NEEDED
-      && sust_port_count >= SUST_PORT_YEARS_NEEDED
-      && sust_old_money_count >= SUST_MONEY_YEARS_NEEDED
-      && sust_old_population_count >= SUST_POP_YEARS_NEEDED
-      && sust_old_tech_count >= SUST_TECH_YEARS_NEEDED
-      && sust_fire_count >= SUST_FIRE_YEARS_NEEDED)
+  if (world->sustain.ore_coal_tip.count >= SUST_ORE_COAL_YEARS_NEEDED
+      && world->sustain.port.count >= SUST_PORT_YEARS_NEEDED
+      && world->sustain.money.count >= SUST_MONEY_YEARS_NEEDED
+      && world->sustain.population.count >= SUST_POP_YEARS_NEEDED
+      && world->sustain.tech.count >= SUST_TECH_YEARS_NEEDED
+      && world->sustain.fire.count >= SUST_FIRE_YEARS_NEEDED)
     {
-      if (sustain_flag == 0)
+      if (world->sustain.flag == FALSE)
 	ok_dial_box ("sustain.mes", GOOD, 0L);
-      sustain_flag = 1;
+      world->sustain.flag = TRUE;
     }
   else
-    sustain_flag = 0;
+    world->sustain.flag = FALSE;
   if (draw) {
-    draw_sustline (0, sust_dig_ore_coal_count,
+    draw_sustline (0, world->sustain.ore_coal_tip.count,
 		   SUST_ORE_COAL_YEARS_NEEDED, SUST_ORE_COAL_COL);
     draw_sustline ((SUST_BAR_H + SUST_BAR_GAP_Y),
-		   sust_port_count,
+		   world->sustain.port.count,
 		   SUST_PORT_YEARS_NEEDED, SUST_PORT_COL);
     draw_sustline (2*(SUST_BAR_H + SUST_BAR_GAP_Y),
-		   sust_old_money_count,
+		   world->sustain.money.count,
 		   SUST_MONEY_YEARS_NEEDED, SUST_MONEY_COL);
     draw_sustline (3*(SUST_BAR_H + SUST_BAR_GAP_Y),
-		   sust_old_population_count,
+		   world->sustain.population.count,
 		   SUST_POP_YEARS_NEEDED, SUST_POP_COL);
     draw_sustline (4*(SUST_BAR_H + SUST_BAR_GAP_Y),
-		   sust_old_tech_count,
+		   world->sustain.tech.count,
 		   SUST_TECH_YEARS_NEEDED, SUST_TECH_COL);
     draw_sustline (5*(SUST_BAR_H + SUST_BAR_GAP_Y),
-		   sust_fire_count,
+		   world->sustain.fire.count,
 		   SUST_FIRE_YEARS_NEEDED, SUST_FIRE_COL);
   }
 

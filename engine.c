@@ -69,12 +69,12 @@ int no_credit_build (int selected_type);
 int 
 adjust_money(int value)
 {
-    total_money += value;
+    world->money.total += value;
     print_total_money();
     mps_update();
-    update_pbar (PMONEY, total_money, 0);
+    update_pbar (PMONEY, world->money.total, 0);
     refresh_pbars(); /* This could be more specific */
-    return total_money;
+    return world->money.total;
 }
 
 int is_real_river (int x, int y);
@@ -82,7 +82,7 @@ int is_real_river (int x, int y);
 int
 no_credit_build (int selected_group)
 {
-  if (total_money >= 0)
+  if (world->money.total >= 0)
     return (0);
 
 #ifdef GROUP_POWER_SOURCE_NO_CREDIT
@@ -233,7 +233,7 @@ int place_item (int x, int y, short type)
 
     /* Make sure that the correct windmill graphic shows up */
     if (group == GROUP_WINDMILL) {
-	if (tech_level > MODERN_WINDMILL_TECH) {
+	if (world->tech.level > MODERN_WINDMILL_TECH) {
 	    type = CST_WINDMILL_1_R;
 	} else {
 	    type = CST_WINDMILL_1_W;
@@ -241,13 +241,13 @@ int place_item (int x, int y, short type)
     }
 
     if (group == GROUP_SOLAR_POWER || group == GROUP_WINDMILL) {
-	MP_INFO(x,y).int_2 = tech_level;
+	MP_INFO(x,y).int_2 = world->tech.level;
 	let_one_through = 1;
     }
     else if (group == GROUP_RECYCLE || group == GROUP_COAL_POWER)
-	MP_INFO(x,y).int_4 = tech_level;
+	MP_INFO(x,y).int_4 = world->tech.level;
     else if (group == GROUP_ORGANIC_FARM)
-	MP_INFO(x,y).int_1 = tech_level;
+	MP_INFO(x,y).int_1 = world->tech.level;
     else if (group == GROUP_TRACK
 	     || group == GROUP_ROAD
 	     || group == GROUP_RAIL)
@@ -1094,34 +1094,34 @@ void remove_people (int num)
 	      // f = 1;
 	      f |= (MP_INFO(x,y).population > 0);
 	      num--;
-	      total_evacuated++;
+	      world->population.evacuated++;
 	    }
   }
-  while (num > 0 && people_pool > 0) {
+  while (num > 0 && world->population.pool > 0) {
       num--;
-      total_evacuated++;
-      people_pool--;
+      world->population.evacuated++;
+      world->population.pool--;
   }
 #endif
 
   int x, y;
   /* reset housed population so that we can display it correctly */
-  housed_population = 1;
-  while (housed_population && (num > 0)) {
-      housed_population = 0;
+  world->population.housed = 1;
+  while (world->population.housed && (num > 0)) {
+      world->population.housed = 0;
       for (y = 0; y < WORLD_SIDE_LEN; y++)
 	for (x = 0; x < WORLD_SIDE_LEN; x++)
 	  if (GROUP_IS_RESIDENCE(MP_GROUP(x,y)) && MP_INFO(x,y).population > 0) {
 	      MP_INFO(x,y).population--;
-	      housed_population += MP_INFO(x,y).population;
+	      world->population.housed += MP_INFO(x,y).population;
 	      num--;
-	      total_evacuated++;
+	      world->population.evacuated++;
 	  }
   }
-  while (num > 0 && people_pool > 0) {
+  while (num > 0 && world->population.pool > 0) {
       num--;
-      total_evacuated++;
-      people_pool--;
+      world->population.evacuated++;
+      world->population.pool--;
   }
 
   refresh_population_text ();
@@ -1134,13 +1134,13 @@ void remove_people (int num)
 	ok_dial_box ("launch-gone-mail.mes", GOOD, 0L);
       else
 	ok_dial_box ("launch-gone.mes", GOOD, 0L);
-      housed_population = 0;
+      world->population.housed = 0;
     }
 #endif
 
   /* Note that the previous test was inaccurate.  There could be 
      exactly 1000 people left. */
-  if (!housed_population && !people_pool) {
+  if (!world->population.housed && !world->population.pool) {
     ok_dial_box ("launch-gone.mes", GOOD, 0L);
   }
 }
@@ -1401,7 +1401,7 @@ void do_bulldoze_area (short fill, int xx, int yy)
   else if (MP_GROUP(x,y) == GROUP_COMMUNE)
     numof_communes--;
 
-  people_pool += MP_INFO(x,y).population;
+  world->population.pool += MP_INFO(x,y).population;
   clear_mappoint (fill, x, y);
   if (size > 1)			/* do size 2 */
     {
@@ -1517,8 +1517,8 @@ is_real_river (int x, int y)
 void 
 do_coal_survey (void)
 {
-    if (coal_survey_done == 0) {
+    if (world->flags.coal_survey_done == FALSE) {
 	adjust_money(-1000000);
-	coal_survey_done = 1;
+	world->flags.coal_survey_done = TRUE;
     }
 }

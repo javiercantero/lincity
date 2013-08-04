@@ -71,41 +71,41 @@ typedef struct
     struct
     {
         /* FIXME: boolean */ int flag;
-        /* FIXME: unsigned */ int counter;
+        /* FIXME: unsigned */ int count;
 
     } ore_coal_tip;
 
     struct
     {
         /* FIXME: boolean */ int flag;
-        /* FIXME: unsigned */ int counter;
+        /* FIXME: unsigned */ int count;
 
     } port;
 
     struct
     {
-        int last_value; /* same type than money.total */
-        /* FIXME: unsigned */ int counter;
+        int previous; /* same type than money.total */
+        /* FIXME: unsigned */ int count;
 
     } money;
 
     struct
     {
-        int last_value; /* same type than population */
-        /* FIXME: unsigned */ int counter;
+        int previous; /* same type than population */
+        /* FIXME: unsigned */ int count;
 
     } population;
 
     struct
     {
-        int last_value; /* same type than tech.level */
-        /* FIXME: unsigned */ int counter;
+        int previous; /* same type than tech.level */
+        /* FIXME: unsigned */ int count;
 
     } tech;
 
     struct
     {
-        /* FIXME: unsigned */ int counter;
+        /* FIXME: unsigned */ int count;
 
     } fire;
 
@@ -115,29 +115,24 @@ typedef struct
 {
     struct
     {
-        /* FIXME: unsigned */ int total;
+        /* FIXME: unsigned */ int total;  /* game time */
 
     } time;
 
     struct
     {
-        /* FIXME: unsigned */ int total;
-        /* FIXME: unsigned */ int starving;
+        /* FIXME: unsigned */ int total_day; /* see Note (1) */
+        /* FIXME: unsigned */ int starving_day; /* see Note (1) */
         /* FIXME: unsigned */ int housed;
-        /* FIXME: unsigned */ int unemployed;
+        /* FIXME: unsigned */ int unemployed_day; /* see Note (1) */
         /* FIXME: unsigned */ int pool;
-        /* FIXME: unsigned */ int max_ever;
-        /* FIXME: unsigned */ int evacuated;
+        /* FIXME: unsigned */ int highest; /* see Note (2) */
+        /* FIXME: unsigned */ int evacuated; /* see Note (2) */
+        /* FIXME: unsigned */ int births; /* see Note (2) */
 
         struct
         {
-            /* FIXME: unsigned */ int total;
-
-        } births;
-
-        struct
-        {
-            /* FIXME: unsigned */ int days;
+            /* FIXME: unsigned */ int days; /* see Note (3) */
             /* FIXME: unsigned */ int years;
             float history;
 
@@ -145,7 +140,7 @@ typedef struct
 
         struct
         {
-            /* FIXME: unsigned */ int unnat_month;
+            /* FIXME: unsigned */ int unnatural_month; /* see Note (3) */
 
             struct
             {
@@ -168,21 +163,21 @@ typedef struct
     struct
     {
         int total; /* can be negative */
-        /* FIXME: unsigned */ int dole_rate;
+        /* FIXME: unsigned */ int dole_rate; /* see Note (4) */
 
         struct
         {
-            /* FIXME: unsigned */ int income;
-            /* FIXME: unsigned */ int exports;
-            /* FIXME: unsigned */ int goods;
-            /* FIXME: unsigned */ int coal;
+            /* FIXME: unsigned */ int income; /* see Note (4) */
+            /* FIXME: unsigned */ int exports; /* see Note (5) */
+            /* FIXME: unsigned */ int goods; /* see Note (4) */
+            /* FIXME: unsigned */ int coal; /* see Note (4) */
 
         } tax_rate;
 
         struct
         {
             /* FIXME: unsigned */ int imports;
-            /* FIXME: unsigned */ int transport;
+            /* FIXME: unsigned */ int transport; /* see Note (4) */
 
         } cost_rate;
 
@@ -202,10 +197,10 @@ typedef struct
 
     struct
     {
-        Resource_State power; /* not used */
-        Resource_State coal;
-        Resource_State goods;
-        Resource_State ore;
+        Resource_State power; /* see Note (5) */
+        Resource_State coal; /* see Note (6) */
+        Resource_State goods; /* see Note (6) */
+        Resource_State ore; /* see Note (6) */
 
     } resources;
 
@@ -225,45 +220,28 @@ typedef struct
     } victory;
 
 } World_State;
+/*
+ * Notes:
+ *
+ * (1) Accumulator -- Not stored in game file (ldsvguts.c)
+ * (2) Only used in the game file (ldsvguts.c) and in compile_results() of main.c
+ * (3) Not stored in game file
+ * (4) Its value doesn't change
+ * (5) Not used, only stored in game file
+ * (6) Only modified, and stored in game file, not used for anything
+ */
 
-#if 0
 extern World_State world_state;
 extern World_State* world;
-#endif
 
-extern int sust_dig_ore_coal_tip_flag, sust_port_flag, sustain_flag;
-extern int sust_dig_ore_coal_count, sust_port_count, sust_old_money;
-extern int sust_old_money_count, sust_old_population, sust_old_population_count;
-extern int sust_old_tech, sust_old_tech_count, sust_fire_count;
-
-extern int total_time;    /* game time */
-
-extern int population, starving_population;
-extern int housed_population;
-extern int unemployed_population, people_pool;
 extern Map_Coord substations[];
 extern unsigned int numof_substations;
 extern Map_Coord markets[];
 extern unsigned int numof_markets;
-extern int numof_health_centres, max_pop_ever, total_evacuated, total_births;
-
-extern int total_money, income_tax_rate, coal_tax_rate;
-extern int dole_rate, transport_cost_rate;
-extern int goods_tax_rate;
-extern int export_tax_rate, import_cost_rate;
-extern int tech_level, highest_tech_level, unnat_deaths;
-
-extern int total_pollution_deaths, total_starve_deaths, total_unemployed_days;
-extern int total_unemployed_years;
-extern float pollution_deaths_history, starve_deaths_history;
-extern float unemployed_history;
-
-extern int university_intake_rate;
-extern int power_made, power_used, coal_made, coal_used;
-extern int goods_made, goods_used, ore_made, ore_used;
-extern int rockets_launched, rockets_launched_success;
-extern int coal_survey_done;
+/*extern int numof_health_centres;*/ /* Not used */
 
 /*extern int selected_type_cost;*/ /* Not used */
+
+void world_init( World_State* world );
 
 #endif /* __engglobs_h__ */

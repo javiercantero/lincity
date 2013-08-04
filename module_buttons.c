@@ -268,7 +268,7 @@ update_avail_modules (int popup)
     {
 	int g = inv_sbut(i);
 	f = module_tflag[i];
-	if (tech_level >= main_groups[g].tech * MAX_TECH_LEVEL/1000)
+	if (world->tech.level >= main_groups[g].tech * MAX_TECH_LEVEL/1000)
 	{
 	    if (module_tflag[i] == 0)
 		if (popup)
@@ -276,7 +276,7 @@ update_avail_modules (int popup)
 	    f = 1;
 	}
 	else if (module_tflag[i] != 0 &&
-		 tech_level
+		 world->tech.level
                  < ((main_groups[g].tech - (main_groups[g].tech/10)) * MAX_TECH_LEVEL/1000) )
 	    f = 0;
 	if (module_tflag[i] != f)
@@ -288,7 +288,7 @@ update_avail_modules (int popup)
     /* XXX: Why is this here? Should be with rest of tech gained messages! */
     /* GCS: Because the modern windmill tech reuses the same module number
        as the primative windmill? */
-    if (tech_level > MODERN_WINDMILL_TECH && modern_windmill_flag == 0)
+    if (world->tech.level > MODERN_WINDMILL_TECH && modern_windmill_flag == 0)
     {
 	ok_dial_box ("mod_wind_up.mes", GOOD, 0L);
 	modern_windmill_flag = 1;

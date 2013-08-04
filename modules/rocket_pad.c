@@ -98,7 +98,7 @@ do_rocket_pad (int x, int y)
 	MP_INFO(x,y).int_2 -= ROCKET_PAD_GOODS_STORE;
 	MP_INFO(x,y).int_3 -= ROCKET_PAD_STEEL_STORE;
 	MP_INFO(x,y).int_4++;
-	goods_used += ROCKET_PAD_GOODS_STORE;
+	world->resources.goods.used += ROCKET_PAD_GOODS_STORE;
 
     }
 #endif
@@ -154,14 +154,14 @@ void
 launch_rocket (int x, int y)
 {
     int i, r, xx, yy, xxx, yyy;
-    rockets_launched++;
+    world->victory.rockets_launched++;
     MP_TYPE(x,y) = CST_ROCKET_FLOWN;
     update_main_screen (0);
     r = rand () % MAX_TECH_LEVEL;
-    if (r > tech_level || rand () % 100 > (rockets_launched * 15 + 25)) {
+    if (r > world->tech.level || rand () % 100 > (world->victory.rockets_launched * 15 + 25)) {
 	/* the launch failed */
 	display_rocket_result_dialog (ROCKET_LAUNCH_BAD);
-	rockets_launched_success = 0;
+	world->victory.rockets_launched_success = 0;
 	xx = ((rand () % 40) - 20) + x;
 	yy = ((rand () % 40) - 20) + y;
 	for (i = 0; i < 20; i++) {
@@ -177,10 +177,10 @@ launch_rocket (int x, int y)
 	    }
 	}
     } else {
-	rockets_launched_success++;
-	if (rockets_launched_success > 5) {
+	world->victory.rockets_launched_success++;
+	if (world->victory.rockets_launched_success > 5) {
 	    remove_people (1000);
-	    if (people_pool || housed_population)
+	    if (world->population.pool || world->population.housed)
 	      display_rocket_result_dialog (ROCKET_LAUNCH_EVAC);
 	} else {
 	    display_rocket_result_dialog (ROCKET_LAUNCH_GOOD);

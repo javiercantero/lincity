@@ -163,7 +163,7 @@ do_industry_l (int x, int y)
     {
       goods += INDUSTRY_L_MAKE_GOODS;
       MP_INFO(x,y).int_3 -= INDUSTRY_L_ORE_USED;
-      ore_used += INDUSTRY_L_ORE_USED;
+      world->resources.ore.used += INDUSTRY_L_ORE_USED;
       MP_INFO(x,y).int_5 -= INDUSTRY_L_JOBS_USED;
       MP_POL(x,y) += INDUSTRY_L_POLLUTION;
 
@@ -182,7 +182,7 @@ do_industry_l (int x, int y)
 	  MP_INFO(x,y).flags |= FLAG_POWERED;
 	  /* and use more ore */
 	  MP_INFO(x,y).int_3 -= INDUSTRY_L_ORE_USED;
-	  ore_used += INDUSTRY_L_ORE_USED;
+	  world->resources.ore.used += INDUSTRY_L_ORE_USED;
 	}
       else
 	MP_INFO(x,y).flags &= (0xffffffff - FLAG_POWERED);
@@ -190,7 +190,7 @@ do_industry_l (int x, int y)
 
   MP_INFO(x,y).int_1 += goods;
   MP_INFO(x,y).int_2 += goods;
-  goods_made += goods;
+  world->resources.goods.made += goods;
 
   /* now sell the goods to the road/rail/track */
   if (MP_GROUP(x,y - 1) == GROUP_ROAD 
@@ -243,7 +243,7 @@ do_industry_l (int x, int y)
     }
 
   /* now choose a graphic every month */
-  if ((total_time % NUMOF_DAYS_IN_MONTH) == NUMOF_DAYS_IN_MONTH - 1)
+  if ((world->time.total % NUMOF_DAYS_IN_MONTH) == NUMOF_DAYS_IN_MONTH - 1)
     {
       MP_INFO(x,y).int_6 = (MP_INFO(x,y).int_1)
 	/ (INDUSTRY_L_MAKE_GOODS * 8);

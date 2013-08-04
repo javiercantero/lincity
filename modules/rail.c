@@ -53,13 +53,13 @@ do_rail (int x, int y)
     int *pol = &MP_POL(x,y);
     Map_Point_Info *minfo = &MP_INFO(x,y);
     transport_cost += 3;
-    if (total_time % DAYS_PER_RAIL_POLLUTION == 0)
+    if (world->time.total % DAYS_PER_RAIL_POLLUTION == 0)
 	*pol += RAIL_POLLUTION;
-    if ((total_time & RAIL_GOODS_USED_MASK) == 0 && minfo->int_4 > 0) {
+    if ((world->time.total & RAIL_GOODS_USED_MASK) == 0 && minfo->int_4 > 0) {
 	--minfo->int_4;
 	++minfo->int_7;
     }
-    if ((total_time & RAIL_STEEL_USED_MASK) == 0 && minfo->int_6 > 0) {
+    if ((world->time.total & RAIL_STEEL_USED_MASK) == 0 && minfo->int_6 > 0) {
 	--minfo->int_6;
 	++minfo->int_7;
     }

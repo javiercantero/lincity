@@ -248,6 +248,8 @@ int lincity_main (int argc, char *argv[])
     set_vga_mode ();
 #endif
 
+    world_init( world );
+
     initialize_monthgraph ();
     init_mouse_registry ();
     init_mini_map_mouse ();
@@ -484,7 +486,7 @@ process_keystrokes (int key)
 #ifdef DEBUG_KEYS
     case 'e':
 	if (cheat () != 0)
-	    people_pool += 100;
+	    world->population.pool += 100;
 	break;
 
     case 'd':
@@ -498,12 +500,12 @@ process_keystrokes (int key)
 
     case 't':
 	if (cheat () != 0)
-	    tech_level += 1000;
+	    world->tech.level += 1000;
 	break;
 
     case 'T':
 	if (cheat () != 0)
-	    tech_level += 10000;
+	    world->tech.level += 10000;
 	break;
 
     case 'm':
@@ -744,28 +746,28 @@ int compile_results (void)
     fprintf (outf, _("Game statistics from LinCity Version %s\n"), VERSION);
     if (strlen (given_scene) > 3)
 	fprintf (outf, _("Initial loaded scene - %s\n"), given_scene);
-    if (sustain_flag)
+    if (world->sustain.flag)
 	fprintf (outf, _("Economy is sustainable\n"));
     fprintf (outf, _("Population  %d  of which  %d  are not housed.\n")
-	     ,housed_population + people_pool, people_pool);
+	     , world->population.housed + world->population.pool, world->population.pool);
     fprintf (outf,
 	     _("Max population %d  Number evacuated %d Total births %d\n")
-	     ,max_pop_ever, total_evacuated, total_births);
+	     , world->population.highest, world->population.evacuated, world->population.births);
     fprintf (outf,
 	     _(" Date  %s %04d   Money %8d   Tech-level %5.1f (%5.1f)\n"),
-	     current_month(total_time), current_year(total_time), total_money,
-	     (float) tech_level * 100.0 / MAX_TECH_LEVEL,
-	     (float) highest_tech_level * 100.0 / MAX_TECH_LEVEL);
+	     current_month(world->time.total), current_year(world->time.total), world->money.total,
+	     (float) world->tech.level * 100.0 / MAX_TECH_LEVEL,
+	     (float) world->tech.highest_level * 100.0 / MAX_TECH_LEVEL);
     fprintf (outf,
 	     _(" Deaths by starvation %7d   History %8.3f\n"),
-	     total_starve_deaths, starve_deaths_history);
+	     world->population.deaths.starve.total, world->population.deaths.starve.history);
     fprintf (outf,
 	     _("Deaths from pollution %7d   History %8.3f\n"),
-	     total_pollution_deaths, pollution_deaths_history);
+	     world->population.deaths.pollution.total, world->population.deaths.pollution.history);
     fprintf (outf, _("Years of unemployment %7d   History %8.3f\n"),
-	     total_unemployed_years, unemployed_history);
+	     world->population.unemployment.years, world->population.unemployment.history);
     fprintf (outf, _("Rockets launched %2d  Successful launches %2d\n"),
-	     rockets_launched, rockets_launched_success);
+	     world->victory.rockets_launched, world->victory.rockets_launched_success);
     fprintf (outf, "\n");
     fprintf (outf, _("    Residences %4d         Markets %4d            Farms %4d\n"),
 	     group_count[GROUP_RESIDENCE_LL] + 

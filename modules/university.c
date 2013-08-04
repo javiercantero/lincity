@@ -71,15 +71,15 @@ do_university (int x, int y)
     {
       MP_INFO(x,y).int_1 -= UNIVERSITY_JOBS;
       MP_INFO(x,y).int_2 -= UNIVERSITY_GOODS;
-      goods_used += UNIVERSITY_GOODS;
-      if (university_intake_rate >= (total_time % 100))
+      world->resources.goods.used += UNIVERSITY_GOODS;
+      if (world->knowledge.university_intake_rate >= (world->time.total % 100))
 	{
 	  MP_INFO(x,y).int_3 += UNIVERSITY_TECH_MADE;
-	  tech_level += UNIVERSITY_TECH_MADE;
+	  world->tech.level += UNIVERSITY_TECH_MADE;
 	  MP_INFO(x,y).int_4++;
 	}
     }
-  if (total_time % 100 == 0)
+  if (world->time.total % 100 == 0)
     {
       MP_INFO(x,y).int_5 = MP_INFO(x,y).int_4;
       MP_INFO(x,y).int_4 = 0;

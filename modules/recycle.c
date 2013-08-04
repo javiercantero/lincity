@@ -100,10 +100,10 @@ do_recycle (int x, int y)
 	if (i > (GOODS_RECYCLED * 8) / 10)
 	  i = (GOODS_RECYCLED * 8) / 10;
 	MP_INFO(x,y).int_1 += i;
-	ore_made += i;
+	world->resources.ore.made += i;
 	MP_INFO(x,y).int_5++;
       }
-  if (total_time % 100 == 0)
+  if (world->time.total % 100 == 0)
     {
       MP_INFO(x,y).int_6 = MP_INFO(x,y).int_5;
       MP_INFO(x,y).int_5 = 0;

@@ -57,44 +57,53 @@ int diffgraph_population[MAPPOINT_STATS_W];
 int diff_old_population;
 #endif
 
-#if 0
 World_State world_state;
 World_State* world = &world_state;
-#endif
 
-int sust_dig_ore_coal_tip_flag = 0, sust_port_flag = 0, sustain_flag = 0;
-int sust_dig_ore_coal_count = 0, sust_port_count = 0, sust_old_money = 0;
-int sust_old_money_count = 0, sust_old_population = 0, sust_old_population_count = 0;
-int sust_old_tech = 0, sust_old_tech_count = 0, sust_fire_count = 0;
-
-int total_time = 0;    /* game time */
-
-int population, starving_population;
-int housed_population;
-int unemployed_population, people_pool;
 Map_Coord substations[MAX_NUMOF_SUBSTATIONS];
 unsigned int numof_substations = 0;
 Map_Coord markets[MAX_NUMOF_MARKETS];
 unsigned int numof_markets = 0;
-int numof_health_centres, max_pop_ever = 0, total_evacuated = 0, total_births = 0;
-
-int total_money = 0, income_tax_rate, coal_tax_rate;
-int dole_rate, transport_cost_rate;
-int goods_tax_rate;
-int export_tax_rate, import_cost_rate;
-int tech_level, highest_tech_level, unnat_deaths;
-
-int total_pollution_deaths = 0, total_starve_deaths = 0, total_unemployed_days = 0;
-int total_unemployed_years = 0;
-float pollution_deaths_history = 0.0, starve_deaths_history = 0.0;
-float unemployed_history = 0.0;
-
-int university_intake_rate;
-int power_made, power_used, coal_made, coal_used;
-int goods_made, goods_used, ore_made, ore_used;
-int rockets_launched, rockets_launched_success;
-int coal_survey_done;
+/*int numof_health_centres; */
 
 /*int selected_type_cost;*/
 
 
+void world_init( World_State* world )
+{
+    world->time.total = 0;
+
+    world->money.total = 0;
+
+    world->population.highest = 0;
+    world->population.births = 0;
+    world->population.evacuated = 0;
+
+    world->population.deaths.pollution.total = 0;
+    world->population.deaths.pollution.history = 0.0;
+    world->population.deaths.starve.total = 0;
+    world->population.deaths.starve.history = 0.0;
+
+    world->population.unemployment.days = 0;
+    world->population.unemployment.years = 0;
+    world->population.unemployment.history = 0.0;
+
+    world->sustain.flag = FALSE;
+
+    world->sustain.ore_coal_tip.flag = FALSE;
+    world->sustain.ore_coal_tip.count = 0;
+
+    world->sustain.port.flag = FALSE;
+    world->sustain.port.count = 0;
+
+    world->sustain.money.previous = 0;
+    world->sustain.money.count = 0;
+
+    world->sustain.population.previous = 0;
+    world->sustain.population.count = 0;
+
+    world->sustain.tech.previous = 0;
+    world->sustain.tech.count = 0;
+
+    world->sustain.fire.count = 0;
+}

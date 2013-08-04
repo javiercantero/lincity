@@ -62,10 +62,10 @@ do_school (int x, int y)
       MP_INFO(x,y).int_2 -= GOODS_MAKE_TECH_SCHOOL;
       MP_INFO(x,y).int_3 += TECH_MADE_BY_SCHOOL;
       MP_INFO(x,y).int_4++;
-      tech_level += TECH_MADE_BY_SCHOOL;
+      world->tech.level += TECH_MADE_BY_SCHOOL;
     }
   school_cost += SCHOOL_RUNNING_COST;
-  if ((total_time % 100) == 0)
+  if ((world->time.total % 100) == 0)
     {
       MP_INFO(x,y).int_5 = MP_INFO(x,y).int_4;
       MP_INFO(x,y).int_4 = 0;

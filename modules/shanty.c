@@ -119,7 +119,7 @@ void remove_a_shanty (void)
 void update_shanty (void)
 {
   int i, pp;
-  pp = people_pool - (COMMUNE_POP * numof_communes);
+  pp = world->population.pool - (COMMUNE_POP * numof_communes);
   i = (pp - SHANTY_MIN_PP) / SHANTY_POP;
   if (i > numof_shanties)
     add_a_shanty ();		/*                   vv-- schmitt trigger */
@@ -146,7 +146,7 @@ void do_shanty (int x, int y)
   if (get_coal (x, y, SHANTY_GET_COAL) != 0)
     if ((coal_tax -= SHANTY_GET_COAL * 2) < 0)
       coal_tax = 0;
-  if ((total_time & 1) == 0)
+  if ((world->time.total & 1) == 0)
     MP_POL(x,y)++;
   else
     MP_POL(x+1,y+1)++;

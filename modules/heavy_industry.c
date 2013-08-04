@@ -130,7 +130,7 @@ do_industry_h (int x, int y)
     }
   /* do this here rather than later 'cos maybe steel/=5 */
   MP_INFO(x,y).int_3 -= steel * ORE_MAKE_STEEL;
-  ore_used += steel * ORE_MAKE_STEEL;
+  world->resources.ore.used += steel * ORE_MAKE_STEEL;
   /* check there was enough electricity, or back up to 1/10 of the 
      production. ie same work and material useage for less production. 
      If no real power, see if we have enough coal to generate electricity.
@@ -145,7 +145,7 @@ do_industry_h (int x, int y)
       else
 	{
 	  MP_INFO(x,y).int_4 -= (steel * 2);
-	  coal_used += (steel * 2);
+	  world->resources.coal.used += (steel * 2);
 	  MP_INFO(x,y).flags |= FLAG_POWERED;
 	  MP_INFO(x,y).int_7 = 1;
 	}
@@ -210,7 +210,7 @@ do_industry_h (int x, int y)
 
 
   /* now choose a graphic every month */
-  if ((total_time % NUMOF_DAYS_IN_MONTH) == NUMOF_DAYS_IN_MONTH - 1)
+  if ((world->time.total % NUMOF_DAYS_IN_MONTH) == NUMOF_DAYS_IN_MONTH - 1)
     {
       MP_INFO(x,y).int_5 = MP_INFO(x,y).int_1
 	/ (MAX_MADE_AT_INDUSTRY_H / ORE_MAKE_STEEL);

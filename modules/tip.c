@@ -63,7 +63,7 @@ do_tip (int x, int y)
       MP_INFO(x,y).int_1 += i;
       MP_INFO(x,y).int_2 += i;
       MP_INFO(x - 1,y).int_7 -= i * 10;
-      sust_dig_ore_coal_tip_flag = 0;
+      world->sustain.ore_coal_tip.flag = FALSE;
     }
   if (y > 0 && (MP_INFO(x,y - 1).flags & FLAG_IS_TRANSPORT) != 0)
     {
@@ -71,7 +71,7 @@ do_tip (int x, int y)
       MP_INFO(x,y).int_1 += i;
       MP_INFO(x,y).int_2 += i;
       MP_INFO(x,y - 1).int_7 -= i * 10;
-      sust_dig_ore_coal_tip_flag = 0;
+      world->sustain.ore_coal_tip.flag = FALSE;
     }
 
 #if defined (commentout)
@@ -81,7 +81,7 @@ do_tip (int x, int y)
 #endif
 
   /* now choose an icon. */
-  if ((total_time % NUMOF_DAYS_IN_MONTH) == 0)
+  if ((world->time.total % NUMOF_DAYS_IN_MONTH) == 0)
     {
       i = (MP_INFO(x,y).int_1 * 7) / MAX_WASTE_AT_TIP;
       if (MP_INFO(x,y).int_1 > 0)

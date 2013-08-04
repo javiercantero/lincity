@@ -149,7 +149,7 @@ refresh_population_text (void)
      to be refreshed immediately after the rocket is launched.
      Therefore, this function! */
     Rect * b;
-    update_pbar (PPOP, housed_population + people_pool, 0);
+    update_pbar (PPOP, world->population.housed + world->population.pool, 0);
     b = &scr.pbar_pop;
     write_pbar_int (b, PPOP);
 }
@@ -257,29 +257,29 @@ update_pbar (int pbar_num, int value, int month_flag)
 void
 update_pbars_daily()
 {
-    update_pbar (PPOP, housed_population + people_pool, 0);
-    update_pbar (PTECH, tech_level, 0);
+    update_pbar (PPOP, world->population.housed + world->population.pool, 0);
+    update_pbar (PTECH, world->tech.level, 0);
     update_pbar (PFOOD, food_in_markets / 1000, 0);
     update_pbar (PJOBS, jobs_in_markets / 1000, 0);
     update_pbar (PCOAL, coal_in_markets / 250, 0);
     update_pbar (PGOODS, goods_in_markets / 500, 0);
     update_pbar (PORE, ore_in_markets / 500, 0);
     update_pbar (PSTEEL, steel_in_markets / 25, 0);
-    update_pbar (PMONEY, total_money, 0);
+    update_pbar (PMONEY, world->money.total, 0);
 }
 
 void
 update_pbars_monthly()
 {
-    update_pbar (PPOP, housed_population + people_pool, 1);
-    update_pbar (PTECH, tech_level, 1);
+    update_pbar (PPOP, world->population.housed + world->population.pool, 1);
+    update_pbar (PTECH, world->tech.level, 1);
     update_pbar (PFOOD, tfood_in_markets / data_last_month, 1);
     update_pbar (PJOBS, tjobs_in_markets / data_last_month, 1);
     update_pbar (PCOAL, tcoal_in_markets / data_last_month, 1);
     update_pbar (PGOODS, tgoods_in_markets / data_last_month, 1);
     update_pbar (PORE, tore_in_markets / data_last_month, 1);
     update_pbar (PSTEEL, tsteel_in_markets / data_last_month, 1);
-    update_pbar (PMONEY, total_money, 1);
+    update_pbar (PMONEY, world->money.total, 1);
 }
 
 int 

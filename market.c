@@ -160,7 +160,7 @@ int get_goods (int x, int y, int goods)
 	    {
 	      MP_INFO(markets[q].x, markets[q].y).int_4 -= goods;
 	      goods_tax += goods;
-	      goods_used += goods;
+	      world->resources.goods.used += goods;
 	      /* make the waste here. */
 	      MP_INFO(markets[q].x, markets[q].y).int_7 += goods / 3;
 	      return (1);
@@ -171,7 +171,7 @@ int get_goods (int x, int y, int goods)
     {
       put_stuff (x, y, goods / 3, T_WASTE);
       goods_tax += goods;
-      goods_used += goods;
+      world->resources.goods.used += goods;
       return (1);
     }
   return (0);
@@ -461,7 +461,7 @@ void do_market (int x, int y)
     MP_INFO(x,y).int_4 = MAX_GOODS_IN_MARKET;
 
   /* now choose a graphic only dependent on food (for now anyway) */
-  if (total_time % 25 == 17)
+  if (world->time.total % 25 == 17)
     {
       if (MP_INFO(x,y).int_1 <= 0)
 	{

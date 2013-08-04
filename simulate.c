@@ -139,21 +139,21 @@ void
 do_time_step (void)
 {
     /* Increment game time */
-    total_time++;
+    world->time.total++;
 #ifdef DEBUG_ENGINE
-    printf ("In do_time_step (%d)\n", total_time);
+    printf ("In do_time_step (%d)\n", world->time.total);
 #endif
 
     /* Initialize daily accumulators */
     init_daily();
 
     /* Initialize monthly accumulators */
-    if (total_time % NUMOF_DAYS_IN_MONTH == 0) {
+    if (world->time.total % NUMOF_DAYS_IN_MONTH == 0) {
 	init_monthly();
     }
 
     /* Initialize yearly accumulators */
-    if ((total_time % NUMOF_DAYS_IN_YEAR) == 0) {
+    if ((world->time.total % NUMOF_DAYS_IN_YEAR) == 0) {
 	init_yearly();
     }
 
@@ -322,28 +322,28 @@ do_periodic_events (void)
   add_daily_to_monthly();
 
 
-  if ((total_time % NUMOF_DAYS_IN_YEAR) == 0) {
+  if ((world->time.total % NUMOF_DAYS_IN_YEAR) == 0) {
     start_of_year_update ();
   }
-  if ((total_time % DAYS_BETWEEN_FIRES) == 9
-      && tech_level > (GROUP_FIRESTATION_TECH * MAX_TECH_LEVEL / 1000)) {
+  if ((world->time.total % DAYS_BETWEEN_FIRES) == 9
+      && world->tech.level > (GROUP_FIRESTATION_TECH * MAX_TECH_LEVEL / 1000)) {
     do_random_fire (-1, -1, 1);
   }
-  if ((total_time % DAYS_BETWEEN_COVER) == 75) {
+  if ((world->time.total % DAYS_BETWEEN_COVER) == 75) {
     clear_fire_health_and_cricket_cover ();
     do_fire_health_and_cricket_cover ();
   }
-  if ((total_time % DAYS_BETWEEN_SHANTY) == 85
-      && tech_level > (GROUP_HEALTH_TECH * MAX_TECH_LEVEL / 1000)) {
+  if ((world->time.total % DAYS_BETWEEN_SHANTY) == 85
+      && world->tech.level > (GROUP_HEALTH_TECH * MAX_TECH_LEVEL / 1000)) {
    update_shanty ();
   }
-  if (total_time % NUMOF_DAYS_IN_MONTH == (NUMOF_DAYS_IN_MONTH - 1)) {
+  if (world->time.total % NUMOF_DAYS_IN_MONTH == (NUMOF_DAYS_IN_MONTH - 1)) {
     end_of_month_update ();
   }
-  if (total_time % NUMOF_DAYS_IN_YEAR == (NUMOF_DAYS_IN_YEAR - 1)) {
+  if (world->time.total % NUMOF_DAYS_IN_YEAR == (NUMOF_DAYS_IN_YEAR - 1)) {
     end_of_year_update ();
   }
-  if ((total_time % DAYS_PER_POLLUTION) == 3) {
+  if ((world->time.total % DAYS_PER_POLLUTION) == 3) {
     do_pollution ();
   }
 }
@@ -355,39 +355,39 @@ end_of_month_update (void)
   /* GCS FIX -- seems to be a bit of engine code embedded in 
      do_monthgraph(), such as coal_made, coal_used, etc.
      Check it out soon... */
-  housed_population = (tpopulation / NUMOF_DAYS_IN_MONTH);
-  if ((housed_population + people_pool) > max_pop_ever)
-    max_pop_ever = housed_population + people_pool;
+  world->population.housed = (tpopulation / NUMOF_DAYS_IN_MONTH);
+  if ((world->population.housed + world->population.pool) > world->population.highest)
+    world->population.highest = world->population.housed + world->population.pool;
 
-  if (people_pool > 100) {
-    if (rand () % 1000 < people_pool)
-      people_pool -= 10;
+  if (world->population.pool > 100) {
+    if (rand () % 1000 < world->population.pool)
+      world->population.pool -= 10;
   }
-  if (people_pool < 0)
-    people_pool = 0;
+  if (world->population.pool < 0)
+    world->population.pool = 0;
 
-  if (tech_level > TECH_LEVEL_LOSS_START)
+  if (world->tech.level > TECH_LEVEL_LOSS_START)
     {
-      tech_level-=tech_level*(1./TECH_LEVEL_LOSS)
+      world->tech.level -= world->tech.level * (1./TECH_LEVEL_LOSS)
 	*(1+(tpopulation
 	     *(1./NUMOF_DAYS_IN_MONTH/120
 	       /(TECH_LEVEL_LOSS-200))));
 
     }
   else
-    tech_level += TECH_LEVEL_UNAIDED;
+    world->tech.level += TECH_LEVEL_UNAIDED;
   /* we can go over 100, but it's even more difficult */
-  if (tech_level > MAX_TECH_LEVEL)
-    tech_level-=(tech_level-MAX_TECH_LEVEL)
+  if (world->tech.level > MAX_TECH_LEVEL)
+    world->tech.level -= (world->tech.level - MAX_TECH_LEVEL)
       *(1./TECH_LEVEL_LOSS)
       *(1+(tpopulation
 	   *(1./NUMOF_DAYS_IN_MONTH/120
 	     /(TECH_LEVEL_LOSS-100))));
 
-  if (highest_tech_level < tech_level)
-    highest_tech_level = tech_level;
+  if (world->tech.highest_level < world->tech.level)
+    world->tech.highest_level = world->tech.level;
 
-  deaths_cost += unnat_deaths * UNNAT_DEATHS_COST;
+  deaths_cost += world->population.deaths.unnatural_month * UNNAT_DEATHS_COST;
 
 }
 
@@ -399,19 +399,19 @@ start_of_year_update (void)
 
   sustainability_test ();
 
-  pollution_deaths_history
-    -= pollution_deaths_history / 100.0;
-  starve_deaths_history
-    -= starve_deaths_history / 100.0;
-  unemployed_history
-    -= unemployed_history / 100.0;
+  world->population.deaths.pollution.history
+    -= world->population.deaths.pollution.history / 100.0;
+  world->population.deaths.starve.history
+    -= world->population.deaths.starve.history / 100.0;
+  world->population.unemployment.history
+    -= world->population.unemployment.history / 100.0;
   u = count_groups (GROUP_UNIVERSITY);
   if (u > 0) {
-    university_intake_rate = (count_groups (GROUP_SCHOOL) * 20) / u;
-    if (university_intake_rate > 100)
-      university_intake_rate = 100;
+    world->knowledge.university_intake_rate = (count_groups (GROUP_SCHOOL) * 20) / u;
+    if (world->knowledge.university_intake_rate > 100)
+      world->knowledge.university_intake_rate = 100;
   } else {
-    university_intake_rate = 50;
+    world->knowledge.university_intake_rate = 50;
   }
 
   map_power_grid();
@@ -421,19 +421,19 @@ start_of_year_update (void)
 static void 
 end_of_year_update (void)
 {
-    income_tax = (income_tax * income_tax_rate) / 100;
+    income_tax = (income_tax * world->money.tax_rate.income) / 100;
     ly_income_tax = income_tax;
-    total_money += income_tax;
+    world->money.total += income_tax;
 
-    coal_tax = (coal_tax * coal_tax_rate) / 100;
+    coal_tax = (coal_tax * world->money.tax_rate.coal) / 100;
     ly_coal_tax = coal_tax;
-    total_money += coal_tax;
+    world->money.total += coal_tax;
 
-    goods_tax = (goods_tax * goods_tax_rate) / 100;
-    goods_tax += (int) ((float) (goods_tax * goods_tax_rate)
-			   * (float) tech_level / 2000000.0);
+    goods_tax = (goods_tax * world->money.tax_rate.goods) / 100;
+    goods_tax += (int) ((float) (goods_tax * world->money.tax_rate.goods)
+			   * (float) world->tech.level / 2000000.0);
     ly_goods_tax = goods_tax;
-    total_money += goods_tax;
+    world->money.total += goods_tax;
 
     /* The price of exports on the world market drops as you export more.
        The exporters have to discount there wares, therefore the 
@@ -449,22 +449,22 @@ end_of_year_update (void)
 	export_tax -= discount;
     }
     ly_export_tax = export_tax;
-    total_money += export_tax;
+    world->money.total += export_tax;
 
     ly_university_cost = university_cost;
     ly_recycle_cost = recycle_cost;
     ly_deaths_cost = deaths_cost;
-    ly_health_cost = (health_cost * (tech_level / 10000)
+    ly_health_cost = (health_cost * (world->tech.level / 10000)
 		      * HEALTH_RUNNING_COST_MUL) / (MAX_TECH_LEVEL / 10000);
     ly_rocket_pad_cost = rocket_pad_cost;
     ly_school_cost = school_cost;
     ly_windmill_cost = windmill_cost;
-    ly_fire_cost = (fire_cost * (tech_level / 10000)
+    ly_fire_cost = (fire_cost * (world->tech.level / 10000)
 		    * FIRESTATION_RUNNING_COST_MUL) / (MAX_TECH_LEVEL / 10000);
     ly_cricket_cost = cricket_cost;
-    if (total_money < 0)
+    if (world->money.total < 0)
     {
-	ly_interest = ((-total_money / 1000) * INTEREST_RATE);
+	ly_interest = ((-world->money.total / 1000) * INTEREST_RATE);
 	if (ly_interest > 1000000)
 	    ly_interest = 1000000;
     }
@@ -476,24 +476,24 @@ end_of_year_update (void)
 	    + ly_interest + windmill_cost + ly_fire_cost
 	    + ly_cricket_cost;
     ly_other_cost = other_cost;
-    total_money -= other_cost;
+    world->money.total -= other_cost;
 
-    unemployment_cost = (unemployment_cost * dole_rate) / 100;
+    unemployment_cost = (unemployment_cost * world->money.dole_rate) / 100;
     ly_unemployment_cost = unemployment_cost;
-    total_money -= unemployment_cost;
+    world->money.total -= unemployment_cost;
 
-    transport_cost = (transport_cost * transport_cost_rate) / 100;
+    transport_cost = (transport_cost * world->money.cost_rate.transport) / 100;
     ly_transport_cost = transport_cost;
-    total_money -= transport_cost;
+    world->money.total -= transport_cost;
 
-    import_cost = (import_cost * import_cost_rate) / 100;
+    import_cost = (import_cost * world->money.cost_rate.imports) / 100;
     ly_import_cost = import_cost;
-    total_money -= import_cost;
+    world->money.total -= import_cost;
 
-    if (total_money > 2000000000)
-	total_money = 2000000000;
-    else if (total_money < -2000000000)
-	total_money = -2000000000;
+    if (world->money.total > 2000000000)
+	world->money.total = 2000000000;
+    else if (world->money.total < -2000000000)
+	world->money.total = -2000000000;
 
     print_total_money ();
 }
@@ -509,18 +509,18 @@ clear_game (void)
 	    MP_POL(x,y) = 0;
 	}
     }
-    total_time = 0;
-    coal_survey_done = 0;
+    world->time.total = 0;
+    world->flags.coal_survey_done = FALSE;
     numof_shanties = 0;
     numof_communes = 0;
     numof_substations = 0;
-    numof_health_centres = 0;
+    /*numof_health_centres = 0;*/ /* Not used */
     numof_markets = 0;
-    max_pop_ever = 0;
-    total_evacuated = 0;
-    total_births = 0;
-    total_money = 0;
-    tech_level = 0;
+    world->population.highest = 0;
+    world->population.evacuated = 0;
+    world->population.births = 0;
+    world->money.total = 0;
+    world->tech.level = 0;
     init_inventory();
     update_avail_modules(0);
 }
@@ -536,7 +536,7 @@ new_city (int* originx, int* originy, int random_village)
 
     /* Initial population is 100 for empty board or 200 
        for random village (100 are housed). */
-    people_pool = 100;
+    world->population.pool = 100;
 
     if (random_village != 0) {
 	random_start (originx, originy);
@@ -808,68 +808,68 @@ quick_start_add (int x, int y, short type, int size)
 void sustainability_test (void)
 {
   int i;
-  if (sust_dig_ore_coal_tip_flag == 0)
+  if (world->sustain.ore_coal_tip.flag == FALSE)
     {
-      sust_dig_ore_coal_tip_flag = 1;
-      sust_dig_ore_coal_count = 0;
+      world->sustain.ore_coal_tip.flag = TRUE;
+      world->sustain.ore_coal_tip.count = 0;
     }
   else
-    sust_dig_ore_coal_count++;
+    world->sustain.ore_coal_tip.count++;
 
-  if (sust_port_flag == 0)
+  if (world->sustain.port.flag == FALSE)
     {
-      sust_port_flag = 1;
-      sust_port_count = 0;
+      world->sustain.port.flag = TRUE;
+      world->sustain.port.count = 0;
     }
   else
-    sust_port_count++;
+    world->sustain.port.count++;
 
   /* Money must be going up or the same. (ie can't build.) */
-  if (sust_old_money > total_money)
-    sust_old_money_count = 0;
+  if (world->sustain.money.previous > world->money.total)
+    world->sustain.money.count = 0;
   else
-    sust_old_money_count++;
-  sust_old_money = total_money;
+    world->sustain.money.count++;
+  world->sustain.money.previous = world->money.total;
 
   /* population must be withing 2% of when it started. */
-  i = (housed_population + people_pool) - sust_old_population;
-  if (abs (i) > (sust_old_population / 40)	/* 2.5%  */
-      || (housed_population + people_pool) < SUST_MIN_POPULATION)
+  i = (world->population.housed + world->population.pool) - world->sustain.population.previous;
+  if (abs (i) > (world->sustain.population.previous / 40)	/* 2.5%  */
+      || (world->population.housed + world->population.pool) < SUST_MIN_POPULATION)
     {
-      sust_old_population = (housed_population + people_pool);
-      sust_old_population_count = 0;
+      world->sustain.population.previous = (world->population.housed + world->population.pool);
+      world->sustain.population.count = 0;
     }
   else
-    sust_old_population_count++;
+    world->sustain.population.count++;
 
   /* tech level must be going up or not fall more than 0.5% from it's
      highest during the sus count
   */
-  i = tech_level - sust_old_tech;
-  if (i < 0 || tech_level < SUST_MIN_TECH_LEVEL)
+  i = world->tech.level - world->sustain.tech.previous;
+  if (i < 0 || world->tech.level < SUST_MIN_TECH_LEVEL)
     {
       i = -i;
-      if ((i > sust_old_tech / 100) || tech_level < SUST_MIN_TECH_LEVEL)
+      if ((i > world->sustain.tech.previous / 100) || world->tech.level < SUST_MIN_TECH_LEVEL)
 	{
-	  sust_old_tech_count = 0;
-	  sust_old_tech = tech_level;
+	  world->sustain.tech.count = 0;
+	  world->sustain.tech.previous = world->tech.level;
 	}
       else
-	sust_old_tech_count++;
+	world->sustain.tech.count++;
     }
   else
     {
-      sust_old_tech_count++;
-      sust_old_tech = tech_level;
+      world->sustain.tech.count++;
+      world->sustain.tech.previous = world->tech.level;
     }
 
   /* check fire cover only every three years */
-  if (total_time % (NUMOF_DAYS_IN_YEAR * 3) == 0)
+  if (world->time.total % (NUMOF_DAYS_IN_YEAR * 3) == 0)
     {
       if (sust_fire_cover () != 0)
-	sust_fire_count += 3;
+	world->sustain.fire.count += 3;
       else
-	sust_fire_count = 0;
+	world->sustain.fire.count = 0;
 
     }
 }
@@ -912,11 +912,11 @@ debug_mappoints (void)
 
 void initialize_tax_rates (void)
 {
-  income_tax_rate = INCOME_TAX_RATE;
-  coal_tax_rate = COAL_TAX_RATE;
-  goods_tax_rate = GOODS_TAX_RATE;
-  dole_rate = DOLE_RATE;
-  transport_cost_rate = TRANSPORT_COST_RATE;
-  import_cost_rate = IM_PORT_COST_RATE;
+  world->money.tax_rate.income = INCOME_TAX_RATE;
+  world->money.tax_rate.coal = COAL_TAX_RATE;
+  world->money.tax_rate.goods = GOODS_TAX_RATE;
+  world->money.dole_rate = DOLE_RATE;
+  world->money.cost_rate.transport = TRANSPORT_COST_RATE;
+  world->money.cost_rate.imports = IM_PORT_COST_RATE;
 }
 

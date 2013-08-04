@@ -67,7 +67,7 @@ do_commune (int x, int y)
       MP_INFO(x,y).int_3++;
       MP_INFO(x,y).int_6 |= 8;
     }
-  if (total_time % 10 == 0)
+  if (world->time.total % 10 == 0)
     {
       MP_INFO(x,y).int_2 = 1;
       if (put_steel (x, y, 2) != 0) {
@@ -80,7 +80,7 @@ do_commune (int x, int y)
 	MP_INFO(x,y).int_2 = 0;
       }
     }
-  if (total_time % 100 == 48)
+  if (world->time.total % 100 == 48)
     {
       MP_INFO(x,y).int_5 = MP_INFO(x,y).int_6;
       MP_INFO(x,y).int_6 = 0;

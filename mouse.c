@@ -1037,7 +1037,7 @@ choose_residence (void)
     fprintf (tempfile, _("text -1 215 Click on one to select\n"));
     fprintf (tempfile, "text -1 225 ======================\n");
 
-    if (((tech_level * 10) / MAX_TECH_LEVEL) > 2) {
+    if (((world->tech.level * 10) / MAX_TECH_LEVEL) > 2) {
 	fprintf (tempfile, _("text -1 255 High Tech\n"));
 
 	cost = get_group_cost(GROUP_RESIDENCE_LH);

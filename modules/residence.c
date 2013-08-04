@@ -104,16 +104,16 @@ do_residence (int x, int y)
 	else if (hc != 0 && po > 10 && rand () % 4 == 0)
 	{
 	    p--;
-	    unnat_deaths++;
-	    total_pollution_deaths++;
-	    pollution_deaths_history += 1.0;
+	    world->population.deaths.unnatural_month++;
+	    world->population.deaths.pollution.total++;
+	    world->population.deaths.pollution.history += 1.0;
 	    bad += 100;
 	}
 	if (r > 0 && hc == 0)
 	{
-	    unnat_deaths++;
-	    total_pollution_deaths++;
-	    pollution_deaths_history += 1.0;
+	    world->population.deaths.unnatural_month++;
+	    world->population.deaths.pollution.total++;
+	    world->population.deaths.pollution.history += 1.0;
 	    bad += 100;
 	}
     }
@@ -124,7 +124,7 @@ do_residence (int x, int y)
 	&& p > 0)
     {
 	p++;
-	total_births++;
+	world->population.births++;
 	good += 50;
     }
     /* are people starving. */
@@ -133,14 +133,14 @@ do_residence (int x, int y)
 	if (rand () % DAYS_PER_STARVE == 1)
 	{
 	    p--;
-	    unnat_deaths++;
-	    total_starve_deaths++;
-	    starve_deaths_history += 1.0;
+	    world->population.deaths.unnatural_month++;
+	    world->population.deaths.starve.total++;
+	    world->population.deaths.starve.history += 1.0;
 	}
-	starving_population += p;
+	world->population.starving_day += p;
 	bad += 250;
 	drm += 100;
-	MP_INFO(x,y).int_2 = total_time;	/* for the starve screen */
+	MP_INFO(x,y).int_2 = world->time.total;	/* for the starve screen */
     }
     /* kick one out if overpopulated */
     if (MP_TYPE(x,y) == CST_RESIDENCE_LL)
@@ -150,7 +150,7 @@ do_residence (int x, int y)
 	if (p > 50)
 	{
 	    p--;
-	    people_pool++;
+	    world->population.pool++;
 	    brm += 20;
 	}
     }
@@ -161,7 +161,7 @@ do_residence (int x, int y)
 	if (p > 100)
 	{
 	    p--;
-	    people_pool++;
+	    world->population.pool++;
 	    brm += 10;
 	}
     }
@@ -173,7 +173,7 @@ do_residence (int x, int y)
 	if (p > 200)
 	{
 	    p--;
-	    people_pool++;
+	    world->population.pool++;
 	    brm += 10;
 	}
     }
@@ -184,7 +184,7 @@ do_residence (int x, int y)
 	if (p > 100)
 	{
 	    p--;
-	    people_pool++;
+	    world->population.pool++;
 	    brm += 20;
 	}
     }
@@ -195,7 +195,7 @@ do_residence (int x, int y)
 	if (p > 200)
 	{
 	    p--;
-	    people_pool++;
+	    world->population.pool++;
 	    brm += 10;
 	}
     }
@@ -207,12 +207,12 @@ do_residence (int x, int y)
 	if (p > 400)
 	{
 	    p--;
-	    people_pool++;
+	    world->population.pool++;
 	    brm += 10;
 	}
     }
 
-    population += p;
+    world->population.total_day += p;
 
     /* now get power */
     if (get_power (x, y, POWER_RES_OVERHEAD
@@ -271,14 +271,14 @@ do_residence (int x, int y)
 	MP_INFO(x,y).int_1 -= 11;
 	if (MP_INFO(x,y).int_1 < -300)
 	    MP_INFO(x,y).int_1 = -300;
-	unemployed_population += p;
-	total_unemployed_days += p;
-	if (total_unemployed_days >= NUMOF_DAYS_IN_YEAR)
+	world->population.unemployed_day += p;
+	world->population.unemployment.days += p;
+	if (world->population.unemployment.days >= NUMOF_DAYS_IN_YEAR)
 	{
-	    total_unemployed_years++;
+	    world->population.unemployment.years++;
 	    /* think we're ok doing this, max of about 120 added each time. */
-	    total_unemployed_days -= NUMOF_DAYS_IN_YEAR;
-	    unemployed_history += 1.0;
+	    world->population.unemployment.days -= NUMOF_DAYS_IN_YEAR;
+	    world->population.unemployment.history += 1.0;
 	}
 	unemployment_cost += p;	/* hmmm */
 
@@ -290,23 +290,23 @@ do_residence (int x, int y)
 	bad += 50;
     }
     drm += p / 4;
-    /* people_pool stuff */
+    /* world->population.pool stuff */
     bad += p / 2;
     bad += MP_POL(x,y) / 20;
-    good += people_pool / 27;
+    good += world->population.pool / 27;
     r = rand () % ((good + bad) * RESIDENCE_PPM);
     if (r < bad)
     {
 	if (p > MIN_RES_POPULATION)
 	{
 	    p--;
-	    people_pool++;
+	    world->population.pool++;
 	}
     }
-    else if (people_pool > 0 && r > ((good + bad) * (RESIDENCE_PPM - 1) + bad))
+    else if (world->population.pool > 0 && r > ((good + bad) * (RESIDENCE_PPM - 1) + bad))
     {
 	p++;
-	people_pool--;
+	world->population.pool--;
     }
     MP_INFO(x,y).population = p;
     MP_INFO(x,y).int_4 = brm;

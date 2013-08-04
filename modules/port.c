@@ -176,7 +176,7 @@ do_port (int x, int y)
     }
   MP_INFO(x,y).int_1 += et;
   MP_INFO(x,y).int_4 += ic;
-  if (total_time % 100 == 0)
+  if (world->time.total % 100 == 0)
     {
       MP_INFO(x,y).int_2 = MP_INFO(x,y).int_1;
       MP_INFO(x,y).int_1 = 0;
@@ -197,13 +197,13 @@ do_port (int x, int y)
     }
   if (et > 0)
     {
-      sust_port_flag = 0;
-      tech_level++;
+      world->sustain.port.flag = FALSE;
+      world->tech.level++;
     }
   if (ic > 0)
     {
-      sust_port_flag = 0;
-      tech_level++;
+      world->sustain.port.flag = FALSE;
+      world->tech.level++;
     }
   et += MP_INFO(x,y).int_3;	/* int_3 holds the 'pence' */
 
