@@ -1517,8 +1517,9 @@ is_real_river (int x, int y)
 void 
 do_coal_survey (void)
 {
-    if (world->flags.coal_survey_done == FALSE) {
-	adjust_money(-1000000);
-	world->flags.coal_survey_done = TRUE;
+    if (false == world->flags.coal_survey_done)
+    {
+        adjust_money(-1000000);
+        world->flags.coal_survey_done = true;
     }
 }

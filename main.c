@@ -746,8 +746,8 @@ int compile_results (void)
     fprintf (outf, _("Game statistics from LinCity Version %s\n"), VERSION);
     if (strlen (given_scene) > 3)
 	fprintf (outf, _("Initial loaded scene - %s\n"), given_scene);
-    if (world->sustain.flag)
-	fprintf (outf, _("Economy is sustainable\n"));
+    if (true == world->sustain.flag)
+        fprintf (outf, _("Economy is sustainable\n"));
     fprintf (outf, _("Population  %d  of which  %d  are not housed.\n")
 	     , world->population.housed + world->population.pool, world->population.pool);
     fprintf (outf,

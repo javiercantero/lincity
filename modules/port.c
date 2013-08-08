@@ -197,13 +197,13 @@ do_port (int x, int y)
     }
   if (et > 0)
     {
-      world->sustain.port.flag = FALSE;
-      world->tech.level++;
+        world->sustain.port.flag = false;
+        world->tech.level++;
     }
   if (ic > 0)
     {
-      world->sustain.port.flag = FALSE;
-      world->tech.level++;
+        world->sustain.port.flag = false;
+        world->tech.level++;
     }
   et += MP_INFO(x,y).int_3;	/* int_3 holds the 'pence' */
 

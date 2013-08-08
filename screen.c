@@ -220,12 +220,11 @@ update_main_screen (int full_refresh)
 	    update_main_screen_health_cover ();
 	    break;
 	case MINI_SCREEN_COAL_FLAG:
-	    if (world->flags.coal_survey_done) {
-		update_main_screen_coal ();
-	    } else {
-		update_main_screen_normal (full_refresh);
-	    }
-	    break;
+        if (true == world->flags.coal_survey_done)
+            update_main_screen_coal ();
+        else
+            update_main_screen_normal (full_refresh);
+        break;
 	}
     }
 #if defined (WIN32)
@@ -896,7 +895,7 @@ mini_map_handler(int x, int y, int button)
 	mini_screen_help ();
 	return;
     }
-    if (mini_screen_flags == MINI_SCREEN_COAL_FLAG && !world->flags.coal_survey_done) {
+    if (mini_screen_flags == MINI_SCREEN_COAL_FLAG && false == world->flags.coal_survey_done) {
 	if (yn_dial_box (_("Coal survey"),
 			 _("This will cost you 1 million"),
 			 _("After that it's is free to call again"),
@@ -1327,7 +1326,7 @@ draw_mini_screen_coal (void)
     mini_screen_flags = MINI_SCREEN_COAL_FLAG;
     draw_ms_text (_("Coal Reserve"));
     draw_ms_button (ms_coal_button_graphic);
-    if (world->flags.coal_survey_done) {
+    if (true == world->flags.coal_survey_done) {
 	for (y = 0; y < WORLD_SIDE_LEN; y++) {
 	    for (x = 0; x < WORLD_SIDE_LEN; x++) {
 		if (MP_INFO(x,y).coal_reserve == 0)
@@ -2532,12 +2531,13 @@ do_sust_barchart (int draw)
       && world->sustain.tech.count >= SUST_TECH_YEARS_NEEDED
       && world->sustain.fire.count >= SUST_FIRE_YEARS_NEEDED)
     {
-      if (world->sustain.flag == FALSE)
-	ok_dial_box ("sustain.mes", GOOD, 0L);
-      world->sustain.flag = TRUE;
+        if (false == world->sustain.flag)
+            ok_dial_box ("sustain.mes", GOOD, 0L);
+        world->sustain.flag = true;
     }
-  else
-    world->sustain.flag = FALSE;
+    else
+        world->sustain.flag = false;
+
   if (draw) {
     draw_sustline (0, world->sustain.ore_coal_tip.count,
 		   SUST_ORE_COAL_YEARS_NEEDED, SUST_ORE_COAL_COL);

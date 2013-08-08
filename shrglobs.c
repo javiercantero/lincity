@@ -88,12 +88,12 @@ void world_init( World_State* world )
     world->population.unemployment.years = 0;
     world->population.unemployment.history = 0.0;
 
-    world->sustain.flag = FALSE;
+    world->sustain.flag = false;
 
-    world->sustain.ore_coal_tip.flag = FALSE;
+    world->sustain.ore_coal_tip.flag = false;
     world->sustain.ore_coal_tip.count = 0;
 
-    world->sustain.port.flag = FALSE;
+    world->sustain.port.flag = false;
     world->sustain.port.count = 0;
 
     world->sustain.money.previous = 0;

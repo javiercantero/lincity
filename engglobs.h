@@ -8,6 +8,8 @@
 
 #include "lin-city.h" /* WORLD_SIDE_LEN dependency */
 
+#include "boolean.h"
+
 typedef struct
 {
     int x; /* FIXME: should be unsigned int */
@@ -66,18 +68,18 @@ typedef struct
 
 typedef struct
 {
-    /* FIXME: boolean */ int flag;
+    bool flag;
 
     struct
     {
-        /* FIXME: boolean */ int flag;
+        bool flag;
         /* FIXME: unsigned */ int count;
 
     } ore_coal_tip;
 
     struct
     {
-        /* FIXME: boolean */ int flag;
+        bool flag;
         /* FIXME: unsigned */ int count;
 
     } port;
@@ -208,7 +210,7 @@ typedef struct
 
     struct
     {
-        /* FIXME: boolean */ int coal_survey_done; /* show minimap with coal resources or not */
+        bool coal_survey_done; /* show minimap with coal resources or not */
 
     } flags;
 

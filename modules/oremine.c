@@ -60,7 +60,7 @@ do_oremine (int x, int y)
 		  MP_INFO(xx,yy).ore_reserve--;
 		  MP_INFO(x,y).int_1 += 5000;
 		  world->resources.ore.made += 5000;
-		  world->sustain.ore_coal_tip.flag = FALSE;
+		  world->sustain.ore_coal_tip.flag = false;
 		  /* maybe want an ore tax? */
 		  yy = ye;
 		  xx = xe;	/* break out */

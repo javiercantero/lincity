@@ -510,7 +510,7 @@ clear_game (void)
 	}
     }
     world->time.total = 0;
-    world->flags.coal_survey_done = FALSE;
+    world->flags.coal_survey_done = false;
     numof_shanties = 0;
     numof_communes = 0;
     numof_substations = 0;
@@ -808,21 +808,22 @@ quick_start_add (int x, int y, short type, int size)
 void sustainability_test (void)
 {
   int i;
-  if (world->sustain.ore_coal_tip.flag == FALSE)
-    {
-      world->sustain.ore_coal_tip.flag = TRUE;
-      world->sustain.ore_coal_tip.count = 0;
-    }
-  else
-    world->sustain.ore_coal_tip.count++;
 
-  if (world->sustain.port.flag == FALSE)
+    if (false == world->sustain.ore_coal_tip.flag)
     {
-      world->sustain.port.flag = TRUE;
-      world->sustain.port.count = 0;
+        world->sustain.ore_coal_tip.flag = true;
+        world->sustain.ore_coal_tip.count = 0;
     }
-  else
-    world->sustain.port.count++;
+    else
+        world->sustain.ore_coal_tip.count++;
+
+    if (false == world->sustain.port.flag)
+    {
+        world->sustain.port.flag = true;
+        world->sustain.port.count = 0;
+    }
+    else
+        world->sustain.port.count++;
 
   /* Money must be going up or the same. (ie can't build.) */
   if (world->sustain.money.previous > world->money.total)

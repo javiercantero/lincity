@@ -332,6 +332,8 @@ void load_city (char *cname)
     int dummy;
     FILE *ofile;
     char s[256];
+    int tmp;
+
     if ((ofile = fopen_read_gzipped (cname)) == NULL) {
 	printf (_("Can't open <%s> (gzipped)"), cname);
 	do_error ("Can't open it!");
@@ -515,7 +517,8 @@ void load_city (char *cname)
     prog_box ("", 98);
     fscanf (ofile, "%d", &(world->victory.rockets_launched));
     fscanf (ofile, "%d", &(world->victory.rockets_launched_success));
-    fscanf (ofile, "%d", &(world->flags.coal_survey_done));
+    fscanf (ofile, "%d", &(tmp));
+    world->flags.coal_survey_done = (bool) tmp; /* convert integer to enum */
     
     for (x = 0; x < pbar_data_size; x++) {
 	for (p = 0; p < num_pbars; p++) {
@@ -576,17 +579,18 @@ void load_city (char *cname)
                           &(world->sustain.money.previous),
                           &(world->sustain.population.previous),
                           &(world->sustain.tech.previous),
-                          &(world->sustain.flag) ))
+                          &(tmp) ))
     {
-        world->sustain.ore_coal_tip.flag = TRUE;
-        world->sustain.port.flag = TRUE;
+        world->sustain.flag = (bool) tmp; /* convert integer to enum */
+        world->sustain.ore_coal_tip.flag = true;
+        world->sustain.port.flag = true;
 
         /* GCS FIX: Check after loading file if screen is drawn OK */
         /* draw_sustainable_window (); */
     }
     else
     {
-	    world->sustain.flag = FALSE;
+	    world->sustain.flag = false;
 	    world->sustain.ore_coal_tip.count = 0;
 	    world->sustain.port.count = 0;
 	    world->sustain.money.count = 0;

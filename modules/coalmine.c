@@ -83,7 +83,7 @@ do_coalmine (int x, int y)
 		      MP_INFO(x,y).int_1 += 1000;
 		      world->resources.coal.made += 1000;
 		      coal_tax += 1000;
-		      world->sustain.ore_coal_tip.flag = FALSE;
+		      world->sustain.ore_coal_tip.flag = false;
 		      MP_POL(x,y) += COALMINE_POLLUTION;
 		      yy = ye;
 		      xx = xe;	/* break out */

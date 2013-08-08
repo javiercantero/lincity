@@ -63,7 +63,7 @@ do_tip (int x, int y)
       MP_INFO(x,y).int_1 += i;
       MP_INFO(x,y).int_2 += i;
       MP_INFO(x - 1,y).int_7 -= i * 10;
-      world->sustain.ore_coal_tip.flag = FALSE;
+      world->sustain.ore_coal_tip.flag = false;
     }
   if (y > 0 && (MP_INFO(x,y - 1).flags & FLAG_IS_TRANSPORT) != 0)
     {
@@ -71,7 +71,7 @@ do_tip (int x, int y)
       MP_INFO(x,y).int_1 += i;
       MP_INFO(x,y).int_2 += i;
       MP_INFO(x,y - 1).int_7 -= i * 10;
-      world->sustain.ore_coal_tip.flag = FALSE;
+      world->sustain.ore_coal_tip.flag = false;
     }
 
 #if defined (commentout)
