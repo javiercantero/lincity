@@ -6,6 +6,8 @@
 #ifndef __lintypes_h__
 #define __lintypes_h__
 
+#include "boolean.h"
+
 #define NUM_OF_TYPES    400
 #define NUM_OF_GROUPS    42
 #define GROUP_NAME_LEN   20
@@ -109,7 +111,7 @@
 struct GROUP
 {
     char  name[GROUP_NAME_LEN+1];      /* name of group */
-    unsigned short        no_credit;   /* TRUE if need credit to build */
+    bool  no_credit;   /* true if need credit to build */
     unsigned short        group;       /* This is redundant: it must match
 					  the index into the table */
     unsigned short        size;

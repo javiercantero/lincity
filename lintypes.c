@@ -14,7 +14,6 @@
 #include <string.h> /* XXX: portability issue?  for strcpy */
 
 /* app general headers */
-#include "boolean.h"
 #include "lcconfig.h"
 #include "lctypes.h" /* CST_USED dependency */
 #include "lcintl.h"
@@ -322,7 +321,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
 {
     /* 0 */
     { N_("Empty"),       /* name */
-      FALSE,            /* need credit? */
+      false,            /* need credit? */
       GROUP_BARE,       /* group number */
       1,                /* size */
       (green(12)),      /* color */
@@ -334,7 +333,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 1 */
     { N_("Power line"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_POWER_LINE,
       1,                               /* size */
       GROUP_POWER_LINE_COLOUR,
@@ -346,7 +345,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 2 */
     { N_("Solar PS"),
-      TRUE,                            /* need credit? */
+      true,                            /* need credit? */
       GROUP_SOLAR_POWER,
       4,                               /* size */
       GROUP_SOLAR_POWER_COLOUR,
@@ -358,7 +357,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 3 */
     { N_("Substation"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_SUBSTATION,
       2,                               /* size */
       GROUP_SUBSTATION_COLOUR,
@@ -370,7 +369,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 4 */
     { N_("Residential LL"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_RESIDENCE_LL,
       3,                               /* size */
       GROUP_RESIDENCE_LL_COLOUR,
@@ -382,7 +381,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 5 */
     { N_("Farm"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_ORGANIC_FARM,
       4,                               /* size */
       GROUP_ORGANIC_FARM_COLOUR,
@@ -394,7 +393,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 6 */
     { N_("Market"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_MARKET,
       2,                               /* size */
       GROUP_MARKET_COLOUR,
@@ -406,7 +405,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 7 */
     { N_("Track"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_TRACK,
       1,                               /* size */
       GROUP_TRACK_COLOUR,
@@ -418,7 +417,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 8 */
     { N_("Coalmine"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_COALMINE,
       4,                               /* size */
       GROUP_COALMINE_COLOUR,
@@ -430,7 +429,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 9 */
     { N_("Railway"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_RAIL,
       1,                               /* size */
       GROUP_RAIL_COLOUR,
@@ -442,7 +441,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 10 */
     { N_("Coal PS"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_COAL_POWER,
       4,                               /* size */
       GROUP_COAL_POWER_COLOUR,
@@ -454,7 +453,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 11 */
     { N_("Road"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_ROAD,
       1,                               /* size */
       GROUP_ROAD_COLOUR,
@@ -466,7 +465,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 12 */
     { N_("Lt. Industry"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_INDUSTRY_L,
       3,                               /* size */
       GROUP_INDUSTRY_L_COLOUR,
@@ -478,7 +477,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 13 */
     { N_("University"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_UNIVERSITY,
       3,                               /* size */
       GROUP_UNIVERSITY_COLOUR,
@@ -490,7 +489,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 14 */
     { N_("Commune"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_COMMUNE,
       4,                               /* size */
       GROUP_COMMUNE_COLOUR,
@@ -502,7 +501,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 15 */
     { N_("Ore mine"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_OREMINE,
       4,                               /* size */
       GROUP_OREMINE_COLOUR,
@@ -514,7 +513,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 16 */
     { N_("Rubbish tip"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_TIP,
       4,                               /* size */
       GROUP_TIP_COLOUR,
@@ -526,7 +525,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 17 */
     { N_("Port"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_PORT,
       4,                               /* size */
       GROUP_PORT_COLOUR,
@@ -538,7 +537,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 18 */
     { N_("Hv. Industry"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_INDUSTRY_H,
       4,                               /* size */
       GROUP_INDUSTRY_H_COLOUR,
@@ -550,7 +549,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 19 */
     { N_("Park"),
-      TRUE,                           /* need credit? */
+      true,                           /* need credit? */
       GROUP_PARKLAND,
       1,                               /* size */
       GROUP_PARKLAND_COLOUR,
@@ -562,7 +561,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 20 */
     { N_("Recycle"),
-      TRUE,                           /* need credit? */
+      true,                           /* need credit? */
       GROUP_RECYCLE,
       2,                               /* size */
       GROUP_RECYCLE_COLOUR,
@@ -574,7 +573,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 21 */
     { N_("Water"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_WATER,
       1,                               /* size */
       GROUP_WATER_COLOUR,
@@ -586,7 +585,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 22 */
     { N_("Health centre"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_HEALTH,
       2,                               /* size */
       GROUP_HEALTH_COLOUR,
@@ -598,7 +597,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 23 */
     { N_("Rocket pad"),
-      TRUE,                            /* need credit? */
+      true,                            /* need credit? */
       GROUP_ROCKET,
       4,                               /* size */
       GROUP_ROCKET_COLOUR,
@@ -610,7 +609,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 24 */
     { N_("Windmill"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_WINDMILL,
       2,                               /* size */
       GROUP_WINDMILL_COLOUR,
@@ -622,7 +621,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 25 */
     { N_("Monument"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_MONUMENT,
       2,                               /* size */
       GROUP_MONUMENT_COLOUR,
@@ -634,7 +633,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 26 */
     { N_("School"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_SCHOOL,
       2,                               /* size */
       GROUP_SCHOOL_COLOUR,
@@ -646,7 +645,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 27 */
     { N_("Blacksmith"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_BLACKSMITH,
       2,                               /* size */
       GROUP_BLACKSMITH_COLOUR,
@@ -658,7 +657,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 28 */
     { N_("Mill"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_MILL,
       2,                               /* size */
       GROUP_MILL_COLOUR,
@@ -670,7 +669,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 29 */
     { N_("Pottery"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_POTTERY,
       2,                               /* size */
       GROUP_POTTERY_COLOUR,
@@ -682,7 +681,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 30 */
     { N_("Fire sta'n"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_FIRESTATION,
       2,                               /* size */
       GROUP_FIRESTATION_COLOUR,
@@ -694,7 +693,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 31 */
     { N_("Cricket pitch"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_CRICKET,
       2,                               /* size */
       GROUP_CRICKET_COLOUR,
@@ -707,7 +706,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     /* 32 */
     /* there is no button for this. */
     { N_("Burnt"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_BURNT,
       1,                               /* size */
       GROUP_BURNT_COLOUR,
@@ -720,7 +719,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     /* 33 */
     /* there is no button for this. */
     { N_("Shanty town"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_SHANTY,
       2,                               /* size */
       GROUP_SHANTY_COLOUR,
@@ -733,7 +732,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     /* 34 */
     /* there is no button for this. */
     { N_("Fire"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_FIRE,
       1,                               /* size */
       GROUP_FIRE_COLOUR,
@@ -746,7 +745,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     /* 35 */
     /* there is no button for this. */
     { N_("Used"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_USED,
       1,                               /* size */
       GROUP_USED_COLOUR,
@@ -758,7 +757,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 36 */
     { N_("Residential ML"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_RESIDENCE_ML,
       3,                               /* size */
       GROUP_RESIDENCE_ML_COLOUR,
@@ -770,7 +769,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 37 */
     { N_("Residential HL"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_RESIDENCE_HL,
       3,                               /* size */
       GROUP_RESIDENCE_HL_COLOUR,
@@ -782,7 +781,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 38 */
     { N_("Residential"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_RESIDENCE_LH,
       3,                               /* size */
       GROUP_RESIDENCE_LH_COLOUR,
@@ -794,7 +793,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 39 */
     { N_("Residential"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_RESIDENCE_MH,
       3,                               /* size */
       GROUP_RESIDENCE_MH_COLOUR,
@@ -806,7 +805,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 40 */
     { N_("Residential"),
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       GROUP_RESIDENCE_LH,
       3,                               /* size */
       GROUP_RESIDENCE_HH_COLOUR,
@@ -819,7 +818,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     /* 41 */
     /* End of Data */
     { "EOF",
-      FALSE,                           /* need credit? */
+      false,                           /* need credit? */
       0,
       0,                               /* size */
       0,

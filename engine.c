@@ -111,7 +111,7 @@ no_credit_build (int selected_group)
   }
 #endif
 
-  if (main_groups[selected_group].no_credit == TRUE ) {
+  if (true == main_groups[selected_group].no_credit) {
     return (1);
   }
   return (0);
