@@ -951,40 +951,46 @@ do_port_cb_mouse (int x, int y)
     do_market_cb_template (x, y, 0);
 }
 
-void 
-no_credit_build_msg (int selected_group)
+const char no_credit_solar_power_msg_file[] = "no-credit-solar-power.mes";
+const char no_credit_university_msg_file[] = "no-credit-university.mes";
+const char no_credit_parkland_msg_file[] = "no-credit-parkland.mes";
+const char no_credit_recycle_msg_file[] = "no-credit-recycle.mes";
+const char no_credit_rocket_pad_msg_file[] = "no-credit-rocket.mes";
+
+void no_credit_build_msg( int selected_group )
 {
-#ifdef GROUP_POWER_SOURCE_NO_CREDIT
-  if (selected_group == GROUP_POWER_SOURCE) {
-    ok_dial_box ("no-credit-solar-power.mes", BAD, 0L);
-    return;
-  }
-#endif
-#ifdef GROUP_UNIVERSITY_NO_CREDIT
-  if (selected_group == GROUP_UNIVERSITY) {
-    ok_dial_box ("no-credit-university.mes", BAD, 0L);
-    return;
-  }
-#endif
-#ifdef GROUP_PARKLAND_NO_CREDIT
-  if (selected_group == GROUP_PARKLAND) {
-    ok_dial_box ("no-credit-parkland.mes", BAD, 0L);
-    return;
-  }
-#endif
-#ifdef GROUP_RECYCLE_NO_CREDIT
-  if (selected_group == GROUP_RECYCLE) {
-    ok_dial_box ("no-credit-recycle.mes", BAD, 0L);
-    return;
-  }
-#endif
-#ifdef GROUP_ROCKET
-  if (selected_group == GROUP_ROCKET) {
-    ok_dial_box ("no-credit-rocket.mes", BAD, 0L);
-    return;
-  }
-#endif
-  return;
+    bool show_msg = false;
+    char* msg_file;
+
+    /* TODO: use the no_credit field to show the appropiate message */
+    switch (selected_group)
+    {
+    case GROUP_SOLAR_POWER:
+        show_msg = true;
+        msg_file = (char*)no_credit_solar_power_msg_file;
+        break;
+    case GROUP_UNIVERSITY:
+        show_msg = true;
+        msg_file = (char*)no_credit_university_msg_file;
+        break;
+    case GROUP_PARKLAND:
+        show_msg = true;
+        msg_file = (char*)no_credit_parkland_msg_file;
+        break;
+    case GROUP_RECYCLE:
+        show_msg = true;
+        msg_file = (char*)no_credit_recycle_msg_file;
+        break;
+    case GROUP_ROCKET:
+        show_msg = true;
+        msg_file = (char*)no_credit_rocket_pad_msg_file;
+        break;
+    }
+
+    if (true == show_msg)
+    {
+        ok_dial_box( msg_file, BAD, 0L );
+    }
 }
 
 void

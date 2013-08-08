@@ -73,13 +73,6 @@
 #define GROUP_MILL_TECH   25
 #define GROUP_POTTERY_TECH  0
 
-/*#define GROUP_POWER_SOURCE_NO_CREDIT*/
-#define GROUP_SOLAR_POWER_NO_CREDIT
-#define GROUP_UNIVERSITY_NO_CREDIT
-#define GROUP_PARKLAND_NO_CREDIT
-#define GROUP_RECYCLE_NO_CREDIT
-#define GROUP_ROCKET_NO_CREDIT
-
 /* macros for multiple group check operations */
 #define GROUP_IS_TRANSPORT(group) \
             ((group == GROUP_TRACK) || \

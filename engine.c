@@ -62,9 +62,6 @@
 
 extern int selected_type_cost;
 
-/* module functions */
-int no_credit_build (int selected_type);
-
 
 int 
 adjust_money(int value)
@@ -79,44 +76,6 @@ adjust_money(int value)
 
 int is_real_river (int x, int y);
 
-int
-no_credit_build (int selected_group)
-{
-  if (world->money.total >= 0)
-    return (0);
-
-#ifdef GROUP_POWER_SOURCE_NO_CREDIT
-  if (selected_group == GROUP_POWER_SOURCE) {
-    return (1);
-  }
-#endif
-#ifdef GROUP_UNIVERSITY_NO_CREDIT
-  if (selected_group == GROUP_UNIVERSITY) {
-    return (1);
-  }
-#endif
-#ifdef GROUP_PARKLAND_NO_CREDIT
-  if (selected_group == GROUP_PARKLAND) {
-    return (1);
-  }
-#endif
-#ifdef GROUP_RECYCLE_NO_CREDIT
-  if (selected_group == GROUP_RECYCLE) {
-    return (1);
-  }
-#endif
-#ifdef GROUP_ROCKET
-  if (selected_group == GROUP_ROCKET) {
-    return (1);
-  }
-#endif
-
-  if (true == main_groups[selected_group].no_credit) {
-    return (1);
-  }
-  return (0);
-}
-
 int place_item (int x, int y, short type)
 {
     int group;
@@ -128,8 +87,9 @@ int place_item (int x, int y, short type)
     size = main_groups[group].size;
 
     /* You can't build because credit not available. */
-    if (no_credit_build (group) != 0) {
-	return -1;
+    if ( world->money.total < 0 && true == main_groups[group].no_credit )
+    {
+        return -1;
     }
 
     /* Not enough slots in the substation array */

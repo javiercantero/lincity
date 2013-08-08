@@ -477,7 +477,7 @@ struct GROUP main_groups[NUM_OF_GROUPS] =
     },
     /* 13 */
     { N_("University"),
-      false,                           /* need credit? */
+      true,                           /* need credit? */
       GROUP_UNIVERSITY,
       3,                               /* size */
       GROUP_UNIVERSITY_COLOUR,
