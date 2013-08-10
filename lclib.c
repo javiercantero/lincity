@@ -15,25 +15,10 @@
 #include <stdlib.h>
 
 /* app general headers */
-#include "lcconfig.h"
-#include "lcintl.h"
 
 /* other modules */
-#include "cliglobs.h"
 
 /* ----------------------------------------------------------------- */
-
-char* 
-current_month (int current_time)
-{
-    return _(months[(current_time % NUMOF_DAYS_IN_YEAR) / NUMOF_DAYS_IN_MONTH]);
-}
-
-int 
-current_year (int current_time)
-{
-    return current_time / NUMOF_DAYS_IN_YEAR;
-}
 
 void 
 format_number5 (char* str, int num)

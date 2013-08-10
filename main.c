@@ -80,8 +80,6 @@
  * ---------------------------------------------------------------------- */
 void dump_screen (void);
 void verify_package (void);
-char* current_month (int current_time);
-int current_year (int current_time);
 void process_keystrokes (int key);
 int execute_timestep (void);
 
