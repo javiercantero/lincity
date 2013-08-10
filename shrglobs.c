@@ -71,7 +71,11 @@ unsigned int numof_markets = 0;
 
 void world_init( World_State* world )
 {
+    /* inicialize game time */
     world->time.total = 0;
+    world->time.date.day = 0;
+    world->time.date.month = 0;
+    world->time.date.year = 0;
 
     world->money.total = 0;
 

@@ -6,6 +6,10 @@
 #ifndef __simulate_h__
 #define __simulate_h__
 
+#include "engglobs.h"   /* World_Date */
+
+void simulate_calculate_date( int total_days, World_Date* date );
+
 void clear_mappoint (short fill, int x, int y);
 void new_city (int* originx, int* originy, int random_village);
 int count_groups (int g);

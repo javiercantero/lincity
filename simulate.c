@@ -21,6 +21,7 @@
 
 /* app general headers */
 #include "lcconfig.h"
+#include "boolean.h"
 #include "common.h"
 #include "lin-city.h"
 #include "lintypes.h"
@@ -135,26 +136,48 @@ int sust_fire_cover (void);
 /* ---------------------------------------------------------------------- *
  * Public Functions
  * ---------------------------------------------------------------------- */
-void
-do_time_step (void)
+
+void do_time_step( void )
 {
+    bool new_month = false;
+    bool new_year = false;
+
     /* Increment game time */
-    world->time.total++;
+    world->time.total++; /* total num of days */
 #ifdef DEBUG_ENGINE
     printf ("In do_time_step (%d)\n", world->time.total);
 #endif
 
+    /* Increment game time in date format */
+    world->time.date.day++;
+
+    if (world->time.date.day == NUMOF_DAYS_IN_MONTH)
+    {
+        new_month = true;
+        world->time.date.day = 0; /* from 0 to NUMOF_DAYS_IN_MONTH - 1 */
+        world->time.date.month++;
+
+        if (world->time.date.month == NUM_MONTHS_IN_YEAR)
+        {
+            new_year = true;
+            world->time.date.month = 0;  /* from 0 to NUM_MONTHS_IN_YEAR - 1 */
+            world->time.date.year++;
+        }
+    }
+
     /* Initialize daily accumulators */
     init_daily();
 
-    /* Initialize monthly accumulators */
-    if (world->time.total % NUMOF_DAYS_IN_MONTH == 0) {
-	init_monthly();
-    }
+    if (true == new_month)
+    {
+        /* Initialize monthly accumulators */
+        init_monthly();
 
-    /* Initialize yearly accumulators */
-    if ((world->time.total % NUMOF_DAYS_IN_YEAR) == 0) {
-	init_yearly();
+        if (true == new_year)
+        {
+            /* Initialize yearly accumulators */
+            init_yearly();
+        }
     }
 
     /* Clear the power grid */
@@ -165,6 +188,21 @@ do_time_step (void)
 
     /* Now do the stuff that happens once a year, once a month, etc. */
     do_periodic_events ();
+}
+
+/*
+ * simulate_calculate_date
+ *
+ * Calculate the game date (day, month and year) using the actual tick counter
+ */
+void simulate_calculate_date( int total_days, World_Date* date )
+{
+    unsigned int days_in_year;
+
+    date->year   = total_days / NUMOF_DAYS_IN_YEAR;
+    days_in_year = total_days % NUMOF_DAYS_IN_YEAR;
+    date->month  = days_in_year / NUMOF_DAYS_IN_MONTH;
+    date->day    = days_in_year % NUMOF_DAYS_IN_MONTH;
 }
 
 void 
@@ -509,7 +547,12 @@ clear_game (void)
 	    MP_POL(x,y) = 0;
 	}
     }
+    /* inicialize game time */
     world->time.total = 0;
+    world->time.date.day = 0;
+    world->time.date.month = 0;
+    world->time.date.year = 0;
+
     world->flags.coal_survey_done = false;
     numof_shanties = 0;
     numof_communes = 0;

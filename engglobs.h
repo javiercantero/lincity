@@ -113,11 +113,21 @@ typedef struct
 
 } Sustainibility_State;
 
+ /* game time in day/month/year format */
+typedef struct
+{
+    unsigned int day;
+    unsigned int month;
+    unsigned int year;
+
+} World_Date;
+
 typedef struct
 {
     struct
     {
         /* FIXME: unsigned */ int total;  /* game time */
+        World_Date date; /* game time in day/month/year format */
 
     } time;
 

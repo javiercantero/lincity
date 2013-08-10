@@ -1405,7 +1405,7 @@ void draw_mini_screen_ocost (void)
     Fgl_fillbox (b->x, b->y,
 		 WORLD_SIDE_LEN, WORLD_SIDE_LEN, green (12));
     Fgl_setfontcolors (green (12), TEXT_FG_COLOUR);
-    sprintf (s, "OC yr %04d", (world->time.total / NUMOF_DAYS_IN_YEAR) - 1);
+    sprintf (s, "OC yr %04u", world->time.date.year - 1);
     Fgl_write (b->x + 10, b->y + 2, s);
 
     if (ly_interest > 19999)
@@ -1844,8 +1844,8 @@ void print_date (void)
 {
     char s[50];
     Rect* b = &scr.date;
-    sprintf (s, _("Date %s %04d "), current_month(world->time.total),
-	     current_year(world->time.total));
+    sprintf( s, _("Date %s %04u "), months[world->time.date.month],
+        world->time.date.year );
     Fgl_write (b->x, b->y, s);
 #if defined (WIN32)
     UpdateWindow (display.hWnd);

@@ -423,6 +423,8 @@ void load_city (char *cname)
 	main_screen_originy = WORLD_SIDE_LEN - scr.main_win.h / 16 - 1;
 
     fscanf (ofile, "%d", &(world->time.total));
+    simulate_calculate_date( world->time.total, &(world->time.date) );
+
     if (ver <= MM_MS_C_VER)
 	i = OLD_MAX_NUMOF_SUBSTATIONS;
     else

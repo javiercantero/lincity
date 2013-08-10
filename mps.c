@@ -553,15 +553,14 @@ void
 mps_global_other_costs (void)
 {
     int i = 0;
-    int year;
     char s[12];
 
     mps_store_title(i++,_("Other Costs"));
 
     /* Don't write year if it's negative. */
-    year = (world->time.total / NUMOF_DAYS_IN_YEAR) - 1;
-    if (year >= 0) {
-	mps_store_sd(i++, _("For year"), year);
+    if (world->time.date.year > 0)
+    {
+        mps_store_sd(i++, _("For year"), world->time.date.year - 1);
     }
     i++;
     num_to_ansi(s,sizeof(s),ly_interest);
