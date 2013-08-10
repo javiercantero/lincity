@@ -1844,7 +1844,7 @@ void print_date (void)
 {
     char s[50];
     Rect* b = &scr.date;
-    sprintf( s, _("Date %s %04u "), months[world->time.date.month],
+    sprintf( s, _("Date %s %04u "), month_names[world->time.date.month],
         world->time.date.year );
     Fgl_write (b->x, b->y, s);
 #if defined (WIN32)

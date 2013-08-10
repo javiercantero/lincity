@@ -753,7 +753,7 @@ int compile_results (void)
 	     , world->population.highest, world->population.evacuated, world->population.births);
     fprintf (outf,
 	     _(" Date  %s %04u   Money %8d   Tech-level %5.1f (%5.1f)\n"),
-	     months[world->time.date.month], world->time.date.year, world->money.total,
+	     month_names[world->time.date.month], world->time.date.year, world->money.total,
 	     (float) world->tech.level * 100.0 / MAX_TECH_LEVEL,
 	     (float) world->tech.highest_level * 100.0 / MAX_TECH_LEVEL);
     fprintf (outf,

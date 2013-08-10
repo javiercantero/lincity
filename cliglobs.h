@@ -59,7 +59,7 @@ extern int main_screen_originx, main_screen_originy;
 extern long real_time;
 extern int screen_refresh_flag;
 
-extern char *months[];
+extern char *month_names[];
 
 extern int monthgraph_size;
 extern int *monthgraph_pop;

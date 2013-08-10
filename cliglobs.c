@@ -65,7 +65,7 @@ int mouse_type = MOUSE_TYPE_NORMAL;
 
 int mt_start_posx, mt_start_posy, mt_current_posx, mt_current_posy;
 
-char *months[] =
+char *month_names[] =
 {N_("Jan"), N_("Feb"), N_("Mar"), N_("Apr"),
 N_("May"), N_("Jun"), N_("Jul"), N_("Aug"),
 N_("Sep"), N_("Oct"), N_("Nov"), N_("Dec")};
