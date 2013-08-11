@@ -30,23 +30,19 @@
  * Public Global Variables
  * ---------------------------------------------------------------------- */
 
+const unsigned int stats_resources_scale[NUM_RESOURCES] = { 1000, /* food */
+                                                            1000, /* jobs */
+                                                             250, /* coal */
+                                                             500, /* goods */
+                                                             500, /* ore */
+                                                              25  /* steel */  };
+
+Stats stats_state;
+Stats* stats = &stats_state;
+
 /* Daily accumulators */
-int food_in_markets;
-int jobs_in_markets;
-int coal_in_markets;
-int goods_in_markets;
-int ore_in_markets; 
-int steel_in_markets; 
-int waste_in_markets; 
 
 /* Monthly accumulators */
-int tfood_in_markets;
-int tjobs_in_markets;
-int tcoal_in_markets;
-int tgoods_in_markets;
-int tore_in_markets;
-int tsteel_in_markets;
-int twaste_in_markets;
 int tpopulation;
 int tstarving_population;
 int tunemployed_population;
@@ -103,32 +99,30 @@ void inventory_market(int x, int y);
 void
 init_daily(void)
 {
+    unsigned int i;
+
     world->population.total_day = 0;
     world->population.starving_day = 0;
     world->population.unemployed_day = 0;
-    food_in_markets = 0;
-    jobs_in_markets = 0;
-    coal_in_markets = 0;
-    goods_in_markets = 0;
-    ore_in_markets = 0;
-    steel_in_markets = 0;
+
+    for (i = 0; i < NUM_RESOURCES; i++)
+        stats->daily.markets.resource[i].total = 0;
 }
 
 void
 init_monthly(void)
 {
+    unsigned int i;
+
     data_last_month = 0;
     
     tpopulation = 0;
     tstarving_population = 0;
-    tfood_in_markets = 0;
-    tjobs_in_markets = 0;
-    tcoal_in_markets = 0;
-    tgoods_in_markets = 0;
-    tore_in_markets = 0;
-    tsteel_in_markets = 0;
     tunemployed_population = 0;
     world->population.deaths.unnatural_month = 0;
+
+    for (i = 0; i < NUM_RESOURCES; i++)
+        stats->monthly.markets.resource[i].total = 0;
 }
 
 void
@@ -206,13 +200,13 @@ init_inventory(void)
 void
 inventory_market(int x, int y) 
 {
-    food_in_markets += MP_INFO(x,y).int_1;
-    jobs_in_markets += MP_INFO(x,y).int_2;
-    coal_in_markets += MP_INFO(x,y).int_3;
-    goods_in_markets += MP_INFO(x,y).int_4;
-    ore_in_markets += MP_INFO(x,y).int_5;
-    steel_in_markets += MP_INFO(x,y).int_6;
-    waste_in_markets += MP_INFO(x,y).int_7;
+    /* FIXME: change MP_INFO(x,y).int_X from int to unsigned int ?? */
+    stats->daily.markets.resource[RESOURCE_FOOD].total += MP_INFO(x,y).int_1;
+    stats->daily.markets.resource[RESOURCE_JOBS].total += MP_INFO(x,y).int_2;
+    stats->daily.markets.resource[RESOURCE_COAL].total += MP_INFO(x,y).int_3;
+    stats->daily.markets.resource[RESOURCE_GOODS].total += MP_INFO(x,y).int_4;
+    stats->daily.markets.resource[RESOURCE_ORE].total += MP_INFO(x,y).int_5;
+    stats->daily.markets.resource[RESOURCE_STEEL].total += MP_INFO(x,y).int_6;
 }
 
 
@@ -222,16 +216,14 @@ inventory_market(int x, int y)
 void
 add_daily_to_monthly(void)
 {
+    unsigned int i;
+
     data_last_month++;
     
     tpopulation += world->population.total_day;
     tstarving_population += world->population.starving_day;
-    tfood_in_markets += food_in_markets / 1000;
-    tjobs_in_markets += jobs_in_markets / 1000;
-    tcoal_in_markets += coal_in_markets / 250;
-    tgoods_in_markets += goods_in_markets / 500;
-    tore_in_markets += ore_in_markets / 500;
-    tsteel_in_markets += steel_in_markets / 25;
-    twaste_in_markets += waste_in_markets;
     tunemployed_population += world->population.unemployed_day;
+
+    for (i = 0; i < NUM_RESOURCES; i++)
+        stats->monthly.markets.resource[i].total += stats->daily.markets.resource[i].total / stats_resources_scale[i];
 }

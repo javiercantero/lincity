@@ -222,8 +222,8 @@ refresh_pbars (void)
 
 */
 
-void
-update_pbar (int pbar_num, int value, int month_flag)
+/* FIXME: change int value to unsigned int value */
+void update_pbar( int pbar_num, int value, int month_flag )
 {
 
     int i;
@@ -259,12 +259,12 @@ update_pbars_daily()
 {
     update_pbar (PPOP, world->population.housed + world->population.pool, 0);
     update_pbar (PTECH, world->tech.level, 0);
-    update_pbar (PFOOD, food_in_markets / 1000, 0);
-    update_pbar (PJOBS, jobs_in_markets / 1000, 0);
-    update_pbar (PCOAL, coal_in_markets / 250, 0);
-    update_pbar (PGOODS, goods_in_markets / 500, 0);
-    update_pbar (PORE, ore_in_markets / 500, 0);
-    update_pbar (PSTEEL, steel_in_markets / 25, 0);
+    update_pbar(PFOOD,  stats->daily.markets.resource[RESOURCE_FOOD].total  / stats_resources_scale[RESOURCE_FOOD], 0);
+    update_pbar(PJOBS,  stats->daily.markets.resource[RESOURCE_JOBS].total  / stats_resources_scale[RESOURCE_JOBS], 0);
+    update_pbar(PCOAL,  stats->daily.markets.resource[RESOURCE_COAL].total  / stats_resources_scale[RESOURCE_COAL], 0);
+    update_pbar(PGOODS, stats->daily.markets.resource[RESOURCE_GOODS].total / stats_resources_scale[RESOURCE_GOODS], 0);
+    update_pbar(PORE,   stats->daily.markets.resource[RESOURCE_ORE].total   / stats_resources_scale[RESOURCE_ORE], 0);
+    update_pbar(PSTEEL, stats->daily.markets.resource[RESOURCE_STEEL].total / stats_resources_scale[RESOURCE_STEEL], 0);
     update_pbar (PMONEY, world->money.total, 0);
 }
 
@@ -273,12 +273,12 @@ update_pbars_monthly()
 {
     update_pbar (PPOP, world->population.housed + world->population.pool, 1);
     update_pbar (PTECH, world->tech.level, 1);
-    update_pbar (PFOOD, tfood_in_markets / data_last_month, 1);
-    update_pbar (PJOBS, tjobs_in_markets / data_last_month, 1);
-    update_pbar (PCOAL, tcoal_in_markets / data_last_month, 1);
-    update_pbar (PGOODS, tgoods_in_markets / data_last_month, 1);
-    update_pbar (PORE, tore_in_markets / data_last_month, 1);
-    update_pbar (PSTEEL, tsteel_in_markets / data_last_month, 1);
+    update_pbar(PFOOD,  stats->monthly.markets.resource[RESOURCE_FOOD].total / data_last_month, 1);
+    update_pbar(PJOBS,  stats->monthly.markets.resource[RESOURCE_JOBS].total / data_last_month, 1);
+    update_pbar(PCOAL,  stats->monthly.markets.resource[RESOURCE_COAL].total / data_last_month, 1);
+    update_pbar(PGOODS, stats->monthly.markets.resource[RESOURCE_GOODS].total / data_last_month, 1);
+    update_pbar(PORE,   stats->monthly.markets.resource[RESOURCE_ORE].total / data_last_month, 1);
+    update_pbar(PSTEEL, stats->monthly.markets.resource[RESOURCE_STEEL].total / data_last_month, 1);
     update_pbar (PMONEY, world->money.total, 1);
 }
 

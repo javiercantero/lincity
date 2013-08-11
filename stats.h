@@ -28,27 +28,44 @@
   when the user clicks on the pound sterling icon.
 */
 
+#include "resources.h"
+
+typedef struct
+{
+    struct
+    {
+        unsigned int total;
+
+    } resource[NUM_RESOURCES];
+
+} Stats_Resources;
+
+typedef struct
+{
+    struct
+    {
+        Stats_Resources markets;
+
+    } daily;
+
+    struct
+    {
+        Stats_Resources markets;
+
+    } monthly;
+
+} Stats;
+
+extern Stats* stats;
+
+extern const unsigned int stats_resources_scale[];
+
 /* daily */
-extern int food_in_markets; 
-extern int jobs_in_markets; 
-extern int coal_in_markets; 
-extern int goods_in_markets; 
-extern int ore_in_markets; 
-extern int steel_in_markets; 
-extern int waste_in_markets; 
 
 /* monthly */
-extern int tfood_in_markets; 
-extern int tjobs_in_markets; 
-extern int tcoal_in_markets; 
-extern int tgoods_in_markets; 
-extern int tore_in_markets; 
-extern int tsteel_in_markets; 
-extern int twaste_in_markets;
 extern int tpopulation; 
 extern int tstarving_population; 
 extern int tunemployed_population; 
-extern int twaste_in_markets;
 
 /* yearly */
 extern int income_tax; 
