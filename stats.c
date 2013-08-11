@@ -11,18 +11,13 @@
 #include "stats.h"
 
 /* system libraries */
-#include <stdio.h>
-#include <stdlib.h>
+#include <stdio.h> /* printf() */
 
 /* app general headers */
-#include "lcconfig.h"
-#include "lin-city.h"
 #include "lintypes.h"
-#include "lctypes.h"
 
 /* other modules */
-#include "pbar.h"
-#include "engglobs.h"
+#include "engglobs.h" /* world dependency */
 
 /* ----------------------------------------------------------------- */
 
