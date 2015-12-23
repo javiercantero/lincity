@@ -384,18 +384,18 @@ resize_pixmap (int new_width, int new_height)
     }
 }
 
-/* KBR 10/19/2002 MSVC was not happy with this being inline for release build */
-/* GCS 02/02/2003 That's because of the external reference in lcwin32.c. 
-                  For some reason, MSVC likes it in the header, while gcc 
-		  likes it in the file.  Still need to fix this in autoconf,
-                  but for now this will do. */
-#if !defined (WIN32)
-inline int 
-pixmap_index (int x, int y)
-{
-    return y*pixmap_width + x;
-}
-#endif
+/*
+ * KBR 10/19/2002 MSVC was not happy with this being inline for release build
+ * GCS 02/02/2003 That's because of the external reference in lcwin32.c. 
+ *                For some reason, MSVC likes it in the header, while gcc 
+ *                likes it in the file.  Still need to fix this in autoconf,
+ *                but for now this will do.
+ * JC  12/23/2015 C99 mandates that the "inline" definition must go in
+ *                the header file and the "extern inline" declaration in
+ *                the .c file, just the opposite of GCC89 and apparently
+ *                the same that MSVC.
+ */
+extern inline int pixmap_index (int x, int y); /* defined in pixmap.h */
 
 int 
 pixmap_getpixel (int x, int y)
