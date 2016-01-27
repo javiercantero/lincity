@@ -106,6 +106,7 @@ dnl -------------------------------------------------------
 dnl Internationalization
 dnl ALL_LINGUAS="ca"
 AM_GNU_GETTEXT([external])
+AM_GNU_GETTEXT_VERSION([0.18.2])
 dnl -------------------------------------------------------
 dnl GCS: I stole the following from freeciv
 dnl Why doesn't AM_GNU_GETTEXT set LIBS appropriately
