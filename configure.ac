@@ -3,17 +3,18 @@ dnl Process this file with autoconf to produce a configure script.
 dnl Initialization
 AC_INIT([Lincity],[1.13.1],[lincity-users@lists.sourceforge.net],[lincity])
 AC_CONFIG_SRCDIR([colour.pal])
+AC_CONFIG_MACRO_DIR([m4])
 AM_INIT_AUTOMAKE
 
 AC_ARG_WITH(gzip,  [  --with-gzip             use gzip])
 AC_ARG_WITH(svga,  [  --with-svga             use svga library])
 
 dnl Checks for programs.
-AC_ISC_POSIX
+AC_SEARCH_LIBS([strerror],[cposix])
 AC_PROG_CC
-AC_AIX
+AC_USE_SYSTEM_EXTENSIONS
 AC_PROG_MAKE_SET
-AC_PROG_LIBTOOL
+LT_INIT
 
 dnl Autodetect presence of gzip
 if eval "test x$with_gzip = x"; then
@@ -66,7 +67,6 @@ AC_CHECK_SIZEOF(char)
 AC_CHECK_SIZEOF(short)
 AC_CHECK_SIZEOF(int)
 AC_CHECK_SIZEOF(long)
-AC_PROG_RANLIB
 
 dnl Checks for library functions (GCS - add 'select' to enable networking).
 AC_CHECK_FUNCS(gettimeofday mkdir popen)
